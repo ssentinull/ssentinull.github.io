@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        Journal Recommender Application. ::
+        ssentinull — a simple about / blog / portfolio site
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Description. This web app recommends Indonesian scientific journals that best fit the user&amp;rsquo;s scientific paper. The premise is quite simple: the user inputs the abstract for their scientific article, and the application outputs a list of journals ordered descendingly by how similar they are to the article in terms of percentages. It&amp;rsquo;s able to do this because it utilizes a previously trained Softmax Regression model that&amp;rsquo;s deployed to the web app."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/projects/journal-recommender-application/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css" />
+
+<link rel="stylesheet" href="/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="/img/favicon.png" />
+
+
+<link href="/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Journal Recommender Application."/>
+<meta name="twitter:description" content="A web-based application that recommends Indonesian scientific journals."/>
+
+
+
+<meta property="og:title" content="Journal Recommender Application." />
+<meta property="og:description" content="A web-based application that recommends Indonesian scientific journals." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/projects/journal-recommender-application/" />
+<meta property="article:published_time" content="2020-08-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-18T00:00:00+00:00" /><meta property="og:site_name" content="ssentinull" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+  <body class="">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >ssentinull</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/projects">Projects</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">Journal Recommender Application.</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          18-08-2020
+        </span>
+
+        
+      
+
+      
+        <span class="post-author"
+          >— Written by ssentinull</span
+        >
+
+
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          <a href="/tags/web-app/">#web-app</a>&nbsp;
+        
+          <a href="/tags/machine-learning/">#machine-learning</a>&nbsp;
+        
+          <a href="/tags/python/">#python</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      
+      <h2 id="description">Description.</h2>
+<p>This web app recommends Indonesian scientific journals that best fit the user&rsquo;s scientific paper. The premise is quite simple: the user inputs the abstract for their scientific article, and the application outputs a list of journals ordered descendingly by how similar they are to the article in terms of percentages. It&rsquo;s able to do this because it utilizes a previously trained Softmax Regression model that&rsquo;s deployed to the web app.</p>
+<p>Softmax Regression is a version of Logistic Regression the switches the Sigmoid function in the output layer with a Softmax function. To put it simply, while a Logistic Regression model classifies the input data dichotomously (yes or no; cat or dog) with a 100% certainty, a Softmax Regression model classifies the input data multinomially (yes, no, or maybe; cat, dog, mouse, or bird) with differing percentages for each class. The model is trained on a dataset that was scraped from <a href="https://sinta.ristekbrin.go.id/">SINTA</a> and <a href="https://garuda.ristekbrin.go.id/journal">Garuda</a> using a web scraper that I built in conjunction with this web app, and the features of the dataset were selected using a Chi-Square feature selection program that I also built.</p>
+<h2 id="background">Background.</h2>
+<p>This is a project for my Bachelor&rsquo;s thesis. The idea came up when I was casually browsing the internet to find journals that I could use as inspiration for my thesis. I came across a <a href="https://journalfinder.elsevier.com/">feature</a> from <a href="https://www.elsevier.com/en-xs">Elsevier</a> that allows researchers to find the best journals that fit their scientific papers. After searching whether or not there was an Indonesian counterpart available online (which there wasn&rsquo;t at that time), and knowing that my major&rsquo;s specialization was Artificial Intelligence, I ended up doing this project.</p>
+<h2 id="features">Features.</h2>
+<ul>
+<li>Utilizes a trained Softmax Regression model and Chi-Square feature selection.</li>
+<li>Outputs journal recommendations in the form of probabilities.</li>
+<li>Recommends journal with the highest probability as the main recommendation and outputs a summary and a link for said recommended journal.</li>
+<li>Works properly only with <strong>Indonesian</strong> abstracts.</li>
+<li>Only allows abstracts that consist of 100 - 350 words as input.</li>
+<li>Recommends 12 different journals:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Name</th>
+<th>Scope of Knowledge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.</td>
+<td><a href="http://ejurnal.litbang.pertanian.go.id/index.php/jhort">Jurnal Hortikultura</a></td>
+<td>Horticulture</td>
+</tr>
+<tr>
+<td>2.</td>
+<td><a href="http://ejournal-balitbang.kkp.go.id/index.php/jppi">Jurnal Penelitian Perikanan Indonesia</a></td>
+<td>Fisheries</td>
+</tr>
+<tr>
+<td>3.</td>
+<td><a href="http://ejournal-balitbang.kkp.go.id/index.php/jra">Jurnal Riset Akuakultur</a></td>
+<td>Aquaculture</td>
+</tr>
+<tr>
+<td>4.</td>
+<td><a href="http://jurnal.pusjatan.pu.go.id/index.php/jurnaljalanjembatan">Jurnal Jalan-Jembatan</a></td>
+<td>Road Construction</td>
+</tr>
+<tr>
+<td>5.</td>
+<td><a href="http://ejournal.forda-mof.org/ejournal-litbang/index.php/JPHH/index">Jurnal Penelitian Hasil Hutan</a></td>
+<td>Forestries</td>
+</tr>
+<tr>
+<td>6.</td>
+<td><a href="http://ejournal.forda-mof.org/ejournal-litbang/index.php/JPHKA">Jurnal Penelitian Hutan dan Konservasi Alam</a></td>
+<td>Forest Conservation</td>
+</tr>
+<tr>
+<td>7.</td>
+<td><a href="https://ojs.unud.ac.id/index.php/eum">E-Jurnal Medika Udayana</a></td>
+<td>Medical Sciences</td>
+</tr>
+<tr>
+<td>8.</td>
+<td><a href="https://jurnal.umk.ac.id/index.php/simet">Jurnal Simetris</a></td>
+<td>Technology</td>
+</tr>
+<tr>
+<td>9.</td>
+<td><a href="http://ejurnal.its.ac.id/index.php/teknik">Jurnal Teknik ITS</a></td>
+<td>Technology</td>
+</tr>
+<tr>
+<td>10.</td>
+<td><a href="https://jurnal.ugm.ac.id/bkm">Berita Kedokteran Masyarakat</a></td>
+<td>Public Health</td>
+</tr>
+<tr>
+<td>12.</td>
+<td><a href="https://ojs.unud.ac.id/index.php/imv/index">Indonesia Medicus Veterinus</a></td>
+<td>Veterinary</td>
+</tr>
+<tr>
+<td>13.</td>
+<td><a href="https://jurnal.uns.ac.id/matriks">Matriks Teknik Sipil</a></td>
+<td>Civil Engineering</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tools">Tools.</h2>
+<ul>
+<li><a href="https://www.python.org/">Python</a></li>
+<li><a href="https://flask.palletsprojects.com/en/1.1.x/">Flask v.1.1.x</a></li>
+<li><a href="https://pythonhosted.org/Flask-Bootstrap/">Flash-Bootstrap</a></li>
+<li><a href="https://jinja.palletsprojects.com/en/2.11.x/">Jinja v.2.11.x</a></li>
+<li><a href="https://numpy.org/">NumPy</a></li>
+<li><a href="https://pypi.org/project/Sastrawi/">Sastrawi</a></li>
+<li><a href="https://wtforms.readthedocs.io/en/2.3.x/">WTForms v.2.3.x</a></li>
+<li><a href="https://www.heroku.com/">Heroku</a></li>
+</ul>
+<h2 id="how-to-configure-in-local-environment">How to Configure in Local Environment.</h2>
+<p>After cloning the <a href="https://github.com/ssentinull/journal-recommender-system-website">repository</a>, do the following steps:</p>
+<ol>
+<li>
+<p>Create a virtual environment in the cloned dir.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ python3 -m venv venv
+</code></pre></div></li>
+<li>
+<p>activate the virtual environment</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ source venv/bin/activate
+</code></pre></div></li>
+<li>
+<p>install all the dependencies listed in <code>requirements.txt</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ pip install -r requirements.txt
+</code></pre></div></li>
+<li>
+<p>setup the flask environment variable in <code>.env</code></p>
+<pre><code class="language-env" data-lang="env">SECRET_KEY=your_secret_key
+ABSTRACT_TOKEN_SAVE_DIR=./data/output/abstract-token-list.json
+TF_IDF_SAVE_DIR=./data/output/tf-idf.csv
+FV_TOKENS_OPEN_DIR=./data/fv-tokens
+JOURNAL_DATA_OPEN_DIR=./static/journal_info
+</code></pre></li>
+<li>
+<p>deactivate and reactivate the virtual environment</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ deactivate
+$ source venv/bin/activate
+</code></pre></div></li>
+<li>
+<p>export the shell environment variables</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ export FLASK_APP<span style="color:#f92672">=</span>server.py
+$ export FLASK_ENV<span style="color:#f92672">=</span>development
+</code></pre></div></li>
+<li>
+<p>run the app</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ flask run
+</code></pre></div></li>
+</ol>
+<h2 id="how-to-run-in-local-environment">How to Run in Local Environment.</h2>
+<p>After configuring it locally, do the following steps every time you want to run the app:</p>
+<ol>
+<li>
+<p>activate the virtual environment</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ source venv/bin/activate
+</code></pre></div></li>
+<li>
+<p>export the shell environment variables</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ export FLASK_APP<span style="color:#f92672">=</span>server.py
+$ export FLASK_ENV<span style="color:#f92672">=</span>development
+</code></pre></div></li>
+<li>
+<p>run the app</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ flask run
+</code></pre></div></li>
+</ol>
+<h2 id="demo">Demo.</h2>
+<ul>
+<li>
+<p>Input validation</p>
+<p><img src="https://media.giphy.com/media/J3SLW8RvR55zMea4h1/giphy.gif" alt=""></p>
+</li>
+<li>
+<p>Recommendation result</p>
+<p><img src="https://media.giphy.com/media/daJ6Z7uG5e8Four7Mj/giphy.gif" alt=""></p>
+</li>
+</ul>
+
+    </div>
+    
+
+    
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >ssentinull</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+       <div style="flex-direction: row; align-items: center; font-size: 1rem;">
+         <span style="margin-right: 10px;">
+             <a href="https://github.com/ssentinull"><i class="fa fa-github" style="font-size:24px"></i></a>
+         </span>
+         <span style="margin-right: 10px;">
+             <a href="https://www.linkedin.com/in/ibnu-ahsani/"><i class="fa fa-linkedin" style="font-size:24px"></i></a>
+         </span>
+         <span>
+             <a href="mailto:ibnu.muhari@gmail.com"><i class="fa fa-envelope" style="font-size:18px"></i></a>
+         </span>
+       </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>
