@@ -23,6 +23,16 @@
   </url>
   
   <url>
+    <loc>/tags/cli-program/</loc>
+    <lastmod>2020-08-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/data-scraping/</loc>
+    <lastmod>2020-08-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/projects/journal-recommender-application/</loc>
     <lastmod>2020-08-18T00:00:00+00:00</lastmod>
   </url>
@@ -44,6 +54,11 @@
   
   <url>
     <loc>/tags/</loc>
+    <lastmod>2020-08-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/projects/web-scraper/</loc>
     <lastmod>2020-08-18T00:00:00+00:00</lastmod>
   </url>
   

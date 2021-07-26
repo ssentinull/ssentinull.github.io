@@ -75,6 +75,26 @@ I&amp;rsquo;m currently working as a Backend Engineer at kiddo.id. My tasks are 
     </item>
     
     <item>
+      <title>Web Scraper.</title>
+      <link>/projects/web-scraper/</link>
+      <pubDate>Tue, 18 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/web-scraper/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          A cli-based web scraper that scrapes data from Sinta &amp; Garuda sites.
+          
+        
+        </description>
+    </item>
+    
+    <item>
       <title>Showcase</title>
       <link>/showcase/</link>
       <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
