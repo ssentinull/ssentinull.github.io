@@ -9,7 +9,7 @@
     <description>Recent content in Projects on ssentinull</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 01 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/projects/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,7 +17,7 @@
     <item>
       <title>Journal Recommender Application.</title>
       <link>/projects/journal-recommender-application/</link>
-      <pubDate>Tue, 18 Aug 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>/projects/journal-recommender-application/</guid>
       <description>
@@ -35,9 +35,29 @@
     </item>
     
     <item>
+      <title>Chi-Square Feature Selection.</title>
+      <link>/projects/chi-square-feature-selection/</link>
+      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/chi-square-feature-selection/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          A cli-based feature selection using the Chi-Square method.
+          
+        
+        </description>
+    </item>
+    
+    <item>
       <title>Web Scraper.</title>
       <link>/projects/web-scraper/</link>
-      <pubDate>Tue, 18 Aug 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>/projects/web-scraper/</guid>
       <description>

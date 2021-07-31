@@ -57,7 +57,7 @@ I&amp;rsquo;m currently working as a Backend Engineer at kiddo.id. My tasks are 
     <item>
       <title>Journal Recommender Application.</title>
       <link>/projects/journal-recommender-application/</link>
-      <pubDate>Tue, 18 Aug 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>/projects/journal-recommender-application/</guid>
       <description>
@@ -75,9 +75,29 @@ I&amp;rsquo;m currently working as a Backend Engineer at kiddo.id. My tasks are 
     </item>
     
     <item>
+      <title>Chi-Square Feature Selection.</title>
+      <link>/projects/chi-square-feature-selection/</link>
+      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/chi-square-feature-selection/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          A cli-based feature selection using the Chi-Square method.
+          
+        
+        </description>
+    </item>
+    
+    <item>
       <title>Web Scraper.</title>
       <link>/projects/web-scraper/</link>
-      <pubDate>Tue, 18 Aug 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>/projects/web-scraper/</guid>
       <description>

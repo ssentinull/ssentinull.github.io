@@ -55,8 +55,8 @@
 <meta property="og:description" content="A cli-based web scraper that scrapes data from Sinta &amp; Garuda sites." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/projects/web-scraper/" />
-<meta property="article:published_time" content="2020-08-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-08-18T00:00:00+00:00" /><meta property="og:site_name" content="ssentinull" />
+<meta property="article:published_time" content="2020-07-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-07-19T00:00:00+00:00" /><meta property="og:site_name" content="ssentinull" />
 
 
 
@@ -154,7 +154,7 @@
     <div class="post-meta">
       
         <span class="post-date">
-          18-08-2020
+          19-07-2020
         </span>
 
         
@@ -189,6 +189,7 @@
 <p>This program is used to collect scientific articles&rsquo; abstracts from journal sites, specifically <a href="https://sinta.ristekbrin.go.id/">SINTA</a> and <a href="https://garuda.ristekbrin.go.id/journal">GARUDA</a>, through a technique called web-scraping. Web-scraping is the act of collecting information from websites by extracting texts that are embedded in the pages&rsquo; HTML. It does this by creating an &lsquo;agent&rsquo; that will read and save the texts inside the HTML tags of a page then travel to different pages by accessing the URL that&rsquo;s available on that page.</p>
 <p>In the case of this program, a single agent will traverse the table in <a href="http://sinta.ristekbrin.go.id/journals">http://sinta.ristekbrin.go.id/journals</a> and check each row for the <code>&lt;img&gt;</code> tag with the class <code>stat-garuda-small</code>. If the tag exists, the agent will go deeper by accessing the URL listed in the href property that&rsquo;s anchored to the <!-- raw HTML omitted --> tag in that specific row. The agent will then traverse the table in said URL, scraping text data from the <code>&lt;xmp&gt;</code> tag with the class <code>abstract-article</code>. The script will append <code>&quot;?page=2&quot;</code> to the URL and increment the page number to continue traversing the following pages. Only after the pages have run out will the agent exit the nested traversal process and continue the main traversal process.</p>
 <p>Since the is to collect Indonesian scientific journals and articles, the library <a href="https://pypi.org/project/langdetect/">langdetect</a> is utilized to make sure that the text data that&rsquo;s scraped is Indonesian. This process is done by extracting the first two sentences of the paragraph and checking the language of both sentences. If the language of one of the two sentences is not Indonesian, then the paragraph would not be scraped.</p>
+<p><a href="https://github.com/ssentinull/scientific-journal-web-scraper">Here</a> is the link to access the Github repository.</p>
 <h2 id="background">Background.</h2>
 <p>This is a sub-project for my Bachelor&rsquo;s thesis. My main thesis project was to build a <a href="/projects/journal-recommender-application/">Journal Recommender Application</a> using a Softmax Regression model as the classifier. But to create a machine learning model, I need to train the model using some sort of dataset. I tried searching for available dataset online that was relevant to my model, but none existed at the time. So, with the help of <a href="https://www.youtube.com/watch?v=XjNm9bazxn8">thenewboston</a>, I decided to create my own dataset.</p>
 <h2 id="features">Features.</h2>

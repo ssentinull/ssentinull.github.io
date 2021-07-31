@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        Chi-Square Feature Selection. ::
+        ssentinull — a simple about / blog / portfolio site
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Description. This is a Chi-Square feature selection module based on the research done by Wang, D., Liang, Y., Xu, D., Feng, X., &amp;amp; Guan, R. [1] that processes scientific journal abstract data, written in NodeJs. This module will determine the most dependent set of words to a given set of journals. The more dependent a word is on a journal, the more representative that word is to the journal. This module uses a version of the Chi-Square equation from [1] to calculate the dependence of a word to a journal based on the following formula :"
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/projects/chi-square-feature-selection/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css" />
+
+<link rel="stylesheet" href="/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="/img/favicon.png" />
+
+
+<link href="/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Chi-Square Feature Selection."/>
+<meta name="twitter:description" content="A cli-based feature selection using the Chi-Square method."/>
+
+
+
+<meta property="og:title" content="Chi-Square Feature Selection." />
+<meta property="og:description" content="A cli-based feature selection using the Chi-Square method." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/projects/chi-square-feature-selection/" />
+<meta property="article:published_time" content="2020-07-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-07-19T00:00:00+00:00" /><meta property="og:site_name" content="ssentinull" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+  <body class="">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >ssentinull</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/projects">Projects</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">Chi-Square Feature Selection.</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          19-07-2020
+        </span>
+
+        
+      
+
+      
+        <span class="post-author"
+          >— Written by ssentinull</span
+        >
+
+
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          <a href="/tags/cli-program/">#cli-program</a>&nbsp;
+        
+          <a href="/tags/data-processing/">#data-processing</a>&nbsp;
+        
+          <a href="/tags/node-js/">#node-js</a>&nbsp;
+        
+          <a href="/tags/javascript/">#javascript</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      
+      <h2 id="description">Description.</h2>
+<p>This is a Chi-Square feature selection module based on the research done by Wang, D., Liang, Y., Xu, D., Feng, X., &amp; Guan, R. <a href="#reference">[1]</a> that processes scientific journal abstract data, written in NodeJs. This module will determine the most dependent set of words to a given set of journals. The more dependent a word is on a journal, the more representative that word is to the journal. This module uses a version of the Chi-Square equation from <a href="#reference">[1]</a> to calculate the dependence of a word to a journal based on the following formula :</p>
+<p><img src="" alt=""></p>
+<p><img src="https://latex.codecogs.com/svg.latex?%5CLARGE&amp;space;X_%7B(t,c)%7D%5E%7B2%7D%5Capprox%5Cfrac%7B(A*D-B*C)%5E%7B2%7D%7D%7B(A+B)*(C+D)%7D" alt=""></p>
+<p><img src="" alt=""></p>
+<p>Where :</p>
+<ul>
+<li><strong><em>A</em></strong> is the number of documents including word <strong><em>t</em></strong>, which belongs to journal <strong><em>c</em></strong>.</li>
+<li><strong><em>B</em></strong> is the number of documents including word <strong><em>t</em></strong>, which does not belong to journal <strong><em>c</em></strong>.</li>
+<li><strong><em>C</em></strong> is the number of documents in journal <strong><em>c</em></strong>, which does not include the word <strong><em>t</em></strong>.</li>
+<li><strong><em>D</em></strong> is the number of documents in journals other than journal <strong><em>c</em></strong>, which does not include the word <strong><em>t</em></strong>.</li>
+</ul>
+<p><a href="https://github.com/ssentinull/chi-square-module">Here</a> is the link to access the Github repository.</p>
+<h2 id="background">Background.</h2>
+<p>This is a sub-project for my Bachelor&rsquo;s thesis. My main thesis project was to build a <a href="/projects/journal-recommender-application/">Journal Recommender Application</a> using a Softmax Regression model as the classifier. I already gathered textual data online using my <a href="/projects/web-scraper">Web Scraper</a>, but the text is still in the form of complete paragraphs. So to turn the paragraphs into features that can be learned by the model, I created this sub-project.</p>
+<h2 id="features">Features.</h2>
+<ul>
+<li>Aggregates 150 words with the highest Chi-Square value for each journal and remove any duplicate words.</li>
+<li>Groups 150 words with the highest Chi-Square value for each journal by their respective journals.</li>
+<li>Logs the <strong><em>A</em></strong>, <strong><em>B</em></strong>, <strong><em>C</em></strong>, <strong><em>D</em></strong> variables for each word to each journal as well as their Chi-Square values.</li>
+</ul>
+<h2 id="input">Input.</h2>
+<p>The input file can be found in the <code>./data/input/</code> directory, which stores a list of JSON objects with the following structure :</p>
+<pre><code>[
+  {
+      &quot;JOURNAL_ID&quot;: 0,
+      &quot;JOURNAL_TITLE&quot;: &quot;Jurnal Hortikultura&quot;,
+      &quot;ARTICLE_ID&quot;: 0,
+      &quot;ARTICLE_TITLE&quot;: &quot;SISTEM TANAM TUMPANG SARI CABAI MERAH DENGAN ... DAN BUNCIS TEGAK &quot;,
+      &quot;ARTICLE_ABSTRACT&quot;: &quot;Pola tanam tumpang sari merupakan salah satu cara untuk meningkatkan efisiensi ... tumpang sari cabai dengan kentang dan bawang merah merupakan usahatani yang paling menguntungkan terutama apabila dibandingkan dengan monokultur.&quot;,
+      &quot;TOKENS&quot;: [ &quot;pola&quot;, &quot;tanam&quot;, &quot;tumpang&quot;, &quot;sari&quot;, &quot;rupa&quot;, &quot;salah&quot;, &quot;tingkat&quot;, &quot;efisiensi&quot;, ... , &quot;tumpang&quot;, &quot;sari&quot;, &quot;usahatani&quot;, &quot;tumpang&quot;, &quot;sari&quot;, &quot;cabai&quot;, &quot;kentang&quot;, &quot;bawang&quot;, &quot;merah&quot;, &quot;rupa&quot;, &quot;usahatani&quot;, &quot;untung&quot;, &quot;utama&quot;, &quot;banding&quot;, &quot;monokultur&quot; ],
+      &quot;TOKENS_DUPLICATE_REMOVED&quot;: [ &quot;pola&quot;, &quot;tanam&quot;, &quot;tumpang&quot;, &quot;sari&quot;, &quot;rupa&quot;, &quot;salah&quot;, ... , &quot;tumbuh&quot;, &quot;vegetatif&quot;, &quot;beda&quot;, &quot;nyata&quot;, &quot;tara&quot;, &quot;untung&quot;, &quot;bersih&quot;, &quot;usahatani&quot;, &quot;utama&quot;, &quot;banding&quot; ]
+  },
+  ... ,
+  {
+      &quot;JOURNAL_ID&quot;: Number,
+      &quot;JOURNAL_TITLE&quot;: String,
+      &quot;ARTICLE_ID&quot;: Number,
+      &quot;ARTICLE_TITLE&quot;: String,
+      &quot;ARTICLE_ABSTRACT&quot;: String,
+      &quot;TOKENS&quot;: Array,
+      &quot;TOKENS_DUPLICATE_REMOVED&quot;: Array
+  }
+]
+</code></pre><h2 id="output">Output.</h2>
+<p>This module produces three different files with differing outputs:</p>
+<ol>
+<li>
+<p>The file in the <code>./data/output/fv-tokens.json</code> directory is used to save the 150 aggregated words with the highest Chi-Square value for each journals and removes any duplicate words.</p>
+<pre><code>[
+  &quot;tanam&quot;,
+  &quot;balai&quot;,
+  &quot;varietas&quot;,
+  &quot;ulang&quot;,
+  &quot;sayur&quot;,
+   ... ,
+  &quot;kawat&quot;,
+  &quot;struktur&quot;,
+  &quot;superplasticizer&quot;,
+  &quot;wulung&quot;
+]
+</code></pre></li>
+<li>
+<p>The file in the <code>./data/output/fv-tokens-by-journal.json</code> directory is used to save the 150 words with the highest Chi-Square values, grouped by their respectives journal IDs.</p>
+<pre><code>{
+  &quot;0&quot;: [
+    &quot;tanam&quot;,
+    &quot;balai&quot;,
+    &quot;varietas&quot;,
+    &quot;ulang&quot;,
+    &quot;sayur&quot;,
+     ... ,
+    &quot;hasil&quot;,
+    &quot;manggis&quot;,
+    &quot;patogen&quot;
+  ],
+  ... ,
+  &quot;n_journals&quot; : [
+    String,
+    String,
+    String,
+    ... ,
+    String,
+    String
+  ]
+}
+</code></pre></li>
+<li>
+<p>The file in the <code>./data/output/chi-square-feature-vectors.json</code> directory is used to log the <strong><em>A</em></strong>, <strong><em>B</em></strong>, <strong><em>C</em></strong>, <strong><em>D</em></strong>, journal ID, and Chi-Square values for each word.</p>
+<pre><code>[
+  {
+    &quot;JOURNAL_ID&quot;: 0,
+    &quot;TOKEN&quot;: &quot;tanam&quot;,
+    &quot;A_VALUE&quot;: 626,
+    &quot;B_VALUE&quot;: 501,
+    &quot;C_VALUE&quot;: 137,
+    &quot;D_VALUE&quot;: 6633,
+    &quot;CHI_SQUARE&quot;: 2185638.198645179
+  },
+  ... ,
+  {
+    &quot;JOURNAL_ID&quot;: Number,
+    &quot;TOKEN&quot;: String,
+    &quot;A_VALUE&quot;: Number,
+    &quot;B_VALUE&quot;: Number,
+    &quot;C_VALUE&quot;: Number,
+    &quot;D_VALUE&quot;: Number,
+    &quot;CHI_SQUARE&quot;: Number
+  }
+]
+</code></pre></li>
+</ol>
+<h2 id="tools">Tools.</h2>
+<ul>
+<li><a href="https://www.npmjs.com/package/csv-writer">CSV-Writer</a></li>
+<li><a href="https://www.npmjs.com/package/lodash.groupby">Lodash.GroupBy</a></li>
+<li><a href="https://www.npmjs.com/package/lodash.mapvalues">Lodash.MapValues</a></li>
+<li><a href="https://www.npmjs.com/package/lodash.uniqby">Lodash.UniqBy</a></li>
+<li><a href="https://www.npmjs.com/package/neat-csv">Neat-CSV</a></li>
+</ul>
+<h2 id="how-to-run-in-local-environment">How To Run in Local Environment.</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ node src/index.js
+</code></pre></div><h2 id="demo">Demo.</h2>
+<p><img src="https://media.giphy.com/media/Rf4xdYQHIW4vLBS66p/giphy.gif" alt=""></p>
+<h2 id="reference">Reference.</h2>
+<ul>
+<li>[1] Wang, D., Liang, Y., Xu, D., Feng, X., &amp; Guan, R. (2018).
+A content-based recommender system for computer science publications.Knowledge-Based Systems, 157, 1-9.</li>
+</ul>
+
+    </div>
+    
+
+    
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >ssentinull</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+       <div style="flex-direction: row; align-items: center; font-size: 1rem;">
+         <span style="margin-right: 10px;">
+             <a href="https://github.com/ssentinull"><i class="fa fa-github" style="font-size:24px"></i></a>
+         </span>
+         <span style="margin-right: 10px;">
+             <a href="https://www.linkedin.com/in/ibnu-ahsani/"><i class="fa fa-linkedin" style="font-size:24px"></i></a>
+         </span>
+         <span>
+             <a href="mailto:ibnu.muhari@gmail.com"><i class="fa fa-envelope" style="font-size:18px"></i></a>
+         </span>
+       </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

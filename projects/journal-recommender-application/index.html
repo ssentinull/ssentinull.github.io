@@ -55,8 +55,8 @@
 <meta property="og:description" content="A web-based application that recommends Indonesian scientific journals." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/projects/journal-recommender-application/" />
-<meta property="article:published_time" content="2020-08-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-08-18T00:00:00+00:00" /><meta property="og:site_name" content="ssentinull" />
+<meta property="article:published_time" content="2020-08-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-01T00:00:00+00:00" /><meta property="og:site_name" content="ssentinull" />
 
 
 
@@ -154,7 +154,7 @@
     <div class="post-meta">
       
         <span class="post-date">
-          18-08-2020
+          01-08-2020
         </span>
 
         
@@ -188,6 +188,7 @@
       <h2 id="description">Description.</h2>
 <p>This web app recommends Indonesian scientific journals that best fit the user&rsquo;s scientific paper. The premise is quite simple: the user inputs the abstract for their scientific article, and the application outputs a list of journals ordered descendingly by how similar they are to the article in terms of percentages. It&rsquo;s able to do this because it utilizes a previously trained Softmax Regression model that&rsquo;s deployed to the web app.</p>
 <p>Softmax Regression is a version of Logistic Regression the switches the Sigmoid function in the output layer with a Softmax function. To put it simply, while a Logistic Regression model classifies the input data dichotomously (yes or no; cat or dog) with a 100% certainty, a Softmax Regression model classifies the input data multinomially (yes, no, or maybe; cat, dog, mouse, or bird) with differing percentages for each class. The model is trained on a dataset that was scraped from <a href="https://sinta.ristekbrin.go.id/">SINTA</a> and <a href="https://garuda.ristekbrin.go.id/journal">Garuda</a> using a <a href="/projects/web-scraper">web scraper</a> that I built in conjunction with this web app, and the features of the dataset were selected using a Chi-Square feature selection program that I also built.</p>
+<p><a href="https://github.com/ssentinull/journal-recommender-system-website">Here</a> is the link for the Github repository and <a href="https://sistem-rekomendasi-jurnal.herokuapp.com/">here</a> is the link for the demo of the app. The demo could be slow to start because I deployed it to the free version of Heroku and it takes time for the dyno to spin up if it hasn&rsquo;t been used in a while.</p>
 <h2 id="background">Background.</h2>
 <p>This is a project for my Bachelor&rsquo;s thesis. The idea came up when I was casually browsing the internet to find journals that I could use as inspiration for my thesis. I came across a <a href="https://journalfinder.elsevier.com/">feature</a> from <a href="https://www.elsevier.com/en-xs">Elsevier</a> that allows researchers to find the best journals that fit their scientific papers. After searching whether or not there was an Indonesian counterpart available online (which there wasn&rsquo;t at that time), and knowing that my major&rsquo;s specialization was Artificial Intelligence, I ended up doing this project.</p>
 <h2 id="features">Features.</h2>
