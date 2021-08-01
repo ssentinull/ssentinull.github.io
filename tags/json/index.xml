@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>json on ssentinull</title>
+    
+    
+    
+    <link>/tags/json/</link>
+    <description>Recent content in json on ssentinull</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 19 Jul 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/json/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chi-Square Feature Selection.</title>
+      <link>/projects/chi-square-feature-selection/</link>
+      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/chi-square-feature-selection/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          A cli-based feature selection using the Chi-Square method.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Web Scraper.</title>
+      <link>/projects/web-scraper/</link>
+      <pubDate>Sun, 19 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/web-scraper/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          A cli-based web scraper that scrapes data from Sinta &amp; Garuda sites.
+          
+        
+        </description>
+    </item>
+    
+  </channel>
+</rss>
