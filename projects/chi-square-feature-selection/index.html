@@ -191,9 +191,10 @@
       
       <h2 id="description">Description.</h2>
 <p>This is a Chi-Square feature selection module based on the research done by Wang, D., Liang, Y., Xu, D., Feng, X., &amp; Guan, R. <a href="#reference">[1]</a> that processes scientific journal abstract data, written in NodeJs. This module will determine the most dependent set of words to a given set of journals. The more dependent a word is on a journal, the more representative that word is to the journal. This module uses a version of the Chi-Square equation from <a href="#reference">[1]</a> to calculate the dependence of a word to a journal based on the following formula :</p>
-<p><img src="" alt=""></p>
-<p><img src="https://latex.codecogs.com/svg.latex?%5CLARGE&amp;space;X_%7B(t,c)%7D%5E%7B2%7D%5Capprox%5Cfrac%7B(A*D-B*C)%5E%7B2%7D%7D%7B(A+B)*(C+D)%7D" alt=""></p>
-<p><img src="" alt=""></p>
+
+  <img src="/img/chi-square-formula.svg"  class="center"  />
+
+
 <p>Where :</p>
 <ul>
 <li><strong><em>A</em></strong> is the number of documents including word <strong><em>t</em></strong>, which belongs to journal <strong><em>c</em></strong>.</li>
@@ -212,94 +213,154 @@
 </ul>
 <h2 id="input">Input.</h2>
 <p>The input file can be found in the <code>./data/input/</code> directory, which stores a list of JSON objects with the following structure :</p>
-<pre><code>[
-  {
-      &quot;JOURNAL_ID&quot;: 0,
-      &quot;JOURNAL_TITLE&quot;: &quot;Jurnal Hortikultura&quot;,
-      &quot;ARTICLE_ID&quot;: 0,
-      &quot;ARTICLE_TITLE&quot;: &quot;SISTEM TANAM TUMPANG SARI CABAI MERAH DENGAN ... DAN BUNCIS TEGAK &quot;,
-      &quot;ARTICLE_ABSTRACT&quot;: &quot;Pola tanam tumpang sari merupakan salah satu cara untuk meningkatkan efisiensi ... tumpang sari cabai dengan kentang dan bawang merah merupakan usahatani yang paling menguntungkan terutama apabila dibandingkan dengan monokultur.&quot;,
-      &quot;TOKENS&quot;: [ &quot;pola&quot;, &quot;tanam&quot;, &quot;tumpang&quot;, &quot;sari&quot;, &quot;rupa&quot;, &quot;salah&quot;, &quot;tingkat&quot;, &quot;efisiensi&quot;, ... , &quot;tumpang&quot;, &quot;sari&quot;, &quot;usahatani&quot;, &quot;tumpang&quot;, &quot;sari&quot;, &quot;cabai&quot;, &quot;kentang&quot;, &quot;bawang&quot;, &quot;merah&quot;, &quot;rupa&quot;, &quot;usahatani&quot;, &quot;untung&quot;, &quot;utama&quot;, &quot;banding&quot;, &quot;monokultur&quot; ],
-      &quot;TOKENS_DUPLICATE_REMOVED&quot;: [ &quot;pola&quot;, &quot;tanam&quot;, &quot;tumpang&quot;, &quot;sari&quot;, &quot;rupa&quot;, &quot;salah&quot;, ... , &quot;tumbuh&quot;, &quot;vegetatif&quot;, &quot;beda&quot;, &quot;nyata&quot;, &quot;tara&quot;, &quot;untung&quot;, &quot;bersih&quot;, &quot;usahatani&quot;, &quot;utama&quot;, &quot;banding&quot; ]
-  },
-  ... ,
-  {
-      &quot;JOURNAL_ID&quot;: Number,
-      &quot;JOURNAL_TITLE&quot;: String,
-      &quot;ARTICLE_ID&quot;: Number,
-      &quot;ARTICLE_TITLE&quot;: String,
-      &quot;ARTICLE_ABSTRACT&quot;: String,
-      &quot;TOKENS&quot;: Array,
-      &quot;TOKENS_DUPLICATE_REMOVED&quot;: Array
-  }
+
+
+
+  <div class="collapsable-code">
+    <input id="1" type="checkbox" checked />
+    <label for="1">
+      <span class="collapsable-code__language">json</span>
+      <span class="collapsable-code__title">Input Data.</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-json" ><code>
+[
+{
+&#34;JOURNAL_ID&#34;: 0,
+&#34;JOURNAL_TITLE&#34;: &#34;Jurnal Hortikultura&#34;,
+&#34;ARTICLE_ID&#34;: 0,
+&#34;ARTICLE_TITLE&#34;: &#34;SISTEM TANAM TUMPANG SARI CABAI MERAH DENGAN ... DAN BUNCIS TEGAK &#34;,
+&#34;ARTICLE_ABSTRACT&#34;: &#34;Pola tanam tumpang sari merupakan salah satu cara untuk meningkatkan efisiensi ... tumpang sari cabai dengan kentang dan bawang merah merupakan usahatani yang paling menguntungkan terutama apabila dibandingkan dengan monokultur.&#34;,
+&#34;TOKENS&#34;: [ &#34;pola&#34;, &#34;tanam&#34;, &#34;tumpang&#34;, &#34;sari&#34;, &#34;rupa&#34;, &#34;salah&#34;, &#34;tingkat&#34;, &#34;efisiensi&#34;, ... , &#34;tumpang&#34;, &#34;sari&#34;, &#34;usahatani&#34;, &#34;tumpang&#34;, &#34;sari&#34;, &#34;cabai&#34;, &#34;kentang&#34;, &#34;bawang&#34;, &#34;merah&#34;, &#34;rupa&#34;, &#34;usahatani&#34;, &#34;untung&#34;, &#34;utama&#34;, &#34;banding&#34;, &#34;monokultur&#34; ],
+&#34;TOKENS_DUPLICATE_REMOVED&#34;: [ &#34;pola&#34;, &#34;tanam&#34;, &#34;tumpang&#34;, &#34;sari&#34;, &#34;rupa&#34;, &#34;salah&#34;, ... , &#34;tumbuh&#34;, &#34;vegetatif&#34;, &#34;beda&#34;, &#34;nyata&#34;, &#34;tara&#34;, &#34;untung&#34;, &#34;bersih&#34;, &#34;usahatani&#34;, &#34;utama&#34;, &#34;banding&#34; ]
+},
+... ,
+{
+&#34;JOURNAL_ID&#34;: Number,
+&#34;JOURNAL_TITLE&#34;: String,
+&#34;ARTICLE_ID&#34;: Number,
+&#34;ARTICLE_TITLE&#34;: String,
+&#34;ARTICLE_ABSTRACT&#34;: String,
+&#34;TOKENS&#34;: Array,
+&#34;TOKENS_DUPLICATE_REMOVED&#34;: Array
+}
 ]
-</code></pre><h2 id="output">Output.</h2>
+</code></pre>
+  </div>
+
+
+<h2 id="output">Output.</h2>
 <p>This module produces three different files with differing outputs:</p>
 <ol>
 <li>
 <p>The file in the <code>./data/output/fv-tokens.json</code> directory is used to save the 150 aggregated words with the highest Chi-Square value for each journals and removes any duplicate words.</p>
-<pre><code>[
-  &quot;tanam&quot;,
-  &quot;balai&quot;,
-  &quot;varietas&quot;,
-  &quot;ulang&quot;,
-  &quot;sayur&quot;,
+
+
+
+  <div class="collapsable-code">
+    <input id="2" type="checkbox" checked />
+    <label for="2">
+      <span class="collapsable-code__language">json</span>
+      <span class="collapsable-code__title">Aggregated words with the highest Chi-Square values from every journals.</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-json" ><code>
+   [
+   &#34;tanam&#34;,
+   &#34;balai&#34;,
+   &#34;varietas&#34;,
+   &#34;ulang&#34;,
+   &#34;sayur&#34;,
    ... ,
-  &quot;kawat&quot;,
-  &quot;struktur&quot;,
-  &quot;superplasticizer&quot;,
-  &quot;wulung&quot;
-]
-</code></pre></li>
+   &#34;kawat&#34;,
+   &#34;struktur&#34;,
+   &#34;superplasticizer&#34;,
+   &#34;wulung&#34;
+   ]
+   </code></pre>
+  </div>
+
+
+</li>
 <li>
 <p>The file in the <code>./data/output/fv-tokens-by-journal.json</code> directory is used to save the 150 words with the highest Chi-Square values, grouped by their respectives journal IDs.</p>
-<pre><code>{
-  &quot;0&quot;: [
-    &quot;tanam&quot;,
-    &quot;balai&quot;,
-    &quot;varietas&quot;,
-    &quot;ulang&quot;,
-    &quot;sayur&quot;,
-     ... ,
-    &quot;hasil&quot;,
-    &quot;manggis&quot;,
-    &quot;patogen&quot;
-  ],
-  ... ,
-  &quot;n_journals&quot; : [
-    String,
-    String,
-    String,
-    ... ,
-    String,
-    String
-  ]
-}
-</code></pre></li>
+
+
+
+  <div class="collapsable-code">
+    <input id="3" type="checkbox" checked />
+    <label for="3">
+      <span class="collapsable-code__language">json</span>
+      <span class="collapsable-code__title">Words with the highest Chi-Square values for each journals.</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-json" ><code>
+   {
+   &#34;0&#34;: [
+   &#34;tanam&#34;,
+   &#34;balai&#34;,
+   &#34;varietas&#34;,
+   &#34;ulang&#34;,
+   &#34;sayur&#34;,
+   ... ,
+   &#34;hasil&#34;,
+   &#34;manggis&#34;,
+   &#34;patogen&#34;
+   ],
+   ... ,
+   &#34;n_journals&#34; : [
+   String,
+   String,
+   String,
+   ... ,
+   String,
+   String
+   ]
+   }
+   </code></pre>
+  </div>
+
+
+</li>
 <li>
 <p>The file in the <code>./data/output/chi-square-feature-vectors.json</code> directory is used to log the <strong><em>A</em></strong>, <strong><em>B</em></strong>, <strong><em>C</em></strong>, <strong><em>D</em></strong>, journal ID, and Chi-Square values for each word.</p>
-<pre><code>[
-  {
-    &quot;JOURNAL_ID&quot;: 0,
-    &quot;TOKEN&quot;: &quot;tanam&quot;,
-    &quot;A_VALUE&quot;: 626,
-    &quot;B_VALUE&quot;: 501,
-    &quot;C_VALUE&quot;: 137,
-    &quot;D_VALUE&quot;: 6633,
-    &quot;CHI_SQUARE&quot;: 2185638.198645179
-  },
-  ... ,
-  {
-    &quot;JOURNAL_ID&quot;: Number,
-    &quot;TOKEN&quot;: String,
-    &quot;A_VALUE&quot;: Number,
-    &quot;B_VALUE&quot;: Number,
-    &quot;C_VALUE&quot;: Number,
-    &quot;D_VALUE&quot;: Number,
-    &quot;CHI_SQUARE&quot;: Number
-  }
-]
-</code></pre></li>
+
+
+
+  <div class="collapsable-code">
+    <input id="4" type="checkbox" checked />
+    <label for="4">
+      <span class="collapsable-code__language">json</span>
+      <span class="collapsable-code__title">Chi-Square value &amp; variables for every words from each journals.</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-json" ><code>
+   [
+   {
+   &#34;JOURNAL_ID&#34;: 0,
+   &#34;TOKEN&#34;: &#34;tanam&#34;,
+   &#34;A_VALUE&#34;: 626,
+   &#34;B_VALUE&#34;: 501,
+   &#34;C_VALUE&#34;: 137,
+   &#34;D_VALUE&#34;: 6633,
+   &#34;CHI_SQUARE&#34;: 2185638.198645179
+   },
+   ... ,
+   {
+   &#34;JOURNAL_ID&#34;: Number,
+   &#34;TOKEN&#34;: String,
+   &#34;A_VALUE&#34;: Number,
+   &#34;B_VALUE&#34;: Number,
+   &#34;C_VALUE&#34;: Number,
+   &#34;D_VALUE&#34;: Number,
+   &#34;CHI_SQUARE&#34;: Number
+   }
+   ]
+   </code></pre>
+  </div>
+
+
+</li>
 </ol>
 <h2 id="tools">Tools.</h2>
 <ul>
@@ -309,10 +370,13 @@
 <li><a href="https://www.npmjs.com/package/lodash.uniqby">Lodash.UniqBy</a></li>
 <li><a href="https://www.npmjs.com/package/neat-csv">Neat-CSV</a></li>
 </ul>
-<h2 id="how-to-run-in-local-environment">How To Run in Local Environment.</h2>
+<h2 id="how-to-run-in-local-environment">How to Run in Local Environment.</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ node src/index.js
 </code></pre></div><h2 id="demo">Demo.</h2>
-<p><img src="https://media.giphy.com/media/Rf4xdYQHIW4vLBS66p/giphy.gif" alt=""></p>
+
+  <img src="https://media.giphy.com/media/Rf4xdYQHIW4vLBS66p/giphy.gif"  class="center"  />
+
+
 <h2 id="reference">Reference.</h2>
 <ul>
 <li>[1] Wang, D., Liang, Y., Xu, D., Feng, X., &amp; Guan, R. (2018).
