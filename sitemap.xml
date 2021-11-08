@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blogs/</loc>
+    <lastmod>2021-10-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blogs/create-a-portfolio-using-go-hugo-part-1/</loc>
+    <lastmod>2021-10-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/about/</loc>
     <lastmod>2021-07-11T00:00:00+00:00</lastmod>
   </url>
