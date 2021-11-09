@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        Create a Porfolio using Hugo. ::
+        ssentinull — a simple about / blog / portfolio site
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Introduction. This article will give you a step-by-step tutorial on how to create a beautiful web-based portfolio using Hugo.
+ ⚠ Disclaimer ⚠
+Shout-out to fahmifan for sharing his knowledge and allowing me to write about it in my blog. Please show some love for his portfolio repo.
+ Download Hugo. Head over to Hugo&amp;rsquo;s installation page and install it based on your machine&amp;rsquo;s OS. If you&amp;rsquo;re using Ubuntu like me, you can install it through the official Hugo Debian package."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/blogs/create-a-portfolio-using-hugo/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css" />
+
+<link rel="stylesheet" href="/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="/img/favicon.png" />
+
+
+<link href="/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Create a Porfolio using Hugo."/>
+<meta name="twitter:description" content="Create a beatiful portfolio in less than an hour using Hugo."/>
+
+
+
+<meta property="og:title" content="Create a Porfolio using Hugo." />
+<meta property="og:description" content="Create a beatiful portfolio in less than an hour using Hugo." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blogs/create-a-portfolio-using-hugo/" />
+<meta property="article:published_time" content="2021-11-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-11-08T00:00:00+00:00" /><meta property="og:site_name" content="ssentinull" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+  <body class="">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >ssentinull</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/blogs">Blogs</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/blogs">Blogs</a></li>
+      
+    
+      
+        <li><a href="/projects">Projects</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">Create a Porfolio using Hugo.</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          08-11-2021
+        </span>
+
+        
+      
+
+      
+        <span class="post-author"
+          >— Written by ssentinull</span
+        >
+
+
+      
+    </div>
+
+    
+
+    
+      <figure class="post-cover">
+        
+          <img src="/img/blogs/create-a-portfolio-using-hugo/0.jpg" alt="Create a Porfolio using Hugo." />
+        
+
+        
+      </figure>
+    
+
+    <div class="post-content">
+      
+      <h2 id="introduction">Introduction.</h2>
+<p>This article will give you a step-by-step tutorial on how to create a beautiful web-based portfolio using Hugo.</p>
+<blockquote>
+<p>⚠ <strong>Disclaimer</strong> ⚠</p>
+<p>Shout-out to <a href="https://github.com/fahmifan">fahmifan</a> for sharing his knowledge and allowing me to write about it in my blog. Please show some love for his <a href="https://github.com/fahmifan/fahmifan.github.io">portfolio repo</a>.</p>
+</blockquote>
+<h2 id="download-hugo">Download Hugo.</h2>
+<p>Head over to Hugo&rsquo;s <a href="https://gohugo.io/getting-started/installing/">installation page</a> and install it based on your machine&rsquo;s OS. If you&rsquo;re using Ubuntu like me, you can install it through the official Hugo Debian package.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo apt-get install hugo
+</code></pre></div><h2 id="create-a-hugo-site">Create a Hugo site.</h2>
+<p>After installation would be the initialization of our workspace. Create a Hugo site and initialize a Git repository in that directory. Part two of this tutorial will include an automation process to deploy your portfolio to <a href="https://pages.github.com/">Github static pages</a>, so a Git repository is necessary.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ hugo new site hugo-portfolio
+$ cd hugo-portfolio
+$ git init
+</code></pre></div><p>Run the Hugo server in your CLI. If you don&rsquo;t see anything in your browser, don&rsquo;t panic. It&rsquo;s still blank because we haven&rsquo;t picked out a theme yet, and that&rsquo;s exactly what we&rsquo;re gonna do next. But before that, make sure you commit the newly added files.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ hugo serve
+</code></pre></div><h2 id="choose-a-theme">Choose a Theme.</h2>
+<p>Hugo provides a wide range of community-built themes in their <a href="https://themes.gohugo.io/">theme store</a>. Each theme is tagged which makes it easier to find the right theme that matches your preference and personality. I personally like simplicity and basic colors, so I use the <a href="https://themes.gohugo.io/themes/hugo-theme-hello-friend/">hello-friend</a> theme.</p>
+<p>Because we want to have the option of modifying the theme, we would need to fork it to our own Github account and use that fork as a submodule. To do that, head over to the theme&rsquo;s <a href="https://github.com/panr/hugo-theme-hello-friend">Github repository</a> and fork it to your account. After doing so, add the forked repo to your workspace, specifically to the <code>themes/theme_name</code> directory.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git submodule add https://github.com/your_account_name/hugo-theme-hello-friend.git themes/hello-friend
+</code></pre></div><p>When you browse the theme page you&rsquo;ll see a diverse set of themes, from the flamboyant to the plain, from the colorful to the pale. Even though they all may look different, all of them are configured using the same file, <code>config.toml</code>. The configurations for each theme can be found on their respective theme page. As for the hello-friend theme, you can find it right <a href="https://themes.gohugo.io/themes/hugo-theme-hello-friend/#how-to-configure">here</a>. Copy-paste the values to our local <code>config.toml</code> and your page should look like this.</p>
+
+  <img src="/img/blogs/create-a-portfolio-using-hugo/1.png"  class="center"  />
+
+
+<p>This looks great, but there are some things that I want to change about the looks, like the cursor color next to the &ldquo;&gt; hello friend&rdquo; text and the default color scheme for example. We&rsquo;ll do that in the next step after we commit the changes that we&rsquo;ve made.</p>
+<h2 id="customize-a-theme">Customize a Theme.</h2>
+<p>Let&rsquo;s say that we want to change our color scheme from dark to light. We can do so from the <code>config.toml</code> file. To change it, simply change the <code>defaultTheme</code> value from <code>dark</code> to <code>light</code>.</p>
+
+  <img src="/img/blogs/create-a-portfolio-using-hugo/2.png"  class="center"  />
+
+
+<p>However, changing the cursor color won&rsquo;t be as simple as that. The cursor color is not set to be modifiable through the <code>config.toml</code> by the theme&rsquo;s creator, so we need to make changes to the source code. Because the theme is a separate repository from our workspace, we need to make the changes from the theme&rsquo;s repository, not from our workspace. To make sure our changes don&rsquo;t conflict with future updates to the theme, we make our changes in a separate feature branch, so that if there were updates we could simply rebase our feature branch. We&rsquo;ll call this branch <code>portfolio</code>. Make sure you also define the branch from which you want to pull the submodules next time you initialize a fresh clone of this repo by adding <code>branch = portfolio</code> to <code>.gitmodules</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd themes/hello-friend
+$ git checkout -b portfolio master
+</code></pre></div>
+
+
+  <div class="collapsable-code">
+    <input id="1" type="checkbox" checked />
+    <label for="1">
+      <span class="collapsable-code__language">.gitmodules</span>
+      <span class="collapsable-code__title">.gitmodules</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-.gitmodules" ><code>
+
+[submodule &#34;themes/hello-friend&#34;]
+path = themes/hello-friend
+url = https://github.com/ssentinull/hugo-theme-hello-friend.git
+branch = custom
+
+</code></pre>
+  </div>
+
+
+<p>To safely edit this theme, you need <a href="https://nodejs.org/en/">NodeJs</a>, <a href="https://www.npmjs.com/">NPM</a>, and <a href="https://yarnpkg.com/">Yarn</a> installed on your machine. I&rsquo;m not gonna explain how to install those three in this tutorial cause it&rsquo;ll take too long. After installing NodeJs, NPM, and Yarn, install the necessary NPM packages before proceeding.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ npm i
+$ npm i yarn
+$ yarn
+</code></pre></div><p>To change the color of the cursor, go to <code>/assets/css/logo.css</code> and change the <code>background</code> hexadecimal value of <code>&amp;__cursor</code> style. To see the changes, run the theme in dev mode so that it auto reloads on changes to the source code. If it doesn&rsquo;t change, reload the page and delete the cached data by pressing <code>CTRL+Shift+R</code>. Once you&rsquo;ve picked a color that you like, rebuild the theme, commit it, and push it to Github.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ yarn dev
+$ yarn build
+$ git push -u origin portfolio
+</code></pre></div>
+  <img src="/img/blogs/create-a-portfolio-using-hugo/3.png"  class="center"  />
+
+
+<p>Even though we&rsquo;ve created a separate repo for our theme and pushed it to its origin, we haven&rsquo;t added it to our workspace&rsquo;s repo. We need to change directory back to our workspace repo, add the theme directory, commit it, then push it to Github.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd ../../
+$ git add themes/
+$ git commit -m <span style="color:#e6db74">&#34;feat: adding themes/ directory&#34;</span>
+$ git push origin master
+</code></pre></div><h2 id="add-contents">Add Contents.</h2>
+<p>Now that we got the appearance out of the way, let&rsquo;s continue to the main reason why we&rsquo;re making this site in the first place; to showcase yourself and your projects. We&rsquo;ll start with the former. In the navigation bar, there already exists a button that redirects you to the &lsquo;About&rsquo; page. But if you click on it, Hugo will redirect you to a <code>404 Page Not Found</code> page. The reason is because that page doesn&rsquo;t exist yet.</p>
+<p>Hugo works is by reading contents of <code>.md</code> files inside the <code>/content</code> directory and generate static pages based on the texts inside said directory. How the static pages get routed is dictated in the <code>config.toml</code> file.</p>
+
+
+
+  <div class="collapsable-code">
+    <input id="2" type="checkbox" checked />
+    <label for="2">
+      <span class="collapsable-code__language">toml</span>
+      <span class="collapsable-code__title">config.toml</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-toml" ><code>
+
+...
+[[languages.en.menu.main]]
+identifier = &#34;about&#34;
+name = &#34;About&#34;
+url = &#34;/about&#34;
+
+</code></pre>
+  </div>
+
+
+<p>If we take a closer look at the snippet above, you&rsquo;ll notice that the <code>identifier</code> config is the name of the file inside of <code>/content</code>, the <code>name</code> config is the text that shows up in the navigation bar, and the <code>url</code> config is the endpoint that will be generated for that static page. By that information, we create an <code>about.md</code> file inside the <code>/content</code> directory.</p>
+
+
+
+  <div class="collapsable-code">
+    <input id="3" type="checkbox" checked />
+    <label for="3">
+      <span class="collapsable-code__language">md</span>
+      <span class="collapsable-code__title">about.md</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-md" ><code>
+
+---
+
+title: &#34;About Me&#34;
+date: &#34;2021-07-11&#34;
+author: &#34;ssentinull&#34;
+
+---
+
+## Lipsum 2
+
+[Lorem ipsum](https://www.lipsum.com/) **dolor** _sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+&gt; _Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus._
+&gt;
+&gt; **- Lorem Ipsum**
+
+### Lipsum 3
+
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+
+Lipsum:
+
+- Lorem ipsum dolor sit amet.
+- Consectetur adipiscing elit.
+  - Lorem ipsum dolor sit amet.
+- Sed do eiusmod tempor.
+  - Consectetur adipiscing elit.
+  - Sed do eiusmod tempor.
+
+### Lispum 4
+
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+
+Lipsum:
+
+1. Lorem ipsum dolor sit amet.
+2. Consectetur adipiscing elit.
+   - Lorem ipsum dolor sit amet.
+3. Sed do eiusmod tempor.
+   - Consectetur adipiscing elit.
+   - Sed do eiusmod tempor.
+
+</code></pre>
+  </div>
+
+
+<p>After you paste the code above and reload the page, the page should exist.</p>
+
+  <img src="/img/blogs/create-a-portfolio-using-hugo/4.png"  class="center"  />
+
+
+<p>We&rsquo;re done with our self-introduction page, now let&rsquo;s move on to our projects page. The concept of the projects page is similar to the about page with minor differences and few modifications. First, we need to change the text in the navigation bar from <code>showcase</code> to <code>projects</code> by modifying the <code>config.toml</code> file.</p>
+
+
+
+  <div class="collapsable-code">
+    <input id="4" type="checkbox" checked />
+    <label for="4">
+      <span class="collapsable-code__language">toml</span>
+      <span class="collapsable-code__title">config.toml</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-toml" ><code>
+
+...
+[[languages.en.menu.main]]
+identifier = &#34;projects&#34;
+name = &#34;Projects&#34;
+url = &#34;/projects&#34;
+
+</code></pre>
+  </div>
+
+
+<p>After that, we need to make a <code>/projects</code> directory inside of <code>/contents</code>. The difference between <code>/about</code> and <code>/projects</code> is that the former only consist of a single page and the latter could consist of multiple pages. Because of this, we need to create <code>/projects</code>. The routing for <code>/projects</code> endpoint will look like this: <code>/projects/file-1-name</code>,<code>/projects/file-2-name</code>. So create two files inside <code>/projects</code> named <code>project-one.md</code> and <code>project-two.md</code>.</p>
+
+
+
+  <div class="collapsable-code">
+    <input id="5" type="checkbox" checked />
+    <label for="5">
+      <span class="collapsable-code__language">md</span>
+      <span class="collapsable-code__title">project-one.md &amp; project-two.md</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-md" ><code>
+
+---
+
+title: &#34;Project One : Web Portfolio&#34;
+date: &#34;2021-07-11&#34;
+author: &#34;ssentinull&#34;
+tags: [&#34;web-app&#34;, &#34;hugo&#34;, &#34;golang&#34;]
+description: &#34;A web-based portfolio to showcase a developer&#39;s skill, built using Hugo and Golang.&#34;
+
+---
+
+## Description.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Background.
+
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+
+## Features.
+
+- Lorem ipsum dolor sit amet.
+- Consectetur adipiscing elit.
+- Sed do eiusmod tempor.
+
+## Tools.
+
+- [Hugo](https://gohugo.io/)
+- [Golang](https://golang.org/)
+
+## How to Run in Local Environment.
+
+1. Install Hugo
+
+   ```shell
+   $ apt-get install hugo
+   ```
+
+2. Create a new site
+
+   ```shell
+   $ hugo new site hugo-portfolio
+   ```
+
+3. Run the app
+
+   ```shell
+   $ hugo serve
+   ```
+
+## Demo.
+
+- Working app
+
+  
+  &lt;img src=&#34;https://miro.medium.com/max/384/0*A6EB_Ykks5bPp_rM.gif&#34;  class=&#34;center&#34;  /&gt;
+
+
+
+</code></pre>
+  </div>
+
+
+<p>Finally, because we want our projects page to be our centerpiece, we need to make it so by routing the <code>/projects</code> endpoint as our entry point in <code>config.toml</code>.</p>
+
+
+
+  <div class="collapsable-code">
+    <input id="6" type="checkbox" checked />
+    <label for="6">
+      <span class="collapsable-code__language">md</span>
+      <span class="collapsable-code__title">project-one.md/project-two.md</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-md" ><code>
+
+...
+[params]
+
+# dir name of your blog content (default is `content/posts`).
+
+# the list of set content will show up on your index page (baseurl).
+
+contentTypeName = &#34;projects&#34;
+
+...
+
+[languages.en.params.logo]
+logoHomeLink = &#34;/projects&#34;
+logoText = &#34;hello friend&#34;
+
+...
+
+</code></pre>
+  </div>
+
+
+
+  <img src="/img/blogs/create-a-portfolio-using-hugo/5.png"  class="center"  />
+
+
+
+  <img src="/img/blogs/create-a-portfolio-using-hugo/6.png"  class="center"  style="margin-top: 40px;"  />
+
+
+<p>Voila! 🎉 🎊 You have successfully created your very own portfolio! 🔥🔥</p>
+<p>In less than an hour you&rsquo;ve created yourself a beautiful, customizable portfolio website using Hugo. Now it&rsquo;s up to you to get creative with it by tweaking the themes and adding your own contents to it.</p>
+<p>I hope this could be beneficial to you. Thank you for taking the time to read this article. 🙏</p>
+<p>&ndash; ssentinull</p>
+
+    </div>
+    
+
+    
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >ssentinull</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+       <div style="flex-direction: row; align-items: center; font-size: 1rem;">
+         <span style="margin-right: 10px;">
+             <a href="https://github.com/ssentinull"><i class="fa fa-github" style="font-size:24px"></i></a>
+         </span>
+         <span style="margin-right: 10px;">
+             <a href="https://www.linkedin.com/in/ibnu-ahsani/"><i class="fa fa-linkedin" style="font-size:24px"></i></a>
+         </span>
+         <span>
+             <a href="mailto:ibnu.muhari@gmail.com"><i class="fa fa-envelope" style="font-size:18px"></i></a>
+         </span>
+       </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

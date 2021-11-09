@@ -9,25 +9,44 @@
     <description>Recent content in Blogs on ssentinull</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Nov 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blogs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Create a Porfolio using Hugo | Part 1.</title>
-      <link>/blogs/create-a-portfolio-using-go-hugo-part-1/</link>
-      <pubDate>Sat, 02 Oct 2021 00:00:00 +0000</pubDate>
+      <title>Auto-Deploy Portfolio to Github Pages.</title>
+      <link>/blogs/auto-deploy-portfolio-to-github-pages/</link>
+      <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>/blogs/create-a-portfolio-using-go-hugo-part-1/</guid>
+      <guid>/blogs/auto-deploy-portfolio-to-github-pages/</guid>
       <description>
         
-          &lt;img src=&#34;/img/blogs/create-a-portfolio-using-go-hugo-part-1/0.jpg&#34;/&gt;
+          &lt;img src=&#34;/img/blogs/auto-deploy-portfolio-to-github-pages/0.jpg&#34;/&gt;
           
         
         
         
-          Create a beatiful portfolio in minutes using Hugo.
+          Effortlessly deploy static pages to Github Pages using Shell scripts.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Create a Porfolio using Hugo.</title>
+      <link>/blogs/create-a-portfolio-using-hugo/</link>
+      <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blogs/create-a-portfolio-using-hugo/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/blogs/create-a-portfolio-using-hugo/0.jpg&#34;/&gt;
+          
+        
+        
+        
+          Create a beatiful portfolio in less than an hour using Hugo.
           
         
         </description>

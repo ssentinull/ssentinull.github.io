@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        Auto-Deploy Portfolio to Github Pages. ::
+        ssentinull — a simple about / blog / portfolio site
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Introduction. In the previous article, we&amp;rsquo;ve covered how to create a beautiful portfolio using Hugo in less than an hour. But what good is it to have an awesome portfolio if no one can see it? So in this article, I&amp;rsquo;ll be showing you how to set up an automatic deployment flow that will deploy to Github Pages using shell scripts.
+ ⚠ Disclaimer ⚠
+Shout-out to fahmifan for sharing his knowledge and allowing me to write about it in my blog."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/blogs/auto-deploy-portfolio-to-github-pages/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css" />
+
+<link rel="stylesheet" href="/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="/img/favicon.png" />
+
+
+<link href="/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Auto-Deploy Portfolio to Github Pages."/>
+<meta name="twitter:description" content="Effortlessly deploy static pages to Github Pages using Shell scripts."/>
+
+
+
+<meta property="og:title" content="Auto-Deploy Portfolio to Github Pages." />
+<meta property="og:description" content="Effortlessly deploy static pages to Github Pages using Shell scripts." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blogs/auto-deploy-portfolio-to-github-pages/" />
+<meta property="article:published_time" content="2021-11-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-11-09T00:00:00+00:00" /><meta property="og:site_name" content="ssentinull" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+  <body class="">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >ssentinull</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/blogs">Blogs</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/blogs">Blogs</a></li>
+      
+    
+      
+        <li><a href="/projects">Projects</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">Auto-Deploy Portfolio to Github Pages.</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          09-11-2021
+        </span>
+
+        
+      
+
+      
+        <span class="post-author"
+          >— Written by ssentinull</span
+        >
+
+
+      
+    </div>
+
+    
+
+    
+      <figure class="post-cover">
+        
+          <img src="/img/blogs/auto-deploy-portfolio-to-github-pages/0.jpg" alt="Auto-Deploy Portfolio to Github Pages." />
+        
+
+        
+      </figure>
+    
+
+    <div class="post-content">
+      
+      <h2 id="introduction">Introduction.</h2>
+<p>In the <a href="/blogs/create-a-portfolio-using-hugo">previous article</a>, we&rsquo;ve covered how to create a beautiful portfolio using Hugo in less than an hour. But what good is it to have an awesome portfolio if no one can see it? So in this article, I&rsquo;ll be showing you how to set up an automatic deployment flow that will deploy to Github Pages using shell scripts.</p>
+<blockquote>
+<p>⚠ <strong>Disclaimer</strong> ⚠</p>
+<p>Shout-out to <a href="https://github.com/fahmifan">fahmifan</a> for sharing his knowledge and allowing me to write about it in my blog. Please show some love for his <a href="https://github.com/fahmifan/hugo-blog">portfolio repo</a>.</p>
+</blockquote>
+<h2 id="what-is-github-pages">What is Github Pages.</h2>
+<p>Github Pages is a feature in Github that allows you to host the content of a repository. You don&rsquo;t have to set up any servers nor domain names, Github does that automatically for you. All you have to do is provide the content, let Github takes care of the rest.</p>
+<p>However, this ease of use comes with a couple of rules that you must follow. By default, every user is granted a single domain tied to their account, <code>username.github.io</code>. And by default, that domain will also be tied to the master branch of the repository with the same name. Since my username is <code>ssentinull</code>, my domain will be <code>ssentinull.github.io</code>, and this domain will refer to the master branch of <code>ssentinull.github.io</code> repository in my account.</p>
+<p>With that said, it doesn&rsquo;t mean that Github allows you to host only one repo. No no. If you want to host additional repo, the domain will still be <code>username.github.io</code>, but that domain will have an additional endpoint with the value being the project name. So to access your additional hosted repo, the URL will look like something this <code>username.github.io/project-name</code>.</p>
+<p>Since I&rsquo;m already using Github Pages for my blog in my Github account, I&rsquo;ll use a different account, so please don&rsquo;t mind the difference in username.</p>
+<h2 id="set-up-ssh-for-github-account">Set up SSH for Github account.</h2>
+<p>For the automatic deployment to work, we need to configure SSH on our machine as well as our Github account.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ssh-keygen -t ed25519 -C <span style="color:#e6db74">&#34;your_email@example.com&#34;</span>
+$ ssh-add ~/.ssh/id_ed25519
+$ cat ~/.ssh/id_ed25519.pub
+<span style="color:#75715e"># copy-paste the output value to Github -&gt; Settings -&gt; SSH &amp; GPG Keys -&gt; New SSH Key</span>
+</code></pre></div><p>If the commands above aren&rsquo;t clear enough, <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">this</a> guide shows you how to generate an SSH key and <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">this</a> guide shows you how to add the SSH key to your Github account.</p>
+<h2 id="clone-your-portfolio-via-ssh">Clone your Portfolio via SSH.</h2>
+<p>Because we&rsquo;ll be using SSH to push our changes, we need to clone the repo via SSH.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># use SSH URL instead of HTTPS URL</span>
+$ git clone git@github.com:IbnuAhsani/hugo-portfolio-article.git
+</code></pre></div><h2 id="create-a-repo-based-on-your-username">Create a Repo based on your Username.</h2>
+<p>This step is pretty self-explanatory, you just need to create a repo called <code>your_username.github.io</code> in your account and add a single commit to it.</p>
+<h2 id="use-public-directory-as-a-submodule">Use /public directory as a Submodule.</h2>
+<p>If you are not aware before, Hugo works by running a webserver and generating static HTML files based on the contents that you write and the theme that you choose. When you run <code>hugo serve</code>, Hugo will spin up a web server so that you can view your current work directly in your browser. And when you want to publish your work, you simply run <code>hugo</code>, and all the HTML files will be generated in the <code>/public</code> directory. These are the files that are gonna be hosted on Github Pages.</p>
+<p>In the previous article, we briefly touched on the concept of Git Submodules when we themed our blog. The same concept is gonna be used here as well. We&rsquo;ll use the <code>/public</code> directory as a submodule to our <code>username.github.io</code> repo. After setting <code>/public</code> as our submodule, we generate the files and push them to our <code>username.github.io</code> repo as well as our portfolio repo.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># make sure /public doesn&#39;t exist before running git submodule</span>
+<span style="color:#75715e"># use SSH URL instead of HTTPS URL</span>
+$ git submodule add git@github.com:IbnuAhsani/ibnuahsani.github.io.git public/
+$ hugo
+
+<span style="color:#75715e"># pushing to username.github.io repo</span>
+$ cd public
+$ git add .
+$ git commit -m <span style="color:#e6db74">&#34;feat: new portfolio&#34;</span>
+$ git push origin main <span style="color:#75715e"># default branch could be main / master</span>
+
+<span style="color:#75715e"># pushing to portfolio repo</span>
+$ cd ..
+$ git add .
+$ git commit -m <span style="color:#e6db74">&#34;feat: set /public as submodule&#34;</span>
+$ git push origin master <span style="color:#75715e"># default branch could be main / master</span>
+</code></pre></div><h2 id="enable-github-pages">Enable Github Pages.</h2>
+<p>If your repo name is <code>username.github.io</code> then Github should automatically enable Github Pages for that repo. But if it isn&rsquo;t, then you can go to Settings -&gt; Pages and enable it there.</p>
+
+  <img src="/img/blogs/auto-deploy-portfolio-to-github-pages/1.png"  class="center"  />
+
+
+<p>We&rsquo;ve successfully deployed our portfolio to Github Pages!! 🎉 🎊 It wasn&rsquo;t that difficult, right? But then again, if we have to push to multiple repos to deploy our portfolio everytime we make a change could be rather cumbersome. Thankfully, there&rsquo;s a way to automate it.</p>
+<h2 id="automate-the-deployment-process">Automate the deployment process.</h2>
+<p>This is where the benefit of using SSH comes in. Notice how when we push our repos to origin we didn&rsquo;t have to input our email and access token. This is possible because we&rsquo;ve set up the SSH agent in our machine and registered the corresponding key to our Github account, so now our machine is on their trusted list. To automate the process, we can simply create a Makefile and a shell script that runs all of the commands necessary to deploy our portfolio without having to input a single credential.</p>
+
+
+
+  <div class="collapsable-code">
+    <input id="2" type="checkbox" checked />
+    <label for="2">
+      <span class="collapsable-code__language">makefile</span>
+      <span class="collapsable-code__title">Makefile</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-makefile" ><code>
+
+    # run hugo server locally
+    run:
+        @hugo server
+
+    # build static pages, commit to github, &amp; deploy to github.io
+    deploy:
+        @bash deploy.sh
+
+</code></pre>
+  </div>
+
+
+
+
+
+  <div class="collapsable-code">
+    <input id="1" type="checkbox" checked />
+    <label for="1">
+      <span class="collapsable-code__language">shell</span>
+      <span class="collapsable-code__title">deploy.sh</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-shell" ><code>
+
+    #! /bin/sh
+    echo -e &#34;\e[1;33m start deploying \e[0m&#34;
+
+    # push to username.github.io repo
+    hugo -t hello-friend                    # builds the static site to /public
+    cd public                               # go to /public directory
+    git checkout main                       # switch to main branch
+    git add .                               # add all the generated files
+    message=&#34;feat: rebuild site on `date`&#34;  # commit the generated files
+    git commit -m &#34;$message&#34;
+    git push origin main                    # push the commit to origin main branch
+
+    # push to portfolio repo
+    cd ..                                   # move back to root project directory
+    git checkout master                     # switch to master branch
+    git add content/ public/                # add new contents &amp; rebuilt site
+    git commit -m &#34;$message&#34;                # commit the changes
+    git push origin master                  # push the commit to origin master branch
+
+    echo -e &#34;\e[1;32m finished deploying \e[0m&#34;
+
+</code></pre>
+  </div>
+
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ make run      <span style="color:#75715e"># run hugo server</span>
+$ make deploy   <span style="color:#75715e"># run deployment shell</span>
+</code></pre></div><p>Awesome!! 🔥🔥 Creating articles and deploying to Github has never been easier!! 😄 🍻</p>
+<p>I hope this could be beneficial to you. Thank you for taking the time to read this article. 🙏</p>
+<p>&ndash; ssentinull</p>
+
+    </div>
+    
+
+    
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >ssentinull</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+       <div style="flex-direction: row; align-items: center; font-size: 1rem;">
+         <span style="margin-right: 10px;">
+             <a href="https://github.com/ssentinull"><i class="fa fa-github" style="font-size:24px"></i></a>
+         </span>
+         <span style="margin-right: 10px;">
+             <a href="https://www.linkedin.com/in/ibnu-ahsani/"><i class="fa fa-linkedin" style="font-size:24px"></i></a>
+         </span>
+         <span>
+             <a href="mailto:ibnu.muhari@gmail.com"><i class="fa fa-envelope" style="font-size:18px"></i></a>
+         </span>
+       </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>
