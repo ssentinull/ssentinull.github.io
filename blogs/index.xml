@@ -9,13 +9,32 @@
     <description>Recent content in Blogs on ssentinull</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 09 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Nov 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blogs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Auto-Deploy Portfolio to Github Pages.</title>
+      <title>An Introduction.</title>
+      <link>/blogs/an-introduction/</link>
+      <pubDate>Wed, 10 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blogs/an-introduction/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/introduction.jpg&#34;/&gt;
+          
+        
+        
+        
+          For those wondering what this site is all about.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Deploy your Portfolio to Github Pages.</title>
       <link>/blogs/auto-deploy-portfolio-to-github-pages/</link>
       <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
       
@@ -27,7 +46,7 @@
         
         
         
-          Effortlessly deploy static pages to Github Pages using Shell scripts.
+          Effortlessly deploy static content to Github Pages.
           
         
         </description>

@@ -9,13 +9,53 @@
     <description>Recent content on ssentinull</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 11 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Nov 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Auto-Deploy Portfolio to Github Pages.</title>
+      <title>About Me.</title>
+      <link>/about/</link>
+      <pubDate>Tue, 16 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          My name is Ibnu Ahsani, a software engineer from Jakarta, Indonesia. I graduated college in 2020 and have a bachelor&amp;rsquo;s degree in computer science from Padjadjaran University. As of 2021, I have less than a year of experience under my belt, so technically that still makes me a &amp;ldquo;fresh graduate&amp;rdquo; :).
+I&amp;rsquo;m currently unemployed after working as a backend engineer at kiddo.id for ten months. My tasks were to create a content management system, as well as maintain, and improve their marketplace system.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>An Introduction.</title>
+      <link>/blogs/an-introduction/</link>
+      <pubDate>Wed, 10 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blogs/an-introduction/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/introduction.jpg&#34;/&gt;
+          
+        
+        
+        
+          For those wondering what this site is all about.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Deploy your Portfolio to Github Pages.</title>
       <link>/blogs/auto-deploy-portfolio-to-github-pages/</link>
       <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
       
@@ -27,7 +67,7 @@
         
         
         
-          Effortlessly deploy static pages to Github Pages using Shell scripts.
+          Effortlessly deploy static content to Github Pages.
           
         
         </description>
@@ -47,46 +87,6 @@
         
         
           Create a beatiful portfolio in less than an hour using Hugo.
-          
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>About Me.</title>
-      <link>/about/</link>
-      <pubDate>Sun, 11 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/about/</guid>
-      <description>
-        
-          
-          
-          
-        
-        
-        
-          My name is Ibnu Ahsani, a Sofware Engineer from Jakarta, Indonesia. I graduated college in 2020 and have Bachelor&amp;rsquo;s Degree in Computer Science from Padjadjaran University. As of 2021, I have less than 1 year of experience under my belt, so technically that still makes me a Fresh Graduate hehe :)
-I&amp;rsquo;m currently working as a Backend Engineer at kiddo.id. My tasks are to create a Content Management system, as well as maintain, and improve their Marketplace system.
-          
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>An Introduction.</title>
-      <link>/posts/an-introduction/</link>
-      <pubDate>Sun, 11 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/an-introduction/</guid>
-      <description>
-        
-          &lt;img src=&#34;/img/introduction.jpg&#34;/&gt;
-          
-        
-        
-        
-          For those wondering what this site is all about.
           
         
         </description>
