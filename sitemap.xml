@@ -3,23 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blogs/an-introduction/</loc>
+    <lastmod>2021-11-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blogs/</loc>
+    <lastmod>2021-11-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/about/</loc>
+    <lastmod>2021-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blogs/create-api-using-golang-setup/</loc>
     <lastmod>2021-11-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/</loc>
     <lastmod>2021-11-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/blogs/an-introduction/</loc>
-    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/blogs/</loc>
-    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>

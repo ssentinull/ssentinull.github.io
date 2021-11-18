@@ -9,7 +9,7 @@
     <description>Recent content in Blogs on ssentinull</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 17 Nov 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blogs/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,7 +17,7 @@
     <item>
       <title>An Introduction.</title>
       <link>/blogs/an-introduction/</link>
-      <pubDate>Wed, 10 Nov 2021 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Nov 2021 00:00:00 +0000</pubDate>
       
       <guid>/blogs/an-introduction/</guid>
       <description>
@@ -28,6 +28,25 @@
         
         
           For those wondering what this site is all about.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Create APIs using Golang | Part 1 : Workspace Setup.</title>
+      <link>/blogs/create-api-using-golang-setup/</link>
+      <pubDate>Tue, 16 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blogs/create-api-using-golang-setup/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/blogs/create-api-using-golang-setup/0.jpeg&#34;/&gt;
+          
+        
+        
+        
+          Effortlessly deploy static content to Github Pages.
           
         
         </description>
