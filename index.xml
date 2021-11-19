@@ -34,6 +34,25 @@
     </item>
     
     <item>
+      <title>Create APIs using Golang | Part 2 : Application Architecture.</title>
+      <link>/blogs/create-api-using-golang-architecture/</link>
+      <pubDate>Wed, 17 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blogs/create-api-using-golang-architecture/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/blogs/create-api-using-golang-architecture/0.jpg&#34;/&gt;
+          
+        
+        
+        
+          A good workspace will go a long way.
+          
+        
+        </description>
+    </item>
+    
+    <item>
       <title>About Me.</title>
       <link>/about/</link>
       <pubDate>Tue, 16 Nov 2021 00:00:00 +0000</pubDate>
@@ -62,19 +81,19 @@ I&amp;rsquo;m currently unemployed after working as a backend engineer at kiddo.
       <guid>/blogs/create-api-using-golang-setup/</guid>
       <description>
         
-          &lt;img src=&#34;/img/blogs/create-api-using-golang-setup/0.jpeg&#34;/&gt;
+          &lt;img src=&#34;/img/blogs/create-api-using-golang-setup/0.jpg&#34;/&gt;
           
         
         
         
-          Effortlessly deploy static content to Github Pages.
+          A good workspace will go a long way.
           
         
         </description>
     </item>
     
     <item>
-      <title>Deploy your Portfolio to Github Pages.</title>
+      <title>Deploy your Hugo Portfolio to Github Pages.</title>
       <link>/blogs/auto-deploy-portfolio-to-github-pages/</link>
       <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
       
@@ -93,7 +112,7 @@ I&amp;rsquo;m currently unemployed after working as a backend engineer at kiddo.
     </item>
     
     <item>
-      <title>Create a Porfolio using Hugo.</title>
+      <title>Create a Portfolio using Hugo.</title>
       <link>/blogs/create-a-portfolio-using-hugo/</link>
       <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
       
