@@ -13,11 +13,6 @@
   </url>
   
   <url>
-    <loc>/blogs/create-api-using-golang-architecture/</loc>
-    <lastmod>2021-11-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/about/</loc>
     <lastmod>2021-11-16T00:00:00+00:00</lastmod>
   </url>
@@ -188,6 +183,10 @@
   
   <url>
     <loc>/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>/blogs/create-api-using-golang-architecture/</loc>
   </url>
   
 </urlset>
