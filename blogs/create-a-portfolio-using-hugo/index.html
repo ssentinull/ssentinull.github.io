@@ -12,7 +12,7 @@
 <meta
   name="description"
   content="Introduction. This article will give you a step-by-step tutorial on how to create a beautiful web-based portfolio using Hugo.
- 📣 Shout-out 📣
+ 📣 Shout-out! 📣
 Shout-out to fahmifan for sharing his knowledge and allowing me to write about it in my blog. Please show some love for his portfolio repo.
  Download Hugo. Head over to Hugo&amp;rsquo;s installation page and install it based on your machine&amp;rsquo;s OS. If you&amp;rsquo;re using Ubuntu like me, you can install it through the official Hugo Debian package."
 />
@@ -199,7 +199,7 @@ Shout-out to fahmifan for sharing his knowledge and allowing me to write about i
       <h2 id="introduction">Introduction.</h2>
 <p>This article will give you a step-by-step tutorial on how to create a beautiful web-based portfolio using Hugo.</p>
 <blockquote>
-<p>📣 <strong>Shout-out</strong> 📣</p>
+<p>📣 <strong>Shout-out!</strong> 📣</p>
 <p>Shout-out to <a href="https://github.com/fahmifan">fahmifan</a> for sharing his knowledge and allowing me to write about it in my blog. Please show some love for his <a href="https://github.com/fahmifan/fahmifan.github.io">portfolio repo</a>.</p>
 </blockquote>
 <h2 id="download-hugo">Download Hugo.</h2>
@@ -237,16 +237,16 @@ $ git checkout -b portfolio master
   <div class="collapsable-code">
     <input id="1" type="checkbox" checked />
     <label for="1">
-      <span class="collapsable-code__language">.gitmodules</span>
+      <span class="collapsable-code__language">gitmodules</span>
       <span class="collapsable-code__title">.gitmodules</span>
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
-    <pre class="language-.gitmodules" ><code>
+    <pre class="language-gitmodules" ><code>
 
-[submodule &#34;themes/hello-friend&#34;]
-path = themes/hello-friend
-url = https://github.com/ssentinull/hugo-theme-hello-friend.git
-branch = custom
+    [submodule &#34;themes/hello-friend&#34;]
+    path = themes/hello-friend
+    url = https://github.com/ssentinull/hugo-theme-hello-friend.git
+    branch = custom
 
 </code></pre>
   </div>
@@ -284,11 +284,12 @@ $ git push origin master
     </label>
     <pre class="language-toml" ><code>
 
-...
-[[languages.en.menu.main]]
-identifier = &#34;about&#34;
-name = &#34;About&#34;
-url = &#34;/about&#34;
+    ...
+
+    [[languages.en.menu.main]]
+    identifier = &#34;about&#34;
+    name = &#34;About&#34;
+    url = &#34;/about&#34;
 
 </code></pre>
   </div>
@@ -371,11 +372,12 @@ Lipsum:
     </label>
     <pre class="language-toml" ><code>
 
-...
-[[languages.en.menu.main]]
-identifier = &#34;projects&#34;
-name = &#34;Projects&#34;
-url = &#34;/projects&#34;
+    ...
+
+    [[languages.en.menu.main]]
+    identifier = &#34;projects&#34;
+    name = &#34;Projects&#34;
+    url = &#34;/projects&#34;
 
 </code></pre>
   </div>
@@ -463,28 +465,27 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
   <div class="collapsable-code">
     <input id="6" type="checkbox" checked />
     <label for="6">
-      <span class="collapsable-code__language">md</span>
-      <span class="collapsable-code__title">project-one.md/project-two.md</span>
+      <span class="collapsable-code__language">toml</span>
+      <span class="collapsable-code__title">config.toml</span>
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
-    <pre class="language-md" ><code>
+    <pre class="language-toml" ><code>
 
-...
-[params]
+    ...
 
-# dir name of your blog content (default is `content/posts`).
+    [params]
 
-# the list of set content will show up on your index page (baseurl).
+    # dir name of your blog content (default is `content/posts`).
+    # the list of set content will show up on your index page (baseurl).
+    contentTypeName = &#34;projects&#34;
 
-contentTypeName = &#34;projects&#34;
+    ...
 
-...
+    [languages.en.params.logo]
+    logoHomeLink = &#34;/projects&#34;
+    logoText = &#34;hello friend&#34;
 
-[languages.en.params.logo]
-logoHomeLink = &#34;/projects&#34;
-logoText = &#34;hello friend&#34;
-
-...
+    ...
 
 </code></pre>
   </div>

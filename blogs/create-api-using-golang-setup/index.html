@@ -217,7 +217,7 @@ $ go get github.com/sirupsen/logrus
 
 
   <div class="collapsable-code">
-    <input id="1" type="checkbox" checked />
+    <input id="1" type="checkbox"  />
     <label for="1">
       <span class="collapsable-code__language">go</span>
       <span class="collapsable-code__title">main.go</span>
@@ -225,34 +225,30 @@ $ go get github.com/sirupsen/logrus
     </label>
     <pre class="language-go" ><code>
 
-package main
+    package main
 
-import (
+    import (
+        &#34;log&#34;
+        &#34;net/http&#34;
+        &#34;time&#34;
 
-    &#34;log&#34;
-    &#34;net/http&#34;
-    &#34;time&#34;
+        &#34;github.com/labstack/echo/v4&#34;
+    )
 
-    &#34;github.com/labstack/echo/v4&#34;
+    func main() {
+        e := echo.New()
+        e.GET(&#34;/&#34;, func(c echo.Context) error {
+            return c.String(http.StatusOK, &#34;Hello, World!&#34;)
+        })
 
-)
+        s := &amp;http.Server{
+            Addr:         &#34;:8080&#34;,
+            ReadTimeout:  2 * time.Minute,
+            WriteTimeout: 2 * time.Minute,
+        }
 
-func main() {
-
-    e := echo.New()
-    e.GET(&#34;/&#34;, func(c echo.Context) error {
-    	return c.String(http.StatusOK, &#34;Hello, World!&#34;)
-    })
-
-    s := &amp;http.Server{
-    	Addr:         &#34;:8080&#34;,
-    	ReadTimeout:  2 * time.Minute,
-    	WriteTimeout: 2 * time.Minute,
+        log.Fatal(e.StartServer(s))
     }
-
-    log.Fatal(e.StartServer(s))
-
-}
 
 </code></pre>
   </div>
@@ -268,7 +264,7 @@ func main() {
 
 
   <div class="collapsable-code">
-    <input id="3" type="checkbox" checked />
+    <input id="3" type="checkbox"  />
     <label for="3">
       <span class="collapsable-code__language">go</span>
       <span class="collapsable-code__title">main.go</span>
@@ -276,59 +272,51 @@ func main() {
     </label>
     <pre class="language-go" ><code>
 
-package main
+    package main
 
-import (
+    import (
+        &#34;net/http&#34;
+        &#34;os&#34;
+        &#34;time&#34;
 
-    &#34;net/http&#34;
-    &#34;os&#34;
-    &#34;time&#34;
+        &#34;github.com/labstack/echo/v4&#34;
+        &#34;github.com/sirupsen/logrus&#34;
+    )
 
-    &#34;github.com/labstack/echo/v4&#34;
-    &#34;github.com/sirupsen/logrus&#34;
+    // initialize logger configurations
+    func initLogger() {
+        logrus.SetFormatter(&amp;logrus.TextFormatter{
+            ForceColors:     true,
+            DisableSorting:  true,
+            DisableColors:   false,
+            FullTimestamp:   true,
+            TimestampFormat: &#34;15:04:05 02-01-2006&#34;,
+        })
 
-)
-
-// initialize logger configurations
-func initLogger() {
-
-    logrus.SetFormatter(&amp;logrus.TextFormatter{
-    	ForceColors:     true,
-    	DisableSorting:  true,
-    	DisableColors:   false,
-    	FullTimestamp:   true,
-    	TimestampFormat: &#34;15:04:05 02-01-2006&#34;,
-    })
-
-    logrus.SetOutput(os.Stdout)
-    logrus.SetReportCaller(true)
-    logrus.SetLevel(logrus.ErrorLevel)
-
-}
-
-// run initLogger() before running main()
-func init() {
-
-    initLogger()
-
-}
-
-func main() {
-
-    e := echo.New()
-    e.GET(&#34;/&#34;, func(c echo.Context) error {
-    return c.String(http.StatusOK, &#34;Hello, World!&#34;)
-    })
-
-    s := &amp;http.Server{
-    	Addr:         &#34;:8080&#34;,
-    	ReadTimeout:  2 * time.Minute,
-    	WriteTimeout: 2 * time.Minute,
+        logrus.SetOutput(os.Stdout)
+        logrus.SetReportCaller(true)
+        logrus.SetLevel(logrus.ErrorLevel)
     }
 
-    logrus.Fatal(e.StartServer(s))
+    // run initLogger() before running main()
+    func init() {
+        initLogger()
+    }
 
-}
+    func main() {
+        e := echo.New()
+        e.GET(&#34;/&#34;, func(c echo.Context) error {
+        return c.String(http.StatusOK, &#34;Hello, World!&#34;)
+        })
+
+        s := &amp;http.Server{
+            Addr:         &#34;:8080&#34;,
+            ReadTimeout:  2 * time.Minute,
+            WriteTimeout: 2 * time.Minute,
+        }
+
+        logrus.Fatal(e.StartServer(s))
+    }
 
 </code></pre>
   </div>
@@ -341,7 +329,7 @@ func main() {
 
 
   <div class="collapsable-code">
-    <input id="4" type="checkbox" checked />
+    <input id="4" type="checkbox"  />
     <label for="4">
       <span class="collapsable-code__language">env</span>
       <span class="collapsable-code__title">.env.example</span>
@@ -349,8 +337,8 @@ func main() {
     </label>
     <pre class="language-env" ><code>
 
-ENV=
-SERVER_PORT=
+    ENV=
+    SERVER_PORT=
 
 </code></pre>
   </div>
@@ -360,7 +348,7 @@ SERVER_PORT=
 
 
   <div class="collapsable-code">
-    <input id="5" type="checkbox" checked />
+    <input id="5" type="checkbox"  />
     <label for="5">
       <span class="collapsable-code__language">gitignore</span>
       <span class="collapsable-code__title">.gitignore</span>
@@ -368,7 +356,7 @@ SERVER_PORT=
     </label>
     <pre class="language-gitignore" ><code>
 
-.env
+    .env
 
 </code></pre>
   </div>
@@ -379,7 +367,7 @@ SERVER_PORT=
 
 
   <div class="collapsable-code">
-    <input id="6" type="checkbox" checked />
+    <input id="6" type="checkbox"  />
     <label for="6">
       <span class="collapsable-code__language">go</span>
       <span class="collapsable-code__title">env.go</span>
@@ -387,52 +375,44 @@ SERVER_PORT=
     </label>
     <pre class="language-go" ><code>
 
-package config
+    package config
 
-import (
+    import (
+        &#34;fmt&#34;
+        &#34;os&#34;
 
-    &#34;fmt&#34;
-    &#34;os&#34;
+        &#34;github.com/joho/godotenv&#34;
+        &#34;github.com/sirupsen/logrus&#34;
+    )
 
-    &#34;github.com/joho/godotenv&#34;
-    &#34;github.com/sirupsen/logrus&#34;
+    func init() {
+        env := os.Getenv(&#34;ENV&#34;)
+        if env != &#34;dev&#34; &amp;&amp; env != &#34;&#34; {
+            logrus.Warn(&#34;running using OS env variables&#34;)
 
-)
+            return
+        }
 
-func init() {
+        if err := godotenv.Load(); err != nil {
+            logrus.Warn(&#34;.env file not found&#34;)
 
-    env := os.Getenv(&#34;ENV&#34;)
-    if env != &#34;dev&#34; &amp;&amp; env != &#34;&#34; {
-    	logrus.Warn(&#34;running using OS env variables&#34;)
+            return
+        }
 
-    	return
+        logrus.Warn(&#34;running using .env file&#34;)
+
+        return
     }
 
-    if err := godotenv.Load(); err != nil {
-    	logrus.Warn(&#34;.env file not found&#34;)
-
-    	return
+    // Env returns Env in .env
+    func Env() string {
+        return fmt.Sprintf(&#34;%s&#34;, os.Getenv(&#34;ENV&#34;))
     }
 
-    logrus.Warn(&#34;running using .env file&#34;)
-
-    return
-
-}
-
-// Env returns Env in .env
-func Env() string {
-
-    return fmt.Sprintf(&#34;%s&#34;, os.Getenv(&#34;ENV&#34;))
-
-}
-
-// ServerPort returns the server port in .env
-func ServerPort() string {
-
-    return fmt.Sprintf(&#34;%s&#34;, os.Getenv(&#34;SERVER_PORT&#34;))
-
-}
+    // ServerPort returns the server port in .env
+    func ServerPort() string {
+        return fmt.Sprintf(&#34;%s&#34;, os.Getenv(&#34;SERVER_PORT&#34;))
+    }
 
 </code></pre>
   </div>
@@ -442,7 +422,7 @@ func ServerPort() string {
 
 
   <div class="collapsable-code">
-    <input id="7" type="checkbox" checked />
+    <input id="7" type="checkbox"  />
     <label for="7">
       <span class="collapsable-code__language">go</span>
       <span class="collapsable-code__title">main.go</span>
@@ -450,66 +430,58 @@ func ServerPort() string {
     </label>
     <pre class="language-go" ><code>
 
-package main
+    package main
 
-import (
+    import (
+        &#34;net/http&#34;
+        &#34;os&#34;
+        &#34;time&#34;
 
-    &#34;net/http&#34;
-    &#34;os&#34;
-    &#34;time&#34;
+        &#34;github.com/labstack/echo/v4&#34;
+        &#34;github.com/sirupsen/logrus&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/config&#34;
+    )
 
-    &#34;github.com/labstack/echo/v4&#34;
-    &#34;github.com/sirupsen/logrus&#34;
-    &#34;github.com/ssentinull/create-apis-using-golang/config&#34;
+    // initialize logger configurations
+    func initLogger() {
+        logLevel := logrus.ErrorLevel
+        switch config.Env() {
+        case &#34;dev&#34;, &#34;development&#34;:
+            logLevel = logrus.InfoLevel
+        }
 
-)
+        logrus.SetFormatter(&amp;logrus.TextFormatter{
+            ForceColors:     true,
+            DisableSorting:  true,
+            DisableColors:   false,
+            FullTimestamp:   true,
+            TimestampFormat: &#34;15:04:05 02-01-2006&#34;,
+        })
 
-// initialize logger configurations
-func initLogger() {
-
-    logLevel := logrus.ErrorLevel
-    switch config.Env() {
-    case &#34;dev&#34;, &#34;development&#34;:
-    	logLevel = logrus.InfoLevel
+        logrus.SetOutput(os.Stdout)
+        logrus.SetReportCaller(true)
+        logrus.SetLevel(logLevel)
     }
 
-    logrus.SetFormatter(&amp;logrus.TextFormatter{
-    	ForceColors:     true,
-    	DisableSorting:  true,
-    	DisableColors:   false,
-    	FullTimestamp:   true,
-    	TimestampFormat: &#34;15:04:05 02-01-2006&#34;,
-    })
-
-    logrus.SetOutput(os.Stdout)
-    logrus.SetReportCaller(true)
-    logrus.SetLevel(logLevel)
-
-}
-
-// run initLogger() before running main()
-func init() {
-
-    initLogger()
-
-}
-
-func main() {
-
-    e := echo.New()
-    e.GET(&#34;/&#34;, func(c echo.Context) error {
-    	return c.String(http.StatusOK, &#34;Hello, World!&#34;)
-    })
-
-    s := &amp;http.Server{
-    	Addr:         &#34;:&#34; &#43; config.ServerPort(),
-    	ReadTimeout:  2 * time.Minute,
-    	WriteTimeout: 2 * time.Minute,
+    // run initLogger() before running main()
+    func init() {
+        initLogger()
     }
 
-    logrus.Fatal(e.StartServer(s))
+    func main() {
+        e := echo.New()
+        e.GET(&#34;/&#34;, func(c echo.Context) error {
+            return c.String(http.StatusOK, &#34;Hello, World!&#34;)
+        })
 
-}
+        s := &amp;http.Server{
+            Addr:         &#34;:&#34; &#43; config.ServerPort(),
+            ReadTimeout:  2 * time.Minute,
+            WriteTimeout: 2 * time.Minute,
+        }
+
+        logrus.Fatal(e.StartServer(s))
+    }
 
 </code></pre>
   </div>
@@ -521,7 +493,7 @@ func main() {
 
 
   <div class="collapsable-code">
-    <input id="8" type="checkbox" checked />
+    <input id="8" type="checkbox"  />
     <label for="8">
       <span class="collapsable-code__language">conf</span>
       <span class="collapsable-code__title">server.modd.conf</span>
@@ -529,9 +501,9 @@ func main() {
     </label>
     <pre class="language-conf" ><code>
 
-**/\*.go !**/\*\_test.go {
-daemon &#43;sigterm: go run cmd/server/main.go
-}
+    **/\*.go !**/\*\_test.go {
+        daemon &#43;sigterm: go run cmd/server/main.go
+    }
 
 </code></pre>
   </div>
@@ -541,7 +513,7 @@ daemon &#43;sigterm: go run cmd/server/main.go
 
 
   <div class="collapsable-code">
-    <input id="9" type="checkbox" checked />
+    <input id="9" type="checkbox"  />
     <label for="9">
       <span class="collapsable-code__language">makefile</span>
       <span class="collapsable-code__title">Makefile</span>
@@ -549,10 +521,9 @@ daemon &#43;sigterm: go run cmd/server/main.go
     </label>
     <pre class="language-makefile" ><code>
 
-# command to run the server in daemon mode
-
-run-server:
-@modd -f ./.modd/server.modd.conf
+    # command to run the server in daemon mode
+    run-server:
+        @modd -f ./.modd/server.modd.conf
 
 </code></pre>
   </div>

@@ -229,7 +229,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
 
 
   <div class="collapsable-code">
-    <input id="1" type="checkbox" checked />
+    <input id="1" type="checkbox"  />
     <label for="1">
       <span class="collapsable-code__language">go</span>
       <span class="collapsable-code__title">book.go</span>
@@ -237,22 +237,20 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
     </label>
     <pre class="language-go" ><code>
 
-package model
+    package model
 
-import &#34;time&#34;
+    import &#34;time&#34;
 
-type Book struct {
-
-    ID          int64     `json:&#34;id&#34;`
-    Title       string    `json:&#34;title&#34;`
-    Author      string    `json:&#34;author&#34;`
-    Description string    `json:&#34;description&#34;`
-    PublishedAt time.Time `json:&#34;published_at&#34;`
-    CreatedAt   time.Time `json:&#34;created_at&#34;`
-    UpdatedAt   time.Time `json:&#34;updated_at&#34;`
-    DeletedAt   time.Time `json:&#34;deleted_at&#34;`
-
-}
+    type Book struct {
+        ID          int64     `json:&#34;id&#34;`
+        Title       string    `json:&#34;title&#34;`
+        Author      string    `json:&#34;author&#34;`
+        Description string    `json:&#34;description&#34;`
+        PublishedAt time.Time `json:&#34;published_at&#34;`
+        CreatedAt   time.Time `json:&#34;created_at&#34;`
+        UpdatedAt   time.Time `json:&#34;updated_at&#34;`
+        DeletedAt   time.Time `json:&#34;deleted_at&#34;`
+    }
 
 </code></pre>
   </div>
@@ -265,7 +263,7 @@ type Book struct {
 
 
   <div class="collapsable-code">
-    <input id="2" type="checkbox" checked />
+    <input id="2" type="checkbox"  />
     <label for="2">
       <span class="collapsable-code__language">go</span>
       <span class="collapsable-code__title">book.go</span>
@@ -273,34 +271,28 @@ type Book struct {
     </label>
     <pre class="language-go" ><code>
 
-package model
+    package model
 
-import (
+    import (
+        &#34;context&#34;
+        &#34;time&#34;
+    )
 
-    &#34;context&#34;
-    &#34;time&#34;
+    type Book struct {
+        ID          int64     `json:&#34;id&#34;`
+        Title       string    `json:&#34;title&#34;`
+        Author      string    `json:&#34;author&#34;`
+        Description string    `json:&#34;description&#34;`
+        PublishedAt time.Time `json:&#34;published_at&#34;`
+        CreatedAt   time.Time `json:&#34;created_at&#34;`
+        UpdatedAt   time.Time `json:&#34;updated_at&#34;`
+        DeletedAt   time.Time `json:&#34;deleted_at&#34;`
+    }
 
-)
-
-type Book struct {
-
-    ID          int64     `json:&#34;id&#34;`
-    Title       string    `json:&#34;title&#34;`
-    Author      string    `json:&#34;author&#34;`
-    Description string    `json:&#34;description&#34;`
-    PublishedAt time.Time `json:&#34;published_at&#34;`
-    CreatedAt   time.Time `json:&#34;created_at&#34;`
-    UpdatedAt   time.Time `json:&#34;updated_at&#34;`
-    DeletedAt   time.Time `json:&#34;deleted_at&#34;`
-
-}
-
-type BookRepository interface {
-
-    ReadBookByID(context.Context, int64) (Book, error)
-    ReadBooks(context.Context) ([]Book, error)
-
-}
+    type BookRepository interface {
+        ReadBookByID(context.Context, int64) (Book, error)
+        ReadBooks(context.Context) ([]Book, error)
+    }
 
 </code></pre>
   </div>
@@ -312,7 +304,7 @@ type BookRepository interface {
 
 
   <div class="collapsable-code">
-    <input id="3" type="checkbox" checked />
+    <input id="3" type="checkbox"  />
     <label for="3">
       <span class="collapsable-code__language">go</span>
       <span class="collapsable-code__title">book_repository_postgres.go</span>
@@ -320,66 +312,56 @@ type BookRepository interface {
     </label>
     <pre class="language-go" ><code>
 
-package postgres
+    package postgres
 
-import (
+    import (
+        &#34;context&#34;
+        &#34;time&#34;
 
-    &#34;context&#34;
-    &#34;time&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/pkg/model&#34;
+    )
 
-    &#34;github.com/ssentinull/create-apis-using-golang/pkg/model&#34;
+    type bookRepo struct{}
 
-)
-
-type bookRepo struct{}
-
-func NewBookRepository() model.BookRepository {
-
-    return &amp;bookRepo{}
-
-}
-
-func (br *bookRepo) ReadBookByID(ctx context.Context, ID int64) (model.Book, error) {
-
-    book := model.Book{
-
-    	ID:          ID,
-    	Title:       &#34;Harry Potter&#34;,
-    	Author:      &#34;J. K. Rowling&#34;,
-    	Description: &#34;A book about wizards&#34;,
-    	PublishedAt: time.Now(),
-    	CreatedAt:   time.Now(),
+    func NewBookRepository() model.BookRepository {
+        return &amp;bookRepo{}
     }
 
-    return book, nil
+    func (br *bookRepo) ReadBookByID(ctx context.Context, ID int64) (model.Book, error) {
+        book := model.Book{
+            ID:          ID,
+            Title:       &#34;Harry Potter&#34;,
+            Author:      &#34;J. K. Rowling&#34;,
+            Description: &#34;A book about wizards&#34;,
+            PublishedAt: time.Now(),
+            CreatedAt:   time.Now(),
+        }
 
-}
-
-func (br *bookRepo) ReadBooks(ctx context.Context) ([]model.Book, error) {
-
-    books := []model.Book{
-
-    	{
-    		ID:          1,
-    		Title:       &#34;Harry Potter&#34;,
-    		Author:      &#34;J. K. Rowling&#34;,
-    		Description: &#34;A book about wizards&#34;,
-    		PublishedAt: time.Now(),
-    		CreatedAt:   time.Now(),
-    	},
-    	{
-    		ID:          2,
-    		Title:       &#34;The Hobbit&#34;,
-    		Author:      &#34;J. R. R. Tolkien&#34;,
-    		Description: &#34;A book about hobbits&#34;,
-    		PublishedAt: time.Now(),
-    		CreatedAt:   time.Now(),
-    	},
+        return book, nil
     }
 
-    return books, nil
+    func (br *bookRepo) ReadBooks(ctx context.Context) ([]model.Book, error) {
+        books := []model.Book{
+            {
+                ID:          1,
+                Title:       &#34;Harry Potter&#34;,
+                Author:      &#34;J. K. Rowling&#34;,
+                Description: &#34;A book about wizards&#34;,
+                PublishedAt: time.Now(),
+                CreatedAt:   time.Now(),
+            },
+            {
+                ID:          2,
+                Title:       &#34;The Hobbit&#34;,
+                Author:      &#34;J. R. R. Tolkien&#34;,
+                Description: &#34;A book about hobbits&#34;,
+                PublishedAt: time.Now(),
+                CreatedAt:   time.Now(),
+            },
+        }
 
-}
+        return books, nil
+    }
 
 </code></pre>
   </div>
@@ -392,7 +374,7 @@ func (br *bookRepo) ReadBooks(ctx context.Context) ([]model.Book, error) {
 
 
   <div class="collapsable-code">
-    <input id="4" type="checkbox" checked />
+    <input id="4" type="checkbox"  />
     <label for="4">
       <span class="collapsable-code__language">go</span>
       <span class="collapsable-code__title">book.go</span>
@@ -400,41 +382,33 @@ func (br *bookRepo) ReadBooks(ctx context.Context) ([]model.Book, error) {
     </label>
     <pre class="language-go" ><code>
 
-package model
+    package model
 
-import (
+    import (
+        &#34;context&#34;
+        &#34;time&#34;
+    )
 
-    &#34;context&#34;
-    &#34;time&#34;
+    type Book struct {
+        ID          int64     `json:&#34;id&#34;`
+        Title       string    `json:&#34;title&#34;`
+        Author      string    `json:&#34;author&#34;`
+        Description string    `json:&#34;description&#34;`
+        PublishedAt time.Time `json:&#34;published_at&#34;`
+        CreatedAt   time.Time `json:&#34;created_at&#34;`
+        UpdatedAt   time.Time `json:&#34;updated_at&#34;`
+        DeletedAt   time.Time `json:&#34;deleted_at&#34;`
+    }
 
-)
+    type BookUsecase interface {
+        GetBookByID(context.Context, int64) (Book, error)
+        GetBooks(context.Context) ([]Book, error)
+    }
 
-type Book struct {
-
-    ID          int64     `json:&#34;id&#34;`
-    Title       string    `json:&#34;title&#34;`
-    Author      string    `json:&#34;author&#34;`
-    Description string    `json:&#34;description&#34;`
-    PublishedAt time.Time `json:&#34;published_at&#34;`
-    CreatedAt   time.Time `json:&#34;created_at&#34;`
-    UpdatedAt   time.Time `json:&#34;updated_at&#34;`
-    DeletedAt   time.Time `json:&#34;deleted_at&#34;`
-
-}
-
-type BookUsecase interface {
-
-    GetBookByID(context.Context, int64) (Book, error)
-    GetBooks(context.Context) ([]Book, error)
-
-}
-
-type BookRepository interface {
-
-    ReadBookByID(context.Context, int64) (Book, error)
-    ReadBooks(context.Context) ([]Book, error)
-
-}
+    type BookRepository interface {
+        ReadBookByID(context.Context, int64) (Book, error)
+        ReadBooks(context.Context) ([]Book, error)
+    }
 
 </code></pre>
   </div>
@@ -445,7 +419,7 @@ type BookRepository interface {
 
 
   <div class="collapsable-code">
-    <input id="5" type="checkbox" checked />
+    <input id="5" type="checkbox"  />
     <label for="5">
       <span class="collapsable-code__language">go</span>
       <span class="collapsable-code__title">book_usecase.go</span>
@@ -453,68 +427,58 @@ type BookRepository interface {
     </label>
     <pre class="language-go" ><code>
 
-package usecase
+    package usecase
 
-import (
+    import (
+        &#34;context&#34;
+        &#34;encoding/json&#34;
 
-    &#34;context&#34;
-    &#34;encoding/json&#34;
+        &#34;github.com/sirupsen/logrus&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/pkg/model&#34;
+    )
 
-    &#34;github.com/sirupsen/logrus&#34;
-    &#34;github.com/ssentinull/create-apis-using-golang/pkg/model&#34;
-
-)
-
-type bookUsecase struct {
-
-    bookRepo model.BookRepository
-
-}
-
-func NewBookUsecase(br model.BookRepository) model.BookUsecase {
-
-    return &amp;bookUsecase{bookRepo: br}
-
-}
-
-func (bu *bookUsecase) GetBookByID(ctx context.Context, ID int64) (model.Book, error) {
-
-    book, err := bu.bookRepo.ReadBookByID(ctx, ID)
-    if err != nil {
-    	c, err := json.Marshal(ctx)
-    	if err != nil {
-    		logrus.Error(err)
-    	}
-
-    	logrus.WithFields(logrus.Fields{
-    		&#34;ctx&#34;: c,
-    		&#34;ID&#34;:  ID,
-    	}).Error(err)
-
-    	return model.Book{}, err
+    type bookUsecase struct {
+        bookRepo model.BookRepository
     }
 
-    return book, nil
-
-}
-
-func (bu *bookUsecase) GetBooks(ctx context.Context) ([]model.Book, error) {
-
-    books, err := bu.bookRepo.ReadBooks(ctx)
-    if err != nil {
-    	c, err := json.Marshal(ctx)
-    	if err != nil {
-    		logrus.Error(err)
-    	}
-
-    	logrus.WithField(&#34;ctx&#34;, c).Error(err)
-
-    	return nil, err
+    func NewBookUsecase(br model.BookRepository) model.BookUsecase {
+        return &amp;bookUsecase{bookRepo: br}
     }
 
-    return books, nil
+    func (bu *bookUsecase) GetBookByID(ctx context.Context, ID int64) (model.Book, error) {
+        book, err := bu.bookRepo.ReadBookByID(ctx, ID)
+        if err != nil {
+            c, err := json.Marshal(ctx)
+            if err != nil {
+                logrus.Error(err)
+            }
 
-}
+            logrus.WithFields(logrus.Fields{
+                &#34;ctx&#34;: c,
+                &#34;ID&#34;:  ID,
+            }).Error(err)
+
+            return model.Book{}, err
+        }
+
+        return book, nil
+    }
+
+    func (bu *bookUsecase) GetBooks(ctx context.Context) ([]model.Book, error) {
+        books, err := bu.bookRepo.ReadBooks(ctx)
+        if err != nil {
+            c, err := json.Marshal(ctx)
+            if err != nil {
+                logrus.Error(err)
+            }
+
+            logrus.WithField(&#34;ctx&#34;, c).Error(err)
+
+            return nil, err
+        }
+
+        return books, nil
+    }
 
 </code></pre>
   </div>
@@ -526,7 +490,7 @@ func (bu *bookUsecase) GetBooks(ctx context.Context) ([]model.Book, error) {
 
 
   <div class="collapsable-code">
-    <input id="6" type="checkbox" checked />
+    <input id="6" type="checkbox"  />
     <label for="6">
       <span class="collapsable-code__language">go</span>
       <span class="collapsable-code__title">book_handler_http.go</span>
@@ -534,67 +498,57 @@ func (bu *bookUsecase) GetBooks(ctx context.Context) ([]model.Book, error) {
     </label>
     <pre class="language-go" ><code>
 
-package http
+    package http
 
-import (
+    import (
+        &#34;net/http&#34;
+        &#34;strconv&#34;
 
-    &#34;net/http&#34;
-    &#34;strconv&#34;
+        &#34;github.com/labstack/echo/v4&#34;
+        &#34;github.com/sirupsen/logrus&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/pkg/model&#34;
+    )
 
-    &#34;github.com/labstack/echo/v4&#34;
-    &#34;github.com/sirupsen/logrus&#34;
-    &#34;github.com/ssentinull/create-apis-using-golang/pkg/model&#34;
-
-)
-
-type BookHTTPHandler struct {
-
-    BookUsecase model.BookUsecase
-
-}
-
-func NewBookHTTPHandler(e *echo.Echo, bu model.BookUsecase) {
-
-    handler := BookHTTPHandler{BookUsecase: bu}
-
-    g := e.Group(&#34;/v1&#34;)
-    g.GET(&#34;/books&#34;, handler.FetchBooks)
-    g.GET(&#34;/books/:ID&#34;, handler.FetchBookByID)
-
-}
-
-func (bh *BookHTTPHandler) FetchBooks(c echo.Context) error {
-
-    books, err := bh.BookUsecase.GetBooks(c.Request().Context())
-    if err != nil {
-    	logrus.Error(err)
-
-    	return c.JSON(http.StatusInternalServerError, err.Error())
+    type BookHTTPHandler struct {
+        BookUsecase model.BookUsecase
     }
 
-    return c.JSON(http.StatusOK, books)
+    func NewBookHTTPHandler(e *echo.Echo, bu model.BookUsecase) {
+        handler := BookHTTPHandler{BookUsecase: bu}
 
-}
-
-func (bh *BookHTTPHandler) FetchBookByID(c echo.Context) error {
-
-    ID, err := strconv.ParseInt(c.Param(&#34;ID&#34;), 10, 64)
-    if err != nil {
-    	logrus.Error(err)
-
-    	return c.JSON(http.StatusBadRequest, &#34;url param is faulty&#34;)
+        g := e.Group(&#34;/v1&#34;)
+        g.GET(&#34;/books&#34;, handler.FetchBooks)
+        g.GET(&#34;/books/:ID&#34;, handler.FetchBookByID)
     }
 
-    book, err := bh.BookUsecase.GetBookByID(c.Request().Context(), ID)
-    if err != nil {
-    	logrus.Error(err)
+    func (bh *BookHTTPHandler) FetchBooks(c echo.Context) error {
+        books, err := bh.BookUsecase.GetBooks(c.Request().Context())
+        if err != nil {
+            logrus.Error(err)
 
-    	return c.JSON(http.StatusInternalServerError, err.Error())
+            return c.JSON(http.StatusInternalServerError, err.Error())
+        }
+
+        return c.JSON(http.StatusOK, books)
     }
 
-    return c.JSON(http.StatusOK, book)
+    func (bh *BookHTTPHandler) FetchBookByID(c echo.Context) error {
+        ID, err := strconv.ParseInt(c.Param(&#34;ID&#34;), 10, 64)
+        if err != nil {
+            logrus.Error(err)
 
-}
+            return c.JSON(http.StatusBadRequest, &#34;url param is faulty&#34;)
+        }
+
+        book, err := bh.BookUsecase.GetBookByID(c.Request().Context(), ID)
+        if err != nil {
+            logrus.Error(err)
+
+            return c.JSON(http.StatusInternalServerError, err.Error())
+        }
+
+        return c.JSON(http.StatusOK, book)
+    }
 
 </code></pre>
   </div>
@@ -605,7 +559,7 @@ func (bh *BookHTTPHandler) FetchBookByID(c echo.Context) error {
 
 
   <div class="collapsable-code">
-    <input id="7" type="checkbox" checked />
+    <input id="7" type="checkbox"  />
     <label for="7">
       <span class="collapsable-code__language">go</span>
       <span class="collapsable-code__title">main.go</span>
@@ -613,70 +567,62 @@ func (bh *BookHTTPHandler) FetchBookByID(c echo.Context) error {
     </label>
     <pre class="language-go" ><code>
 
-package main
+    package main
 
-import (
+    import (
+        &#34;net/http&#34;
+        &#34;os&#34;
+        &#34;time&#34;
 
-    &#34;net/http&#34;
-    &#34;os&#34;
-    &#34;time&#34;
+        &#34;github.com/labstack/echo/v4&#34;
+        &#34;github.com/sirupsen/logrus&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/config&#34;
+        _bookHTTPHndlr &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/handler/http&#34;
+        _bookRepo &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/repository/postgres&#34;
+        _bookUcase &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/usecase&#34;
+    )
 
-    &#34;github.com/labstack/echo/v4&#34;
-    &#34;github.com/sirupsen/logrus&#34;
-    &#34;github.com/ssentinull/create-apis-using-golang/config&#34;
-    _bookHTTPHndlr &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/handler/http&#34;
-    _bookRepo &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/repository/postgres&#34;
-    _bookUcase &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/usecase&#34;
+    // initialize logger configurations
+    func initLogger() {
+        logLevel := logrus.ErrorLevel
+        switch config.Env() {
+        case &#34;dev&#34;, &#34;development&#34;:
+            logLevel = logrus.InfoLevel
+        }
 
-)
+        logrus.SetFormatter(&amp;logrus.TextFormatter{
+            ForceColors:     true,
+            DisableSorting:  true,
+            DisableColors:   false,
+            FullTimestamp:   true,
+            TimestampFormat: &#34;15:04:05 02-01-2006&#34;,
+        })
 
-// initialize logger configurations
-func initLogger() {
-
-    logLevel := logrus.ErrorLevel
-    switch config.Env() {
-    case &#34;dev&#34;, &#34;development&#34;:
-    	logLevel = logrus.InfoLevel
+        logrus.SetOutput(os.Stdout)
+        logrus.SetReportCaller(true)
+        logrus.SetLevel(logLevel)
     }
 
-    logrus.SetFormatter(&amp;logrus.TextFormatter{
-    	ForceColors:     true,
-    	DisableSorting:  true,
-    	DisableColors:   false,
-    	FullTimestamp:   true,
-    	TimestampFormat: &#34;15:04:05 02-01-2006&#34;,
-    })
-
-    logrus.SetOutput(os.Stdout)
-    logrus.SetReportCaller(true)
-    logrus.SetLevel(logLevel)
-
-}
-
-// run initLogger() before running main()
-func init() {
-
-    initLogger()
-
-}
-
-func main() {
-
-    e := echo.New()
-
-    bookRepo := _bookRepo.NewBookRepository()
-    bookUsecase := _bookUcase.NewBookUsecase(bookRepo)
-    _bookHTTPHndlr.NewBookHTTPHandler(e, bookUsecase)
-
-    s := &amp;http.Server{
-    	Addr:         &#34;:&#34; &#43; config.ServerPort(),
-    	ReadTimeout:  2 * time.Minute,
-    	WriteTimeout: 2 * time.Minute,
+    // run initLogger() before running main()
+    func init() {
+        initLogger()
     }
 
-    logrus.Fatal(e.StartServer(s))
+    func main() {
+        e := echo.New()
 
-}
+        bookRepo := _bookRepo.NewBookRepository()
+        bookUsecase := _bookUcase.NewBookUsecase(bookRepo)
+        _bookHTTPHndlr.NewBookHTTPHandler(e, bookUsecase)
+
+        s := &amp;http.Server{
+            Addr:         &#34;:&#34; &#43; config.ServerPort(),
+            ReadTimeout:  2 * time.Minute,
+            WriteTimeout: 2 * time.Minute,
+        }
+
+        logrus.Fatal(e.StartServer(s))
+    }
 
 </code></pre>
   </div>
