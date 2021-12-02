@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>architecture on ssentinull</title>
+    
+    
+    
+    <link>/tags/architecture/</link>
+    <description>Recent content in architecture on ssentinull</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 22 Nov 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/architecture/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Create APIs using Golang | Part 2 : Application Architecture.</title>
+      <link>/blogs/create-api-using-golang-architecture/</link>
+      <pubDate>Mon, 22 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blogs/create-api-using-golang-architecture/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/blogs/create-api-using-golang-architecture/0.jpg&#34;/&gt;
+          
+        
+        
+        
+          Architecture applies just as much in software as it does in buildings.
+          
+        
+        </description>
+    </item>
+    
+  </channel>
+</rss>

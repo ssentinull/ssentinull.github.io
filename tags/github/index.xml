@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>github on ssentinull</title>
+    
+    
+    
+    <link>/tags/github/</link>
+    <description>Recent content in github on ssentinull</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Nov 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deploy your Hugo Portfolio to Github Pages.</title>
+      <link>/blogs/auto-deploy-portfolio-to-github-pages/</link>
+      <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blogs/auto-deploy-portfolio-to-github-pages/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/blogs/auto-deploy-portfolio-to-github-pages/0.jpg&#34;/&gt;
+          
+        
+        
+        
+          Effortlessly deploy static content to Github Pages.
+          
+        
+        </description>
+    </item>
+    
+  </channel>
+</rss>

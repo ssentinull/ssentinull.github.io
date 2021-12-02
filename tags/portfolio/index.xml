@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>portfolio on ssentinull</title>
+    
+    
+    
+    <link>/tags/portfolio/</link>
+    <description>Recent content in portfolio on ssentinull</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Nov 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/portfolio/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deploy your Hugo Portfolio to Github Pages.</title>
+      <link>/blogs/auto-deploy-portfolio-to-github-pages/</link>
+      <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blogs/auto-deploy-portfolio-to-github-pages/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/blogs/auto-deploy-portfolio-to-github-pages/0.jpg&#34;/&gt;
+          
+        
+        
+        
+          Effortlessly deploy static content to Github Pages.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Create a Portfolio using Hugo.</title>
+      <link>/blogs/create-a-portfolio-using-hugo/</link>
+      <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blogs/create-a-portfolio-using-hugo/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/blogs/create-a-portfolio-using-hugo/0.jpg&#34;/&gt;
+          
+        
+        
+        
+          Create a beatiful portfolio in less than an hour using Hugo.
+          
+        
+        </description>
+    </item>
+    
+  </channel>
+</rss>

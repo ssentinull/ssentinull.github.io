@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>markdown on ssentinull</title>
+    
+    
+    
+    <link>/tags/markdown/</link>
+    <description>Recent content in markdown on ssentinull</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Nov 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Create a Portfolio using Hugo.</title>
+      <link>/blogs/create-a-portfolio-using-hugo/</link>
+      <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blogs/create-a-portfolio-using-hugo/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/blogs/create-a-portfolio-using-hugo/0.jpg&#34;/&gt;
+          
+        
+        
+        
+          Create a beatiful portfolio in less than an hour using Hugo.
+          
+        
+        </description>
+    </item>
+    
+  </channel>
+</rss>

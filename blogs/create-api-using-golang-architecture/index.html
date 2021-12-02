@@ -181,6 +181,16 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
     </div>
 
     
+      <span class="post-tags">
+        
+          <a href="/tags/architecture/">#architecture</a>&nbsp;
+        
+          <a href="/tags/api/">#api</a>&nbsp;
+        
+          <a href="/tags/golang/">#golang</a>&nbsp;
+        
+      </span>
+    
 
     
       <figure class="post-cover">
@@ -256,8 +266,8 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
   </div>
 
 
-<h2 id="implementing-repositories">Implementing Repositories.</h2>
-<p>Indeed, repository is not stated in Uncle Bob&rsquo;s diagram, but we need this as a layer that connects to our database. If we&rsquo;re to draw this layer on the diagram, it would be between entities and use case layer, hence making it accessible to use cases and adapters while making it only dependent on entities.</p>
+<h2 id="implementing-external-interfaces">Implementing External Interfaces.</h2>
+<p>The external interface that we use in our app is in the form of a database connection. We&rsquo;ll cover more in-depth regarding database setup in part three of this series, but in the meantime, we&rsquo;ll focus on how a database connection is implemented as an individual layer. Since we&rsquo;re dealing with datastore, we&rsquo;ll use the term &lsquo;repository&rsquo; instead of &lsquo;external interface&rsquo;.</p>
 <p>Before we create the repository, make sure to define a book repository interface in our book model. The interface is used as a means of contract and communication between the layers.</p>
 
 
