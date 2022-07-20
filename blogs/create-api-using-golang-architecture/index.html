@@ -11,8 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="Introduction. In the previous article, we&amp;rsquo;ve set up our workspace that will our developing experience more pleasant. Now it&amp;rsquo;s time to develop the app itself. However, there is one thing I want to point out before we proceed, and that is Clean Architecture.
-What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s discuss what an &amp;lsquo;architecture&amp;rsquo; actually is. Different experts have different definitions of what architecture exactly is. Some say it&amp;rsquo;s &amp;lsquo;the fundamental organization of a system&amp;rsquo; while others define it as &amp;lsquo;the way the highest level components are wired together."
+  content="Introduction. In the previous article, we&amp;rsquo;ve set up our workspace that will make our development experience more pleasant. Now it&amp;rsquo;s time to develop the app itself. However, there is one thing I want to discuss before we proceed, and that is Clean Architecture.
+What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s discuss what &amp;lsquo;architecture&amp;rsquo; actually is. Different experts have different definitions of what architecture exactly is. Some say it&amp;rsquo;s &amp;rsquo;the fundamental organization of a system&amp;rsquo; while others define it as &amp;rsquo;the way the highest level components are wired together."
 />
 <meta
   name="keywords"
@@ -55,9 +55,10 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
 <meta property="og:title" content="Create APIs using Golang | Part 2 : Application Architecture." />
 <meta property="og:description" content="Architecture applies just as much in software as it does in buildings." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/blogs/create-api-using-golang-architecture/" />
+<meta property="og:url" content="/blogs/create-api-using-golang-architecture/" /><meta property="article:section" content="blogs" />
 <meta property="article:published_time" content="2021-11-22T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-11-22T00:00:00+00:00" /><meta property="og:site_name" content="ssentinull" />
+
 
 
 
@@ -205,13 +206,13 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
     <div class="post-content">
       
       <h2 id="introduction">Introduction.</h2>
-<p>In the <a href="/blogs/create-api-using-golang-setup/">previous</a> article, we&rsquo;ve set up our workspace that will our developing experience more pleasant. Now it&rsquo;s time to develop the app itself. However, there is one thing I want to point out before we proceed, and that is Clean Architecture.</p>
+<p>In the <a href="/blogs/create-api-using-golang-setup/">previous</a> article, we&rsquo;ve set up our workspace that will make our development experience more pleasant. Now it&rsquo;s time to develop the app itself. However, there is one thing I want to discuss before we proceed, and that is Clean Architecture.</p>
 <h2 id="what-is-architecture">What is Architecture.</h2>
-<p>Before jumping to Clean Architecture, let&rsquo;s discuss what an &lsquo;architecture&rsquo; actually is. Different experts have different definitions of what architecture exactly is. Some say it&rsquo;s &lsquo;the fundamental organization of a system&rsquo; while others define it as &lsquo;the way the highest level components are wired together. Since I&rsquo;m nowhere near to being an expert, I&rsquo;ll just have to defer to the definition provided by the experts, which in essence is &lsquo;how we organize our system&rsquo;.</p>
+<p>Before jumping to Clean Architecture, let&rsquo;s discuss what &lsquo;architecture&rsquo; actually is. Different experts have different definitions of what architecture exactly is. Some say it&rsquo;s &rsquo;the fundamental organization of a system&rsquo; while others define it as &rsquo;the way the highest level components are wired together. Since I&rsquo;m nowhere near to being an expert, I&rsquo;ll just have to defer to the definition provided by the experts, which in essence is &lsquo;how we organize our system&rsquo;.</p>
 <h2 id="why-bother-with-architecture">Why bother with Architecture.</h2>
 <p>The quote below sums up why architecture is important.</p>
 <blockquote>
-<p><em>&ldquo;A poor architecture is a major contributor to the growth of cruft - elements of the software that impede the ability of developers to understand the software. Software that contains a lot of cruft is much harder to modify, leading to features that arrive more slowly and with more defects.&quot;</em></p>
+<p><em>&ldquo;A poor architecture is a major contributor to the growth of cruft - elements of the software that impede the ability of developers to understand the software. Software that contains a lot of cruft is much harder to modify, leading to features that arrive more slowly and with more defects.&rdquo;</em></p>
 <p>&ndash; <strong>Martin Fowler, 2019</strong></p>
 </blockquote>
 <h2 id="what-is-clean-architecture">What is Clean Architecture.</h2>
@@ -226,15 +227,15 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
 
 
 <p>This layering technique produces a system that&rsquo;s testable, independent of frameworks, independent of UI, independent of database, and independent of any external agency. The rule of this architecture is very straightforward; source code dependencies can only point inwards. In other words, the inner circle can know nothing about the outer circle, while something declared in the outer circle can not be mentioned in the inner circle.</p>
-<p>As seen in the diagram above, the architecture comprises of four layers:</p>
+<p>As seen in the diagram above, the architecture comprises four layers:</p>
 <ol>
-<li>Entities - business rules in the form of objects with methods, or a set of data structures with functions.</li>
+<li>Entities - objects that correlate to the business at hand.</li>
 <li>Use Cases - manages the flow of data to and from entities.</li>
-<li>Interface Adapters - converts use cases&rsquo; or entities&rsquo; data format to external agency&rsquo;s data format.</li>
-<li>Frameworks and Drives - consists of external frameworks and tools.</li>
+<li>Interface Adapters - converts use cases&rsquo; data format to a more general data format.</li>
+<li>Frameworks and Drives - external frameworks and tools.</li>
 </ol>
 <h2 id="implementing-entities">Implementing Entities.</h2>
-<p>In our project, we&rsquo;ll refer to &lsquo;entities&rsquo; as &lsquo;models&rsquo;. Since we&rsquo;re making a library app, we&rsquo;ll be dealing with books, so a book is our entity. For the book entity, let&rsquo;s just use the most basic property that a book has, plus a couple of necessary attributes for our database; ID, Title, Author, Description, Published At, Created At, Updated At, Deleted At. Referring back to the <a href="https://github.com/golang-standards/project-layout">Golang Standard Layout</a>, all modules that are meant to be exported must be placed in the <code>/pkg</code> dir. So, we create a <code>/pkg/model</code>, a place where all future entities will reside, and place <code>book.go</code> there.</p>
+<p>In our project, we&rsquo;ll refer to &rsquo;entities&rsquo; as &lsquo;models&rsquo;. Since we&rsquo;re making a library app, we&rsquo;ll be dealing with books, so a book is our entity. For the book entity, let&rsquo;s just use the most basic property that a book has, plus a couple of necessary attributes for our database; ID, Title, Author, Description, Published At, Created At, Updated At, Deleted At. Referring back to the <a href="https://github.com/golang-standards/project-layout">Golang Standard Layout</a>, all modules that are meant to be exported must be placed in the <code>/pkg</code> dir. So, we create a <code>/pkg/model</code>, a place where all future entities will reside, and place <code>book.go</code> there.</p>
 
 
 
@@ -246,28 +247,70 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
-
+  
     package model
 
-    import &#34;time&#34;
+    import (
+        &#34;context&#34;
+        &#34;time&#34;
+    )
 
     type Book struct {
-        ID          int64     `json:&#34;id&#34;`
-        Title       string    `json:&#34;title&#34;`
-        Author      string    `json:&#34;author&#34;`
-        Description string    `json:&#34;description&#34;`
-        PublishedAt time.Time `json:&#34;published_at&#34;`
-        CreatedAt   time.Time `json:&#34;created_at&#34;`
-        UpdatedAt   time.Time `json:&#34;updated_at&#34;`
-        DeletedAt   time.Time `json:&#34;deleted_at&#34;`
+        ID            int64     `json:&#34;id&#34;`
+        Title         string    `json:&#34;title&#34;`
+        Author        string    `json:&#34;author&#34;`
+        Description   string    `json:&#34;description&#34;`
+        PublishedDate string    `json:&#34;published_date&#34;`
+        CreatedAt     time.Time `json:&#34;created_at&#34;`
+        UpdatedAt     time.Time `json:&#34;updated_at&#34;`
+        DeletedAt     time.Time `json:&#34;deleted_at&#34;`
+    }
+
+    type CreateBookInput struct {
+        Title         string `json:&#34;title&#34;`
+        Author        string `json:&#34;author&#34;`
+        Description   string `json:&#34;description&#34;`
+        PublishedDate string `json:&#34;published_date&#34;`
+    }
+
+    func (i CreateBookInput) ToModel() *Book {
+        return &amp;Book{
+            ID:            int64(1),
+            Title:         i.Title,
+            Author:        i.Author,
+            Description:   i.Description,
+            PublishedDate: i.PublishedDate,
+            CreatedAt:     time.Now(),
+        }
+    }
+
+    type UpdateBookInput struct {
+        ID            int64  `json:&#34;id&#34;`
+        Title         string `json:&#34;title&#34;`
+        Author        string `json:&#34;author&#34;`
+        Description   string `json:&#34;description&#34;`
+        PublishedDate string `json:&#34;published_date&#34;`
+    }
+
+    func (i UpdateBookInput) ToModel() *Book {
+        return &amp;Book{
+            ID:            i.ID,
+            Title:         i.Title,
+            Author:        i.Author,
+            Description:   i.Description,
+            PublishedDate: i.PublishedDate,
+            UpdatedAt:     time.Now(),
+        }
     }
 
 </code></pre>
   </div>
 
 
-<h2 id="implementing-external-interfaces">Implementing External Interfaces.</h2>
-<p>The external interface that we use in our app is in the form of a database connection. We&rsquo;ll cover more in-depth regarding database setup in part three of this series, but in the meantime, we&rsquo;ll focus on how a database connection is implemented as an individual layer. Since we&rsquo;re dealing with datastore, we&rsquo;ll use the term &lsquo;repository&rsquo; instead of &lsquo;external interface&rsquo;.</p>
+<h2 id="implementing-use-cases">Implementing Use Cases.</h2>
+<p>The use cases in our app will be divided into two parts; usecase (I know it&rsquo;s redundant but it explains itself as we proceed) and repository. Usecase will only include business logic while repository will only include transactions to our data store. One can not happen within the other, eg: a business logic can not happen in a repository and a usecase can not make calls directly to our data store.</p>
+<h3 id="implementing-repository">Implementing Repository.</h3>
+<p>We&rsquo;ll start with repository. Since we need a place to store our books, we need a database. Repository comes into play when we want to interact with our database. Fetch, create, update, and delete data from and to our database happens exclusively in our repository. In the meantime, we&rsquo;ll use dummy data since we won&rsquo;t cover database connections in this part of the series.</p>
 <p>Before we create the repository, make sure to define a book repository interface in our book model. The interface is used as a means of contract and communication between the layers.</p>
 
 
@@ -281,27 +324,14 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
     </label>
     <pre class="language-go" ><code>
 
-    package model
-
-    import (
-        &#34;context&#34;
-        &#34;time&#34;
-    )
-
-    type Book struct {
-        ID          int64     `json:&#34;id&#34;`
-        Title       string    `json:&#34;title&#34;`
-        Author      string    `json:&#34;author&#34;`
-        Description string    `json:&#34;description&#34;`
-        PublishedAt time.Time `json:&#34;published_at&#34;`
-        CreatedAt   time.Time `json:&#34;created_at&#34;`
-        UpdatedAt   time.Time `json:&#34;updated_at&#34;`
-        DeletedAt   time.Time `json:&#34;deleted_at&#34;`
-    }
+    ...
 
     type BookRepository interface {
-        ReadBookByID(context.Context, int64) (Book, error)
-        ReadBooks(context.Context) ([]Book, error)
+        Create(ctx context.Context, input *Book) (err error)
+        DeleteByID(ctx context.Context, ID int64) (err error)
+        FindByID(ctx context.Context, ID int64) (book *Book, err error)
+        FindAll(ctx context.Context) (books []*Book, err error)
+        Update(ctx context.Context, input *Book) (book *Book, err error)
     }
 
 </code></pre>
@@ -321,7 +351,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
-
+    
     package postgres
 
     import (
@@ -337,49 +367,69 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
         return &amp;bookRepo{}
     }
 
-    func (br *bookRepo) ReadBookByID(ctx context.Context, ID int64) (model.Book, error) {
-        book := model.Book{
-            ID:          ID,
-            Title:       &#34;Harry Potter&#34;,
-            Author:      &#34;J. K. Rowling&#34;,
-            Description: &#34;A book about wizards&#34;,
-            PublishedAt: time.Now(),
-            CreatedAt:   time.Now(),
+    func (br *bookRepo) Create(ctx context.Context, book *model.Book) error {
+        return nil
+    }
+
+    func (br *bookRepo) DeleteByID(ctx context.Context, ID int64) error {
+        return nil
+    }
+
+    func (br *bookRepo) FindByID(ctx context.Context, ID int64) (*model.Book, error) {
+        book := &amp;model.Book{
+            ID:            ID,
+            Title:         &#34;Harry Potter&#34;,
+            Author:        &#34;J. K. Rowling&#34;,
+            Description:   &#34;A book about wizards&#34;,
+            PublishedDate: &#34;10-12-2022&#34;,
+            CreatedAt:     time.Now(),
         }
 
         return book, nil
     }
 
-    func (br *bookRepo) ReadBooks(ctx context.Context) ([]model.Book, error) {
-        books := []model.Book{
+    func (br *bookRepo) FindAll(ctx context.Context) ([]*model.Book, error) {
+        books := []*model.Book{
             {
-                ID:          1,
-                Title:       &#34;Harry Potter&#34;,
-                Author:      &#34;J. K. Rowling&#34;,
-                Description: &#34;A book about wizards&#34;,
-                PublishedAt: time.Now(),
-                CreatedAt:   time.Now(),
+                ID:            1,
+                Title:         &#34;Harry Potter&#34;,
+                Author:        &#34;J. K. Rowling&#34;,
+                Description:   &#34;A book about wizards&#34;,
+                PublishedDate: &#34;10-12-2022&#34;,
+                CreatedAt:     time.Now(),
             },
             {
-                ID:          2,
-                Title:       &#34;The Hobbit&#34;,
-                Author:      &#34;J. R. R. Tolkien&#34;,
-                Description: &#34;A book about hobbits&#34;,
-                PublishedAt: time.Now(),
-                CreatedAt:   time.Now(),
+                ID:            2,
+                Title:         &#34;The Hobbit&#34;,
+                Author:        &#34;J. R. R. Tolkien&#34;,
+                Description:   &#34;A book about hobbits&#34;,
+                PublishedDate: &#34;11-11-2022&#34;,
+                CreatedAt:     time.Now(),
             },
         }
 
         return books, nil
     }
 
+    func (br *bookRepo) Update(ctx context.Context, input *model.Book) (*model.Book, error) {
+        book := &amp;model.Book{
+            ID:            int64(1),
+            Title:         &#34;Harry Potter&#34;,
+            Author:        &#34;J. K. Rowling&#34;,
+            Description:   &#34;A book about wizards&#34;,
+            PublishedDate: &#34;10-12-2022&#34;,
+            CreatedAt:     time.Now(),
+        }
+
+        return book, nil
+    }
+
 </code></pre>
   </div>
 
 
-<p>Since we haven&rsquo;t established a database connection, we&rsquo;ll use dummy data in our repository as an example. Ideally, this layer will only be filled with CRUD queries to our database.</p>
-<h2 id="implementing-usecases">Implementing Usecases.</h2>
-<p>The use case layer should only involve data flow logic and calls to the repository layer. Just like the repository layer, we have to define a book use case interface in the book model.</p>
+<h3 id="implementing-usecases">Implementing Usecases.</h3>
+<p>The usecase layer should only involve business logic and calls to the repository layer. Just like the repository layer, we have to define a book usecase interface in the book model.</p>
 
 
 
@@ -392,39 +442,21 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
     </label>
     <pre class="language-go" ><code>
 
-    package model
-
-    import (
-        &#34;context&#34;
-        &#34;time&#34;
-    )
-
-    type Book struct {
-        ID          int64     `json:&#34;id&#34;`
-        Title       string    `json:&#34;title&#34;`
-        Author      string    `json:&#34;author&#34;`
-        Description string    `json:&#34;description&#34;`
-        PublishedAt time.Time `json:&#34;published_at&#34;`
-        CreatedAt   time.Time `json:&#34;created_at&#34;`
-        UpdatedAt   time.Time `json:&#34;updated_at&#34;`
-        DeletedAt   time.Time `json:&#34;deleted_at&#34;`
-    }
-
+    ...
+    
     type BookUsecase interface {
-        GetBookByID(context.Context, int64) (Book, error)
-        GetBooks(context.Context) ([]Book, error)
-    }
-
-    type BookRepository interface {
-        ReadBookByID(context.Context, int64) (Book, error)
-        ReadBooks(context.Context) ([]Book, error)
+        Create(ctx context.Context, input *CreateBookInput) (book *Book, err error)
+        DeleteByID(ctx context.Context, ID int64) (err error)
+        FindByID(ctx context.Context, ID int64) (book *Book, err error)
+        FindAll(ctx context.Context) (books []*Book, err error)
+        Update(ctx context.Context, input *UpdateBookInput) (book *Book, err error)
     }
 
 </code></pre>
   </div>
 
 
-<p>Create a <code>/pkg/book/usecase</code> dir and place a <code>book_usecase.go</code> in it. This example might be barren because we only implement simple retrieval functions. In production-level applications, this layer could include much more complicated logic that involves repositories from multiple domains.</p>
+<p>Create a <code>/pkg/book/usecase</code> dir and place a <code>book_usecase.go</code> in it. This example might be barren because we only implement simple logics. In production-level applications, this layer could include much more complicated logic that involves repositories from multiple domains.</p>
 
 
 
@@ -436,12 +468,12 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
-
+   
     package usecase
 
     import (
         &#34;context&#34;
-        &#34;encoding/json&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/pkg/utils&#34;
 
         &#34;github.com/sirupsen/logrus&#34;
         &#34;github.com/ssentinull/create-apis-using-golang/pkg/model&#34;
@@ -455,39 +487,65 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
         return &amp;bookUsecase{bookRepo: br}
     }
 
-    func (bu *bookUsecase) GetBookByID(ctx context.Context, ID int64) (model.Book, error) {
-        book, err := bu.bookRepo.ReadBookByID(ctx, ID)
-        if err != nil {
-            c, err := json.Marshal(ctx)
-            if err != nil {
-                logrus.Error(err)
-            }
-
+    func (bu *bookUsecase) Create(ctx context.Context, input *model.CreateBookInput) (*model.Book, error) {
+        book := input.ToModel()
+        if err := bu.bookRepo.Create(ctx, book); err != nil {
             logrus.WithFields(logrus.Fields{
-                &#34;ctx&#34;: c,
-                &#34;ID&#34;:  ID,
+                &#34;ctx&#34;:   utils.Dump(ctx),
+                &#34;input&#34;: utils.Dump(input),
             }).Error(err)
-
-            return model.Book{}, err
+            return nil, err
         }
 
         return book, nil
     }
 
-    func (bu *bookUsecase) GetBooks(ctx context.Context) ([]model.Book, error) {
-        books, err := bu.bookRepo.ReadBooks(ctx)
+    func (bu *bookUsecase) DeleteByID(ctx context.Context, ID int64) error {
+        if err := bu.bookRepo.DeleteByID(ctx, ID); err != nil {
+            logrus.WithFields(logrus.Fields{
+                &#34;ctx&#34;: utils.Dump(ctx),
+                &#34;ID&#34;:  ID,
+            }).Error(err)
+            return err
+        }
+
+        return nil
+    }
+
+    func (bu *bookUsecase) FindByID(ctx context.Context, ID int64) (*model.Book, error) {
+        book, err := bu.bookRepo.FindByID(ctx, ID)
         if err != nil {
-            c, err := json.Marshal(ctx)
-            if err != nil {
-                logrus.Error(err)
-            }
+            logrus.WithFields(logrus.Fields{
+                &#34;ctx&#34;: utils.Dump(ctx),
+                &#34;ID&#34;:  ID,
+            }).Error(err)
+            return nil, err
+        }
 
-            logrus.WithField(&#34;ctx&#34;, c).Error(err)
+        return book, nil
+    }
 
+    func (bu *bookUsecase) FindAll(ctx context.Context) ([]*model.Book, error) {
+        books, err := bu.bookRepo.FindAll(ctx)
+        if err != nil {
+            logrus.WithField(&#34;ctx&#34;, utils.Dump(ctx)).Error(err)
             return nil, err
         }
 
         return books, nil
+    }
+
+    func (bu *bookUsecase) Update(ctx context.Context, input *model.UpdateBookInput) (*model.Book, error) {
+        book, err := bu.bookRepo.Update(ctx, input.ToModel())
+        if err != nil {
+            logrus.WithFields(logrus.Fields{
+                &#34;ctx&#34;:   utils.Dump(ctx),
+                &#34;input&#34;: utils.Dump(input),
+            }).Error(err)
+            return nil, err
+        }
+
+        return book, nil
     }
 
 </code></pre>
@@ -495,7 +553,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
 
 
 <h2 id="implementing-presenters">Implementing Presenters.</h2>
-<p>The presenters&rsquo; role is to format data to and from our application. Since we&rsquo;re creating REST APIs, we&rsquo;ll format our data to JSON. The data to be formatted is retrieved from the previous layer, the use case layer. In a similar fashion to our repository layer, we&rsquo;ll create a <code>/pkg/book/handler/http</code> dir as a means of separation, if in the future we&rsquo;d want to use a different method of presenting data, such as through CLI or RPC.</p>
+<p>The presenters&rsquo; role is to format data to and from our application. We&rsquo;ll format our data to JSON because we&rsquo;re creating REST APIs. The data to be formatted is retrieved from the previous layer, the use case layer. In a similar fashion to our repository layer, we&rsquo;ll create a <code>/pkg/book/handler/http</code> dir as a means of separation. If in the future we&rsquo;d want to use a different method of presenting data, such as through CLI or RPC, we can create separate directories.</p>
 
 
 
@@ -507,7 +565,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
-
+    
     package http
 
     import (
@@ -517,6 +575,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
         &#34;github.com/labstack/echo/v4&#34;
         &#34;github.com/sirupsen/logrus&#34;
         &#34;github.com/ssentinull/create-apis-using-golang/pkg/model&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/pkg/utils&#34;
     )
 
     type BookHTTPHandler struct {
@@ -527,16 +586,50 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
         handler := BookHTTPHandler{BookUsecase: bu}
 
         g := e.Group(&#34;/v1&#34;)
+        g.POST(&#34;/books&#34;, handler.CreateBook)
         g.GET(&#34;/books&#34;, handler.FetchBooks)
         g.GET(&#34;/books/:ID&#34;, handler.FetchBookByID)
+        g.PUT(&#34;/books&#34;, handler.UpdateBook)
+        g.DELETE(&#34;/books/:ID&#34;, handler.DeleteBookByID)
+    }
+
+    func (bh *BookHTTPHandler) CreateBook(c echo.Context) error {
+        input := new(model.CreateBookInput)
+        if err := c.Bind(input); err != nil {
+            logrus.Error(err)
+            return c.JSON(http.StatusBadRequest, err.Error())
+        }
+
+        book, err := bh.BookUsecase.Create(c.Request().Context(), input)
+        if err != nil {
+            logrus.Error(err)
+            return c.JSON(utils.ParseHTTPErrorStatusCode(err), err.Error())
+        }
+
+        return c.JSON(http.StatusCreated, book)
+    }
+
+    func (bh *BookHTTPHandler) DeleteBookByID(c echo.Context) error {
+        ID, err := strconv.ParseInt(c.Param(&#34;ID&#34;), 10, 64)
+        if err != nil {
+            logrus.Error(err)
+            return c.JSON(http.StatusBadRequest, &#34;ID param is invalid&#34;)
+        }
+
+        err = bh.BookUsecase.DeleteByID(c.Request().Context(), ID)
+        if err != nil {
+            logrus.Error(err)
+            return c.JSON(utils.ParseHTTPErrorStatusCode(err), err.Error())
+        }
+
+        return c.NoContent(http.StatusNoContent)
     }
 
     func (bh *BookHTTPHandler) FetchBooks(c echo.Context) error {
-        books, err := bh.BookUsecase.GetBooks(c.Request().Context())
+        books, err := bh.BookUsecase.FindAll(c.Request().Context())
         if err != nil {
             logrus.Error(err)
-
-            return c.JSON(http.StatusInternalServerError, err.Error())
+            return c.JSON(utils.ParseHTTPErrorStatusCode(err), err.Error())
         }
 
         return c.JSON(http.StatusOK, books)
@@ -546,15 +639,29 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
         ID, err := strconv.ParseInt(c.Param(&#34;ID&#34;), 10, 64)
         if err != nil {
             logrus.Error(err)
-
-            return c.JSON(http.StatusBadRequest, &#34;url param is faulty&#34;)
+            return c.JSON(http.StatusBadRequest, &#34;ID param is invalid&#34;)
         }
 
-        book, err := bh.BookUsecase.GetBookByID(c.Request().Context(), ID)
+        book, err := bh.BookUsecase.FindByID(c.Request().Context(), ID)
         if err != nil {
             logrus.Error(err)
+            return c.JSON(utils.ParseHTTPErrorStatusCode(err), err.Error())
+        }
 
-            return c.JSON(http.StatusInternalServerError, err.Error())
+        return c.JSON(http.StatusOK, book)
+    }
+
+    func (bh *BookHTTPHandler) UpdateBook(c echo.Context) error {
+        input := new(model.UpdateBookInput)
+        if err := c.Bind(input); err != nil {
+            logrus.Error(err)
+            return c.JSON(http.StatusBadRequest, err.Error())
+        }
+
+        book, err := bh.BookUsecase.Update(c.Request().Context(), input)
+        if err != nil {
+            logrus.Error(err)
+            return c.JSON(utils.ParseHTTPErrorStatusCode(err), err.Error())
         }
 
         return c.JSON(http.StatusOK, book)
@@ -576,7 +683,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
-
+   
     package main
 
     import (
@@ -586,10 +693,10 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
 
         &#34;github.com/labstack/echo/v4&#34;
         &#34;github.com/sirupsen/logrus&#34;
-        &#34;github.com/ssentinull/create-apis-using-golang/config&#34;
         _bookHTTPHndlr &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/handler/http&#34;
         _bookRepo &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/repository/postgres&#34;
         _bookUcase &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/usecase&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/pkg/config&#34;
     )
 
     // initialize logger configurations
@@ -638,7 +745,68 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
   </div>
 
 
-<p>You&rsquo;re all set. Now run your server, open Postman, and try hitting <code>localhost:8080/v1/books</code> and <code>localhost:8080/v1/books/1</code>.</p>
+<p>Don&rsquo;t foget to add the helper functions in the <code>/pkg/utils</code> directory.</p>
+
+
+
+  <div class="collapsable-code">
+    <input id="8" type="checkbox"  />
+    <label for="8">
+      <span class="collapsable-code__language">go</span>
+      <span class="collapsable-code__title">dump.go</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-go" ><code>
+    
+    package utils
+
+    import (
+        &#34;encoding/json&#34;
+        &#34;github.com/sirupsen/logrus&#34;
+    )
+
+    // Dump dump i to json
+    func Dump(i interface{}) string {
+        bt, err := json.Marshal(i)
+        if err != nil {
+            logrus.Error(err)
+        }
+
+        return string(bt)
+    }
+
+</code></pre>
+  </div>
+
+
+
+
+
+  <div class="collapsable-code">
+    <input id="9" type="checkbox"  />
+    <label for="9">
+      <span class="collapsable-code__language">go</span>
+      <span class="collapsable-code__title">main.go</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-go" ><code>
+
+    package utils
+
+    import &#34;net/http&#34;
+
+    func ParseHTTPErrorStatusCode(err error) int {
+        switch err {
+        default:
+            return http.StatusInternalServerError
+        }
+    }
+
+</code></pre>
+  </div>
+
+
+<p>You&rsquo;re all set. Now run your server, open Postman, and try hitting <code>localhost:8080/v1/books</code> and <code>localhost:8080/v1/books/1</code> using <code>GET</code> method.</p>
 
   <figure class="center" >
     <img src="/img/blogs/create-api-using-golang-architecture/2.png"   />
