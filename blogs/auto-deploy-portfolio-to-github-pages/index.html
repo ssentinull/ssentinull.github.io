@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="Introduction. In the previous article, we&amp;rsquo;ve covered how to create a beautiful portfolio using Hugo in less than an hour. But what good is it to have an awesome portfolio if no one can see it? So in this article, I&amp;rsquo;ll be showing you how to set up an automatic deployment flow that will deploy to Github Pages using shell scripts.
+  content="Introduction. In the previous article we covered how to create a beautiful portfolio using Hugo in less than an hour. But what good is it to have an awesome portfolio if no one can see it? So in this article, I&amp;rsquo;ll be showing you how to set up an automatic deployment flow that will deploy to Github Pages using shell scripts.
 📣 Shout-out! 📣
 Shout-out to fahmifan for sharing his knowledge and allowing me to write about it in my blog."
 />
@@ -213,15 +213,15 @@ Shout-out to fahmifan for sharing his knowledge and allowing me to write about i
     <div class="post-content">
       
       <h2 id="introduction">Introduction.</h2>
-<p>In the <a href="/blogs/create-a-portfolio-using-hugo">previous article</a>, we&rsquo;ve covered how to create a beautiful portfolio using Hugo in less than an hour. But what good is it to have an awesome portfolio if no one can see it? So in this article, I&rsquo;ll be showing you how to set up an automatic deployment flow that will deploy to Github Pages using shell scripts.</p>
+<p>In the <a href="/blogs/create-a-portfolio-using-hugo">previous article</a> we covered how to create a beautiful portfolio using Hugo in less than an hour. But what good is it to have an awesome portfolio if no one can see it? So in this article, I&rsquo;ll be showing you how to set up an automatic deployment flow that will deploy to Github Pages using shell scripts.</p>
 <blockquote>
 <p>📣 <strong>Shout-out!</strong> 📣</p>
 <p>Shout-out to <a href="https://github.com/fahmifan">fahmifan</a> for sharing his knowledge and allowing me to write about it in my blog. Please show some love for his <a href="https://github.com/fahmifan/hugo-blog">portfolio repo</a>.</p>
 </blockquote>
 <h2 id="what-is-github-pages">What is Github Pages.</h2>
-<p>Github Pages is a feature in Github that allows you to host the content of a repository. You don&rsquo;t have to set up any servers nor domain names, Github does that automatically for you. All you have to do is provide the content, let Github takes care of the rest.</p>
+<p>Github Pages is a feature in Github that allows you to host the content of a repository. You don&rsquo;t have to set up any servers or domain names, Github does that automatically for you. All you have to do is provide the content and let Github takes care of the rest.</p>
 <p>However, this ease of use comes with a couple of rules that you must follow. By default, every user is granted a single domain tied to their account, <code>username.github.io</code>. And by default, that domain will also be tied to the master branch of the repository with the same name. Since my username is <code>ssentinull</code>, my domain will be <code>ssentinull.github.io</code>, and this domain will refer to the master branch of <code>ssentinull.github.io</code> repository in my account.</p>
-<p>With that said, it doesn&rsquo;t mean that Github allows you to host only one repo. No no. If you want to host additional repo, the domain will still be <code>username.github.io</code>, but that domain will have an additional endpoint with the value being the project name. So to access your additional hosted repo, the URL will look like something this <code>username.github.io/project-name</code>.</p>
+<p>With that said, it doesn&rsquo;t mean that Github allows you to host only one repo. No no. If you want to host additional repo, the domain will still be <code>username.github.io</code>, but that domain will have an additional endpoint with the value being the project name. So to access your additional hosted repo, the URL will look like something this: <code>username.github.io/project-name</code>.</p>
 <p>Since I&rsquo;m already using Github Pages for my blog in my Github account, I&rsquo;ll use a different account, so please don&rsquo;t mind the difference in username.</p>
 <h2 id="set-up-ssh-for-github-account">Set up SSH for Github account.</h2>
 <p>For the automatic deployment to work, we need to configure SSH on our machine as well as our Github account.</p>
@@ -264,7 +264,7 @@ Shout-out to fahmifan for sharing his knowledge and allowing me to write about i
   <img src="/img/blogs/auto-deploy-portfolio-to-github-pages/1.png"  class="center"  />
 
 
-<p>We&rsquo;ve successfully deployed our portfolio to Github Pages!! 🎉 🎊 It wasn&rsquo;t that difficult, right? But then again, if we have to push to multiple repos to deploy our portfolio everytime we make a change could be rather cumbersome. Thankfully, there&rsquo;s a way to automate it.</p>
+<p>We&rsquo;ve successfully deployed our portfolio to Github Pages!! 🎉 🎊 It wasn&rsquo;t that difficult, right? But then again, if we have to push to multiple repos to deploy our portfolio every time we make a change could be rather cumbersome. Thankfully, there&rsquo;s a way to automate it.</p>
 <h2 id="automate-the-deployment-process">Automate the deployment process.</h2>
 <p>This is where the benefit of using SSH comes in. Notice how when we push our repos to origin we didn&rsquo;t have to input our email and access token. This is possible because we&rsquo;ve set up the SSH agent in our machine and registered the corresponding key to our Github account, so now our machine is on their trusted list. To automate the process, we can simply create a Makefile and a shell script that runs all of the commands necessary to deploy our portfolio without having to input a single credential.</p>
 
