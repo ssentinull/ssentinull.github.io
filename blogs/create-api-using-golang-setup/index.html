@@ -317,7 +317,7 @@
     func main() {
         e := echo.New()
         e.GET(&#34;/&#34;, func(c echo.Context) error {
-        return c.String(http.StatusOK, &#34;Hello, World!&#34;)
+            return c.String(http.StatusOK, &#34;Hello, World!&#34;)
         })
 
         s := &amp;http.Server{
@@ -335,21 +335,21 @@
 
 <h2 id="use-environment-variables">Use Environment Variables.</h2>
 <p>Currently, the server is running on port <code>8080</code> and it&rsquo;s hard-coded into the server instance. Since the port number used might change depending on the server&rsquo;s used ports, we need to set that value as an environment variable. Environment variables are used to store interchangeable values, account credentials, and other secrets that we don&rsquo;t want everyone to know.</p>
-<p>What we need to do is create a <code>.env.example</code> in the root dir that will be used as a template for env variables in case someone else clones our repo. Also, create a <code>.gitignore</code> to ignore <code>.env</code> files from being committed to our repo.</p>
+<p>What we need to do is create a <code>config.yml.example</code> in the root dir that will be used as a template for env variables in case someone else clones our repo. Also, create a <code>.gitignore</code> to ignore <code>.yml</code> files from being committed to our repo.</p>
 
 
 
   <div class="collapsable-code">
     <input id="4" type="checkbox"  />
     <label for="4">
-      <span class="collapsable-code__language">env</span>
-      <span class="collapsable-code__title">.env.example</span>
+      <span class="collapsable-code__language">yml</span>
+      <span class="collapsable-code__title">config.yml.example</span>
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
-    <pre class="language-env" ><code>
+    <pre class="language-yml" ><code>
 
-    ENV=
-    SERVER_PORT=
+    env: &#34;development&#34;
+    server_port: &#34;8080&#34;
 
 </code></pre>
   </div>
@@ -373,7 +373,7 @@
   </div>
 
 
-<p>Copy-paste the <code>.env.example</code> file, rename it to <code>.env</code>, and set <code>DEV</code> and <code>8080</code> for <code>ENV</code> and <code>SERVER_PORT</code> respectively. Revisiting back to the golang standard layout repo, we see that <code>/config</code> dir is stated to store &ldquo;configuration file templates or default configs&rdquo;. So we&rsquo;ll use this dir to place our getter functions in a file called <code>env.go</code> and call the functions in <code>main.go</code>.</p>
+<p>Copy-paste the <code>config.yml.example</code> file, rename it to <code>config.yml</code>. Revisiting back to the golang standard layout repo, we see that <code>/config</code> dir is stated to store &ldquo;configuration file templates or default configs&rdquo;. So we&rsquo;ll use this dir to place our getter functions in a file called <code>config.go</code> and call the functions in <code>main.go</code>.</p>
 
 
 
@@ -381,49 +381,42 @@
     <input id="6" type="checkbox"  />
     <label for="6">
       <span class="collapsable-code__language">go</span>
-      <span class="collapsable-code__title">env.go</span>
+      <span class="collapsable-code__title">config.go</span>
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
-
+    
     package config
 
     import (
-        &#34;fmt&#34;
-        &#34;os&#34;
-
-        &#34;github.com/joho/godotenv&#34;
         &#34;github.com/sirupsen/logrus&#34;
+        &#34;github.com/spf13/viper&#34;
+        &#34;strings&#34;
     )
 
-    func init() {
-        env := os.Getenv(&#34;ENV&#34;)
-        if env != &#34;dev&#34; &amp;&amp; env != &#34;&#34; {
-            logrus.Warn(&#34;running using OS env variables&#34;)
+    func GetConf() {
+        viper.AddConfigPath(&#34;.&#34;)
+        viper.AddConfigPath(&#34;./..&#34;)
+        viper.AddConfigPath(&#34;./../..&#34;)
+        viper.SetConfigName(&#34;config&#34;)
+        viper.SetEnvPrefix(&#34;svc&#34;)
 
-            return
+        replacer := strings.NewReplacer(&#34;.&#34;, &#34;_&#34;)
+        viper.SetEnvKeyReplacer(replacer)
+
+        viper.AutomaticEnv()
+        if err := viper.ReadInConfig(); err != nil {
+            logrus.Warningf(&#34;%v&#34;, err)
         }
+      }
 
-        if err := godotenv.Load(); err != nil {
-            logrus.Warn(&#34;.env file not found&#34;)
+      func Env() string {
+          return viper.GetString(&#34;env&#34;)
+      }
 
-            return
-        }
-
-        logrus.Warn(&#34;running using .env file&#34;)
-
-        return
-    }
-
-    // Env returns Env in .env
-    func Env() string {
-        return fmt.Sprintf(&#34;%s&#34;, os.Getenv(&#34;ENV&#34;))
-    }
-
-    // ServerPort returns the server port in .env
-    func ServerPort() string {
-        return fmt.Sprintf(&#34;%s&#34;, os.Getenv(&#34;SERVER_PORT&#34;))
-    }
+      func ServerPort() string {
+          return viper.GetString(&#34;server_port&#34;)
+      }
 
 </code></pre>
   </div>
@@ -440,7 +433,7 @@
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
-
+   
     package main
 
     import (
@@ -450,7 +443,10 @@
 
         &#34;github.com/labstack/echo/v4&#34;
         &#34;github.com/sirupsen/logrus&#34;
-        &#34;github.com/ssentinull/create-apis-using-golang/config&#34;
+        _bookHTTPHndlr &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/handler/http&#34;
+        _bookRepo &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/repository/postgres&#34;
+        _bookUcase &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/usecase&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/pkg/config&#34;
     )
 
     // initialize logger configurations
@@ -476,6 +472,7 @@
 
     // run initLogger() before running main()
     func init() {
+        config.GetConf()
         initLogger()
     }
 
