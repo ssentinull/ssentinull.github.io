@@ -212,18 +212,18 @@
 <p>We&rsquo;ll use <a href="https://go.dev/blog/using-go-modules">Go Modules</a> as our dependency management system and a couple of dependencies for our project:</p>
 <ul>
 <li><a href="https://echo.labstack.com/">Echo</a> : performant and minimalist web framework</li>
-<li><a href="https://github.com/joho/godotenv">Godotenv</a> : .env variables library</li>
+<li><a href="https://github.com/spf13/viper">Viper</a> : go configurations with fangs</li>
 <li><a href="https://github.com/sirupsen/logrus">Logrus</a> : structured and pluggable logging library</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ git init
 </span></span><span style="display:flex;"><span>$ go mod init github.com/your_github_username/create-apis-using-golang
 </span></span><span style="display:flex;"><span>$ go get github.com/labstack/echo/v4
-</span></span><span style="display:flex;"><span>$ go get github.com/joho/godotenv
+</span></span><span style="display:flex;"><span>$ go get github.com/spf13/viper
 </span></span><span style="display:flex;"><span>$ go get github.com/sirupsen/logrus
 </span></span></code></pre></div><h2 id="plan-codebase-layout">Plan Codebase Layout.</h2>
 <p>Codebase layout might be insignificant at first glance, but trust me when I say this, it will hinder your productivity in the long run if you don&rsquo;t carefully plan it in the beginning. That&rsquo;s why I suggest following the highly rated ones instead of just creating your own from scratch, especially if you don&rsquo;t have a plan of how to structure your layout. In this series, we&rsquo;ll be using the <a href="https://github.com/golang-standards/project-layout">Go Standard Layout</a>, with some modifications of course. The Github page provides thorough explanations and examples behind the reasoning of the layout and based on the repo&rsquo;s 27k+ stars, I think it&rsquo;s a great place to start.</p>
 <h2 id="create-sample-web-server">Create Sample Web Server.</h2>
-<p>To run a sample web server, create a <code>main.go</code> inside a <code>/cmd/server</code> directory. This dir is used to house our project&rsquo;s main application and nothing else. Our main application should only comprise mostly imports from our modules.</p>
+<p>To run a sample web server, create a <code>main.go</code> inside a <code>/pkg/cmd/server</code> directory. This dir is used to house our project&rsquo;s main application and nothing else. Our main application should only comprise mostly imports from our modules.</p>
 
 
 
@@ -373,7 +373,7 @@
   </div>
 
 
-<p>Copy-paste the <code>config.yml.example</code> file, rename it to <code>config.yml</code>. Revisiting back to the golang standard layout repo, we see that <code>/config</code> dir is stated to store &ldquo;configuration file templates or default configs&rdquo;. So we&rsquo;ll use this dir to place our getter functions in a file called <code>config.go</code> and call the functions in <code>main.go</code>.</p>
+<p>Copy-paste the <code>config.yml.example</code> file, rename it to <code>config.yml</code>. Revisiting back to the golang standard layout repo, we see that <code>/config</code> dir is stated to store &ldquo;configuration file templates or default configs&rdquo;. So we&rsquo;ll use <code>/pkg/config</code> dir to place our getter functions in a file called <code>config.go</code> and call the functions in <code>main.go</code>.</p>
 
 
 
@@ -443,9 +443,6 @@
 
         &#34;github.com/labstack/echo/v4&#34;
         &#34;github.com/sirupsen/logrus&#34;
-        _bookHTTPHndlr &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/handler/http&#34;
-        _bookRepo &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/repository/postgres&#34;
-        _bookUcase &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/usecase&#34;
         &#34;github.com/ssentinull/create-apis-using-golang/pkg/config&#34;
     )
 
