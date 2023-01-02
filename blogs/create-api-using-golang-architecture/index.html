@@ -12,7 +12,7 @@
 <meta
   name="description"
   content="Introduction. In the previous article, we&amp;rsquo;ve set up our workspace that will make our development experience more pleasant. Now it&amp;rsquo;s time to develop the app itself. However, there is one thing I want to discuss before we proceed, and that is Clean Architecture.
-What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s discuss what &amp;lsquo;architecture&amp;rsquo; actually is. Different experts have different definitions of what architecture exactly is. Some say it&amp;rsquo;s &amp;rsquo;the fundamental organization of a system&amp;rsquo; while others define it as &amp;rsquo;the way the highest level components are wired together."
+What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s discuss what &amp;lsquo;architecture&amp;rsquo; actually is. Different experts have different definitions of what architecture exactly is. Some say it&amp;rsquo;s &amp;lsquo;the fundamental organization of a system&amp;rsquo; while others define it as &amp;lsquo;the way the highest level components are wired together."
 />
 <meta
   name="keywords"
@@ -208,11 +208,11 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
       <h2 id="introduction">Introduction.</h2>
 <p>In the <a href="/blogs/create-api-using-golang-setup/">previous</a> article, we&rsquo;ve set up our workspace that will make our development experience more pleasant. Now it&rsquo;s time to develop the app itself. However, there is one thing I want to discuss before we proceed, and that is Clean Architecture.</p>
 <h2 id="what-is-architecture">What is Architecture.</h2>
-<p>Before jumping to Clean Architecture, let&rsquo;s discuss what &lsquo;architecture&rsquo; actually is. Different experts have different definitions of what architecture exactly is. Some say it&rsquo;s &rsquo;the fundamental organization of a system&rsquo; while others define it as &rsquo;the way the highest level components are wired together. Since I&rsquo;m nowhere near to being an expert, I&rsquo;ll just have to defer to the definition provided by the experts, which in essence is &lsquo;how we organize our system&rsquo;.</p>
+<p>Before jumping to Clean Architecture, let&rsquo;s discuss what &lsquo;architecture&rsquo; actually is. Different experts have different definitions of what architecture exactly is. Some say it&rsquo;s &lsquo;the fundamental organization of a system&rsquo; while others define it as &lsquo;the way the highest level components are wired together. Since I&rsquo;m nowhere near to being an expert, I&rsquo;ll just have to defer to the definition provided by the experts, which in essence is &lsquo;how we organize our system&rsquo;.</p>
 <h2 id="why-bother-with-architecture">Why bother with Architecture.</h2>
 <p>The quote below sums up why architecture is important.</p>
 <blockquote>
-<p><em>&ldquo;A poor architecture is a major contributor to the growth of cruft - elements of the software that impede the ability of developers to understand the software. Software that contains a lot of cruft is much harder to modify, leading to features that arrive more slowly and with more defects.&rdquo;</em></p>
+<p><em>&ldquo;A poor architecture is a major contributor to the growth of cruft - elements of the software that impede the ability of developers to understand the software. Software that contains a lot of cruft is much harder to modify, leading to features that arrive more slowly and with more defects.&quot;</em></p>
 <p>&ndash; <strong>Martin Fowler, 2019</strong></p>
 </blockquote>
 <h2 id="what-is-clean-architecture">What is Clean Architecture.</h2>
@@ -235,7 +235,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
 <li>Frameworks and Drives - external frameworks and tools.</li>
 </ol>
 <h2 id="implementing-entities">Implementing Entities.</h2>
-<p>In our project, we&rsquo;ll refer to &rsquo;entities&rsquo; as &lsquo;models&rsquo;. Since we&rsquo;re making a library app, we&rsquo;ll be dealing with books, so a book is our entity. For the book entity, let&rsquo;s just use the most basic property that a book has, plus a couple of necessary attributes for our database; ID, Title, Author, Description, Published At, Created At, Updated At, Deleted At. Referring back to the <a href="https://github.com/golang-standards/project-layout">Golang Standard Layout</a>, all modules that are meant to be exported must be placed in the <code>/pkg</code> dir. So, we create a <code>/pkg/model</code>, a place where all future entities will reside, and place <code>book.go</code> there.</p>
+<p>In our project, we&rsquo;ll refer to &lsquo;entities&rsquo; as &lsquo;models&rsquo;. Since we&rsquo;re making a library app, we&rsquo;ll be dealing with books, so a book is our entity. For the book entity, let&rsquo;s just use the most basic property that a book has, plus a couple of necessary attributes for our database; ID, Title, Author, Description, Published At, Created At, Updated At, Deleted At. Referring back to the <a href="https://github.com/golang-standards/project-layout">Golang Standard Layout</a>, all modules that are meant to be exported must be placed in the <code>/pkg</code> dir. So, we create a <code>/pkg/model</code>, a place where all future entities will reside, and place <code>book.go</code> there.</p>
 
 
 
@@ -247,7 +247,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
-  
+
     package model
 
     import (
@@ -351,7 +351,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
-    
+
     package postgres
 
     import (
@@ -443,7 +443,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
     <pre class="language-go" ><code>
 
     ...
-    
+
     type BookUsecase interface {
         Create(ctx context.Context, input *CreateBookInput) (book *Book, err error)
         DeleteByID(ctx context.Context, ID int64) (err error)
@@ -468,7 +468,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
-   
+
     package usecase
 
     import (
@@ -553,7 +553,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
 
 
 <h2 id="implementing-presenters">Implementing Presenters.</h2>
-<p>The presenters&rsquo; role is to format data to and from our application. We&rsquo;ll format our data to JSON because we&rsquo;re creating REST APIs. The data to be formatted is retrieved from the previous layer, the use case layer. In a similar fashion to our repository layer, we&rsquo;ll create a <code>/pkg/book/handler/http</code> dir as a means of separation. If in the future we&rsquo;d want to use a different method of presenting data, such as through CLI or RPC, we can create separate directories.</p>
+<p>The presenters' role is to format data to and from our application. We&rsquo;ll format our data to JSON because we&rsquo;re creating REST APIs. The data to be formatted is retrieved from the previous layer, the use case layer. In a similar fashion to our repository layer, we&rsquo;ll create a <code>/pkg/book/handler/http</code> dir as a means of separation. If in the future we&rsquo;d want to use a different method of presenting data, such as through CLI or RPC, we can create separate directories.</p>
 
 
 
@@ -565,7 +565,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
-    
+
     package http
 
     import (
@@ -683,7 +683,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
-   
+
     package main
 
     import (
@@ -757,7 +757,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
-    
+
     package utils
 
     import (

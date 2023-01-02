@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="Introduction. According to a 2021 survey conducted by StackOverflow, Golang is number fourteen in terms of the most used language/tool amongst developers, right above Kotlin and below PowerShell. This is for good reasons. Its no-frills syntax, static typing, out-of-the-box build tools, and performant concurrency are a few reasons why developers, including me, prefer it over the rest. In this series of tutorials, we&amp;rsquo;ll cover how to build APIs using Golang."
+  content="Introduction. According to a 2021 survey conducted by StackOverflow, Golang is number fourteen in terms of the most used language / tool amongst developers, right above Kotlin and below PowerShell. This is for good reasons. Its no-frills syntax, static typing, out-of-the-box build tools, and performant concurrency are a few reasons why developers, including me, prefer it over the rest. In this series of tutorials, we&amp;rsquo;ll cover how to build APIs using Golang."
 />
 <meta
   name="keywords"
@@ -205,25 +205,25 @@
     <div class="post-content">
       
       <h2 id="introduction">Introduction.</h2>
-<p>According to a <a href="https://insights.stackoverflow.com/survey/2021#section-most-popular-technologies-programming-scripting-and-markup-languages">2021 survey</a> conducted by StackOverflow, Golang is number fourteen in terms of the most used language/tool amongst developers, right above Kotlin and below PowerShell. This is for good reasons. Its no-frills syntax, static typing, out-of-the-box build tools, and performant concurrency are a few reasons why developers, including me, prefer it over the rest. In this series of tutorials, we&rsquo;ll cover how to build APIs using Golang.</p>
+<p>According to a <a href="https://insights.stackoverflow.com/survey/2021#section-most-popular-technologies-programming-scripting-and-markup-languages">2021 survey</a> conducted by StackOverflow, Golang is number fourteen in terms of the most used language / tool amongst developers, right above Kotlin and below PowerShell. This is for good reasons. Its no-frills syntax, static typing, out-of-the-box build tools, and performant concurrency are a few reasons why developers, including me, prefer it over the rest. In this series of tutorials, we&rsquo;ll cover how to build APIs using Golang.</p>
 <h2 id="project-description">Project Description.</h2>
 <p>We&rsquo;ll be creating a simple project that revolves around the concept of libraries. The APIs will allow us to get a catalog of books, filter books according to multiple categories, get detailed information regarding each book, as well as borrow and return them. Seems straightforward, right?</p>
 <h2 id="initialize-dependencies">Initialize Dependencies.</h2>
-<p>We&rsquo;ll use <a href="https://go.dev/blog/using-go-modules">Go Modules</a> as our dependency management system and a couple of dependencies for our project:</p>
+<p>We&rsquo;ll use <a href="https://go.dev/blog/using-go-modules">Go Modules</a> as our dependency management system and a couple of dependencies to setup our project:</p>
 <ul>
-<li><a href="https://echo.labstack.com/">Echo</a> : performant and minimalist web framework</li>
-<li><a href="https://github.com/spf13/viper">Viper</a> : go configurations with fangs</li>
-<li><a href="https://github.com/sirupsen/logrus">Logrus</a> : structured and pluggable logging library</li>
+<li><a href="https://echo.labstack.com/">Echo</a> : performant and minimalist web framework.</li>
+<li><a href="https://github.com/spf13/viper">Viper</a> : environment variable configurations library.</li>
+<li><a href="https://github.com/sirupsen/logrus">Logrus</a> : structured and pluggable logging library.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ git init
-</span></span><span style="display:flex;"><span>$ go mod init github.com/your_github_username/create-apis-using-golang
-</span></span><span style="display:flex;"><span>$ go get github.com/labstack/echo/v4
-</span></span><span style="display:flex;"><span>$ go get github.com/spf13/viper
-</span></span><span style="display:flex;"><span>$ go get github.com/sirupsen/logrus
-</span></span></code></pre></div><h2 id="plan-codebase-layout">Plan Codebase Layout.</h2>
-<p>Codebase layout might be insignificant at first glance, but trust me when I say this, it will hinder your productivity in the long run if you don&rsquo;t carefully plan it in the beginning. That&rsquo;s why I suggest following the highly rated ones instead of just creating your own from scratch, especially if you don&rsquo;t have a plan of how to structure your layout. In this series, we&rsquo;ll be using the <a href="https://github.com/golang-standards/project-layout">Go Standard Layout</a>, with some modifications of course. The Github page provides thorough explanations and examples behind the reasoning of the layout and based on the repo&rsquo;s 27k+ stars, I think it&rsquo;s a great place to start.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git init
+$ go mod init github.com/your_github_username/create-apis-using-golang
+$ go get github.com/labstack/echo/v4
+$ go get github.com/spf13/viper
+$ go get github.com/sirupsen/logrus
+</code></pre></div><h2 id="plan-codebase-layout">Plan Codebase Layout.</h2>
+<p>Codebase layout might be insignificant at first glance, but trust me when I say this, it will hinder your productivity in the long run if you don&rsquo;t carefully plan it in the beginning. That&rsquo;s why I suggest following the highly rated ones instead of just creating your own from scratch, especially if you don&rsquo;t have a plan of how to structure your layout. In this series, we&rsquo;ll be using the <a href="https://github.com/golang-standards/project-layout">Go Standard Layout</a>, with some modifications of course. The Github page provides thorough explanations and examples behind the reasoning of the layout and based on the repo&rsquo;s 36k+ stars, I think it&rsquo;s a great place to start.</p>
 <h2 id="create-sample-web-server">Create Sample Web Server.</h2>
-<p>To run a sample web server, create a <code>main.go</code> inside a <code>/pkg/cmd/server</code> directory. This dir is used to house our project&rsquo;s main application and nothing else. Our main application should only comprise mostly imports from our modules.</p>
+<p>To run a sample web server, create a <code>main.go</code> inside a <code>/internal/cmd/server</code> directory. This dir is used to house our project&rsquo;s main application and nothing else. Our main application should only comprise mostly imports from our modules.</p>
 
 
 
@@ -317,7 +317,7 @@
     func main() {
         e := echo.New()
         e.GET(&#34;/&#34;, func(c echo.Context) error {
-            return c.String(http.StatusOK, &#34;Hello, World!&#34;)
+        return c.String(http.StatusOK, &#34;Hello, World!&#34;)
         })
 
         s := &amp;http.Server{
@@ -335,7 +335,7 @@
 
 <h2 id="use-environment-variables">Use Environment Variables.</h2>
 <p>Currently, the server is running on port <code>8080</code> and it&rsquo;s hard-coded into the server instance. Since the port number used might change depending on the server&rsquo;s used ports, we need to set that value as an environment variable. Environment variables are used to store interchangeable values, account credentials, and other secrets that we don&rsquo;t want everyone to know.</p>
-<p>What we need to do is create a <code>config.yml.example</code> in the root dir that will be used as a template for env variables in case someone else clones our repo. Also, create a <code>.gitignore</code> to ignore <code>.yml</code> files from being committed to our repo.</p>
+<p>What we need to do is create a <code>config.yml.example</code> in the root dir that will be used as a template for environment variables in case someone else clones our repo. Also, create a <code>.gitignore</code> to ignore <code>config.yml</code> files from being committed to our repo.</p>
 
 
 
@@ -348,8 +348,8 @@
     </label>
     <pre class="language-yml" ><code>
 
-    env: &#34;development&#34;
-    server_port: &#34;8080&#34;
+    env:
+    server_port:
 
 </code></pre>
   </div>
@@ -361,19 +361,19 @@
   <div class="collapsable-code">
     <input id="5" type="checkbox"  />
     <label for="5">
-      <span class="collapsable-code__language">gitignore</span>
+      <span class="collapsable-code__language">.gitignore</span>
       <span class="collapsable-code__title">.gitignore</span>
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
-    <pre class="language-gitignore" ><code>
+    <pre class="language-.gitignore" ><code>
 
-    .env
+    config.yml
 
 </code></pre>
   </div>
 
 
-<p>Copy-paste the <code>config.yml.example</code> file, rename it to <code>config.yml</code>. Revisiting back to the golang standard layout repo, we see that <code>/config</code> dir is stated to store &ldquo;configuration file templates or default configs&rdquo;. So we&rsquo;ll use <code>/pkg/config</code> dir to place our getter functions in a file called <code>config.go</code> and call the functions in <code>main.go</code>.</p>
+<p>Copy-paste the <code>config.yml.example</code> file, rename it to <code>config.yml</code>, and set <code>DEV</code> and <code>8080</code> for <code>env</code> and <code>server_port</code> respectively. Revisiting back to the golang standard layout repo, we see that <code>/config</code> dir is stated to <em>store configuration file templates or default configs</em>. So we&rsquo;ll use <code>/internal/config</code> dir to place our getter functions in a file called <code>config.go</code> and call the functions in <code>main.go</code>.</p>
 
 
 
@@ -385,13 +385,14 @@
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
-    
+
     package config
 
     import (
+        &#34;strings&#34;
+
         &#34;github.com/sirupsen/logrus&#34;
         &#34;github.com/spf13/viper&#34;
-        &#34;strings&#34;
     )
 
     func GetConf() {
@@ -408,15 +409,15 @@
         if err := viper.ReadInConfig(); err != nil {
             logrus.Warningf(&#34;%v&#34;, err)
         }
-      }
+    }
 
-      func Env() string {
-          return viper.GetString(&#34;env&#34;)
-      }
+    func Env() string {
+        return viper.GetString(&#34;env&#34;)
+    }
 
-      func ServerPort() string {
-          return viper.GetString(&#34;server_port&#34;)
-      }
+    func ServerPort() string {
+        return viper.GetString(&#34;server_port&#34;)
+    }
 
 </code></pre>
   </div>
@@ -433,7 +434,7 @@
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
-   
+
     package main
 
     import (
@@ -443,7 +444,7 @@
 
         &#34;github.com/labstack/echo/v4&#34;
         &#34;github.com/sirupsen/logrus&#34;
-        &#34;github.com/ssentinull/create-apis-using-golang/pkg/config&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/internal/config&#34;
     )
 
     // initialize logger configurations
@@ -469,7 +470,6 @@
 
     // run initLogger() before running main()
     func init() {
-        config.GetConf()
         initLogger()
     }
 
@@ -493,7 +493,7 @@
 
 
 <h2 id="setup-daemons-">Setup Daemons. 😈</h2>
-<p>To make our life easier, we need to set up a daemon that listens to changes made in the workspace so that the server can automatically restart itself on saved changes. We do this by installing <a href="https://github.com/cortesi/modd">Modd</a> and setting it to listen to files with <code>.go</code> extensions. Create a <code>.modd</code> dir and within it a <code>server.modd.conf</code> file. Also, create a <code>Makefile</code> in the root dir to abbreviate our CLI command.</p>
+<p>To make our life easier, we need to set up a daemon that listens to changes made in the workspace so that the server can automatically restart itself on saved changes. We do this by installing <a href="https://github.com/cortesi/modd">Modd</a> and setting it to listen to files with <code>.go</code> extensions. Create a <code>.modd</code> dir in our root directory and within it a <code>server.modd.conf</code> file. Also, create a <code>Makefile</code> in the root dir to abbreviate our CLI command.</p>
 
 
 
@@ -507,7 +507,7 @@
     <pre class="language-conf" ><code>
 
     **/\*.go !**/\*\_test.go {
-        daemon &#43;sigterm: go run cmd/server/main.go
+        daemon &#43;sigterm: go run internal/cmd/server/main.go
     }
 
 </code></pre>
@@ -534,9 +534,9 @@
   </div>
 
 
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># run the server in daemon mode</span>
-</span></span><span style="display:flex;"><span>$ make run-server
-</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># run the server in daemon mode</span>
+$ make run-server
+</code></pre></div>
   <img src="/img/blogs/create-api-using-golang-setup/2.png"  class="center"  />
 
 
