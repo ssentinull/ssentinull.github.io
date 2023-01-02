@@ -12,7 +12,7 @@
 <meta
   name="description"
   content="Introduction. In the previous article, we&amp;rsquo;ve set up our workspace that will make our development experience more pleasant. Now it&amp;rsquo;s time to develop the app itself. However, there is one thing I want to discuss before we proceed, and that is Clean Architecture.
-What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s discuss what &amp;lsquo;architecture&amp;rsquo; actually is. Different experts have different definitions of what architecture exactly is. Some say it&amp;rsquo;s &amp;lsquo;the fundamental organization of a system&amp;rsquo; while others define it as &amp;lsquo;the way the highest level components are wired together."
+What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s discuss what architecture is. Different experts have different definitions of what architecture exactly is. Some say it&amp;rsquo;s the fundamental organization of a system while others define it as the way the highest-level components are wired together."
 />
 <meta
   name="keywords"
@@ -208,15 +208,15 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
       <h2 id="introduction">Introduction.</h2>
 <p>In the <a href="/blogs/create-api-using-golang-setup/">previous</a> article, we&rsquo;ve set up our workspace that will make our development experience more pleasant. Now it&rsquo;s time to develop the app itself. However, there is one thing I want to discuss before we proceed, and that is Clean Architecture.</p>
 <h2 id="what-is-architecture">What is Architecture.</h2>
-<p>Before jumping to Clean Architecture, let&rsquo;s discuss what &lsquo;architecture&rsquo; actually is. Different experts have different definitions of what architecture exactly is. Some say it&rsquo;s &lsquo;the fundamental organization of a system&rsquo; while others define it as &lsquo;the way the highest level components are wired together. Since I&rsquo;m nowhere near to being an expert, I&rsquo;ll just have to defer to the definition provided by the experts, which in essence is &lsquo;how we organize our system&rsquo;.</p>
+<p>Before jumping to Clean Architecture, let&rsquo;s discuss what <em>architecture</em> is. Different experts have different definitions of what architecture exactly is. Some say it&rsquo;s <em>the fundamental organization of a system</em> while others define it as <em>the way the highest-level components are wired together</em>. Since I&rsquo;m nowhere near to being an expert, I&rsquo;ll just have to defer to the definition provided by the experts, which in essence is <em>how we organize our system</em>.</p>
 <h2 id="why-bother-with-architecture">Why bother with Architecture.</h2>
 <p>The quote below sums up why architecture is important.</p>
 <blockquote>
-<p><em>&ldquo;A poor architecture is a major contributor to the growth of cruft - elements of the software that impede the ability of developers to understand the software. Software that contains a lot of cruft is much harder to modify, leading to features that arrive more slowly and with more defects.&quot;</em></p>
+<p><em>&ldquo;Poor architecture is a major contributor to the growth of cruft - elements of the software that impede the ability of developers to understand the software. Software that contains a lot of cruft is much harder to modify, leading to features that arrive more slowly and with more defects.&quot;</em></p>
 <p>&ndash; <strong>Martin Fowler, 2019</strong></p>
 </blockquote>
 <h2 id="what-is-clean-architecture">What is Clean Architecture.</h2>
-<p>Clean Architecture is a concept forwarded by Robert C. Martin (Uncle Bob) in 2021. It takes a layered approach, where a system is divided into multiple layers, each having its roles and rules it must abide by. If drawn into a diagram, Clean Architecture would look like the cross-section of Earth, where Earth&rsquo;s core would be the innermost circle, and encapsulating it are the numerous layers that make up the Earth&rsquo;s mantle.</p>
+<p><em>Clean Architecture</em> is a concept forwarded by Robert C. Martin (Uncle Bob) in 2021. It takes a layered approach, where a system is divided into multiple layers, each having its roles and rules it must abide by. If drawn into a diagram, Clean Architecture would look like the cross-section of Earth, where Earth&rsquo;s core would be the innermost circle, and encapsulating it are the numerous layers that make up the Earth&rsquo;s mantle.</p>
 
   <figure class="center" >
     <img src="/img/blogs/create-api-using-golang-architecture/1.jpg"   />
@@ -229,13 +229,13 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
 <p>This layering technique produces a system that&rsquo;s testable, independent of frameworks, independent of UI, independent of database, and independent of any external agency. The rule of this architecture is very straightforward; source code dependencies can only point inwards. In other words, the inner circle can know nothing about the outer circle, while something declared in the outer circle can not be mentioned in the inner circle.</p>
 <p>As seen in the diagram above, the architecture comprises four layers:</p>
 <ol>
-<li>Entities - objects that correlate to the business at hand.</li>
-<li>Use Cases - manages the flow of data to and from entities.</li>
-<li>Interface Adapters - converts use cases&rsquo; data format to a more general data format.</li>
-<li>Frameworks and Drives - external frameworks and tools.</li>
+<li>Enterprise Business Rules - objects that correlate to the business at hand.</li>
+<li>Application Business Rules - manages the flow of data to and from entities.</li>
+<li>Interface Adapters - converts use cases' data format to a more general data format.</li>
+<li>Frameworks &amp; Drives - external frameworks and tools.</li>
 </ol>
-<h2 id="implementing-entities">Implementing Entities.</h2>
-<p>In our project, we&rsquo;ll refer to &lsquo;entities&rsquo; as &lsquo;models&rsquo;. Since we&rsquo;re making a library app, we&rsquo;ll be dealing with books, so a book is our entity. For the book entity, let&rsquo;s just use the most basic property that a book has, plus a couple of necessary attributes for our database; ID, Title, Author, Description, Published At, Created At, Updated At, Deleted At. Referring back to the <a href="https://github.com/golang-standards/project-layout">Golang Standard Layout</a>, all modules that are meant to be exported must be placed in the <code>/pkg</code> dir. So, we create a <code>/pkg/model</code>, a place where all future entities will reside, and place <code>book.go</code> there.</p>
+<h2 id="implementing-enterprise-business-rules">Implementing Enterprise Business Rules.</h2>
+<p>In our project, we&rsquo;ll refer to <em>Enterprise Business Rules</em> as <em>Models</em>. Since we&rsquo;re making a library app, we&rsquo;ll be dealing with books, so a <em>book</em> is our entity. For the <em>book</em> entity, let&rsquo;s just use the most basic property that a book has, plus a couple of necessary attributes for our database; ID, Title, Author, Description, Published At, Created At, Updated At, Deleted At. Referring back to the <a href="https://github.com/golang-standards/project-layout">Golang Standard Layout</a>, all modules that are meant to be exported must be placed in the <code>/internal</code> dir. So, we create a <code>/internal/model</code>, a place where all future entities will reside, and place <code>book.go</code> there.</p>
 
 
 
@@ -307,11 +307,11 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
   </div>
 
 
-<h2 id="implementing-use-cases">Implementing Use Cases.</h2>
-<p>The use cases in our app will be divided into two parts; usecase (I know it&rsquo;s redundant but it explains itself as we proceed) and repository. Usecase will only include business logic while repository will only include transactions to our data store. One can not happen within the other, eg: a business logic can not happen in a repository and a usecase can not make calls directly to our data store.</p>
+<h2 id="implementing-application-business-rules">Implementing Application Business Rules.</h2>
+<p><em>Application Business Rules</em> are also known as <em>Use Cases</em>. The <em>use cases</em> in our app will be divided into two parts; <em>usecase</em> (I know it&rsquo;s redundant but it explains itself as we proceed) and <em>repository</em>. <em>Usecase</em> will only include business logic while <em>repository</em> will only include transactions to our data store. One can not happen within the other, eg: a business logic can not happen in a repository and a usecase can not make calls directly to our data store.</p>
 <h3 id="implementing-repository">Implementing Repository.</h3>
-<p>We&rsquo;ll start with repository. Since we need a place to store our books, we need a database. Repository comes into play when we want to interact with our database. Fetch, create, update, and delete data from and to our database happens exclusively in our repository. In the meantime, we&rsquo;ll use dummy data since we won&rsquo;t cover database connections in this part of the series.</p>
-<p>Before we create the repository, make sure to define a book repository interface in our book model. The interface is used as a means of contract and communication between the layers.</p>
+<p>We&rsquo;ll start with <em>repository</em>. Since we need a place to store our books, we need a database. <em>Repository</em> comes into play when we want to interact with our database. Fetch, create, update, and delete data from and to our database happens exclusively in our <em>repository</em>. Since we won&rsquo;t cover database connections in this part of the series, we&rsquo;ll use dummy data in the meantime.</p>
+<p>Before we create the <em>repository</em>, make sure to define a book <em>repository interface</em> in our book model. The <em>interface</em> is used as a means of contract and communication between the layers.</p>
 
 
 
@@ -338,8 +338,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
   </div>
 
 
-<p>Differing from the intention of <code>/pkg/model</code> directory, we&rsquo;ll create a <code>/pkg/book</code> directory to signify that all the codes within it are of the &lsquo;book&rsquo; domain. If there are new entities, we&rsquo;ll create separate domains for them.</p>
-<p>Inside <code>/pkg/book</code> dir, create another dir called <code>/repository/postgres</code>. We create a <code>/postgres</code> dir as a means of separation. If in the future we would like to use another database for the &lsquo;book&rsquo; domain, let&rsquo;s say MongoDB, then we&rsquo;ll create a <code>/mongodb</code> inside the <code>/repository</code> dir. Create <code>book_repository_postgres.go</code> inside this dir.</p>
+<p>Differing from the intention of <code>/internal/model</code> directory, we&rsquo;ll create a <code>/interal/repository</code> directory to signify that all the codes within it are <em>repository</em> codes.</p>
 
 
 
@@ -347,7 +346,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
     <input id="3" type="checkbox"  />
     <label for="3">
       <span class="collapsable-code__language">go</span>
-      <span class="collapsable-code__title">book_repository_postgres.go</span>
+      <span class="collapsable-code__title">book_repository.go</span>
       <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
     </label>
     <pre class="language-go" ><code>
@@ -358,7 +357,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
         &#34;context&#34;
         &#34;time&#34;
 
-        &#34;github.com/ssentinull/create-apis-using-golang/pkg/model&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/internal/model&#34;
     )
 
     type bookRepo struct{}
@@ -429,7 +428,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
 
 
 <h3 id="implementing-usecases">Implementing Usecases.</h3>
-<p>The usecase layer should only involve business logic and calls to the repository layer. Just like the repository layer, we have to define a book usecase interface in the book model.</p>
+<p>The <em>usecase</em> layer should only involve business logic and calls to the repository layer. Just like the <em>repository</em> layer, we have to define a book <em>usecase interface</em> in the book model.</p>
 
 
 
@@ -456,7 +455,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
   </div>
 
 
-<p>Create a <code>/pkg/book/usecase</code> dir and place a <code>book_usecase.go</code> in it. This example might be barren because we only implement simple logics. In production-level applications, this layer could include much more complicated logic that involves repositories from multiple domains.</p>
+<p>Create a <code>/internal/usecase</code> dir and place a <code>book_usecase.go</code> in it. This example might be barren because we only implement simple logics. In production-level applications, this layer could include much more complicated logic that involves <em>repositories</em> from multiple domains.</p>
 
 
 
@@ -473,10 +472,10 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
 
     import (
         &#34;context&#34;
-        &#34;github.com/ssentinull/create-apis-using-golang/pkg/utils&#34;
 
         &#34;github.com/sirupsen/logrus&#34;
-        &#34;github.com/ssentinull/create-apis-using-golang/pkg/model&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/internal/model&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/internal/utils&#34;
     )
 
     type bookUsecase struct {
@@ -552,8 +551,8 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
   </div>
 
 
-<h2 id="implementing-presenters">Implementing Presenters.</h2>
-<p>The presenters' role is to format data to and from our application. We&rsquo;ll format our data to JSON because we&rsquo;re creating REST APIs. The data to be formatted is retrieved from the previous layer, the use case layer. In a similar fashion to our repository layer, we&rsquo;ll create a <code>/pkg/book/handler/http</code> dir as a means of separation. If in the future we&rsquo;d want to use a different method of presenting data, such as through CLI or RPC, we can create separate directories.</p>
+<h2 id="implementing-interface-adapters">Implementing Interface Adapters.</h2>
+<p><em>Interface Adapters</em> are commonly known as <em>Handlers</em>, <em>Presenters</em>, or <em>Deliveries</em>, in this project we refer to them as <em>Deliveries</em>. The delivery&rsquo;s role is to format data to and from our application. We&rsquo;ll format our data to JSON because we&rsquo;re creating REST APIs. The data to be formatted is retrieved from the previous layer, the <em>usecase</em> layer. In a similar fashion to our <em>repository</em> layer, we&rsquo;ll create a <code>/internal/delivery/http</code> dir as a means of separation. If in the future we&rsquo;d want to use a different method of presenting data, such as through GraphQL or RPC, we can create separate directories.</p>
 
 
 
@@ -574,8 +573,8 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
 
         &#34;github.com/labstack/echo/v4&#34;
         &#34;github.com/sirupsen/logrus&#34;
-        &#34;github.com/ssentinull/create-apis-using-golang/pkg/model&#34;
-        &#34;github.com/ssentinull/create-apis-using-golang/pkg/utils&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/internal/model&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/internal/utils&#34;
     )
 
     type BookHTTPHandler struct {
@@ -693,10 +692,10 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
 
         &#34;github.com/labstack/echo/v4&#34;
         &#34;github.com/sirupsen/logrus&#34;
-        _bookHTTPHndlr &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/handler/http&#34;
-        _bookRepo &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/repository/postgres&#34;
-        _bookUcase &#34;github.com/ssentinull/create-apis-using-golang/pkg/book/usecase&#34;
-        &#34;github.com/ssentinull/create-apis-using-golang/pkg/config&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/internal/config&#34;
+        _bookHTTPHndlr &#34;github.com/ssentinull/create-apis-using-golang/internal/delivery/http&#34;
+        _bookRepo &#34;github.com/ssentinull/create-apis-using-golang/internal/repository&#34;
+        _bookUcase &#34;github.com/ssentinull/create-apis-using-golang/internal/usecase&#34;
     )
 
     // initialize logger configurations
@@ -722,6 +721,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
 
     // run initLogger() before running main()
     func init() {
+        config.GetConf()
         initLogger()
     }
 
@@ -745,7 +745,7 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
   </div>
 
 
-<p>Don&rsquo;t foget to add the helper functions in the <code>/pkg/utils</code> directory.</p>
+<p>Don&rsquo;t forget to add the helper functions in the <code>/internal/utils</code> directory.</p>
 
 
 
@@ -821,12 +821,8 @@ What is Architecture. Before jumping to Clean Architecture, let&amp;rsquo;s disc
   </figure>
 
 
-<p>By this step, your directory should look like this.</p>
-
-  <img src="/img/blogs/create-api-using-golang-architecture/4.png"  class="center"  />
-
-
 <p>Congrats!! 🥳 You&rsquo;ve created APIs using Golang and implemented Clean Architecture!! 👏 The next step would be to connect a database to our application.</p>
+<p>The Github repository for this step of this series can be found <a href="https://github.com/ssentinull/create-apis-using-golang/tree/2c0fba5724f7e6d1352c9e34aa9f9c09a1303df5">here</a>.</p>
 <p>I hope this could be beneficial to you. Thank you for taking the time to read this article. 🙏</p>
 <p>&ndash; ssentinull</p>
 <h2 id="references">References.</h2>
