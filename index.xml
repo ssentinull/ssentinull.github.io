@@ -9,7 +9,7 @@
     <description>Recent content on ssentinull</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 May 2023 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,7 +17,7 @@
     <item>
       <title>An Introduction.</title>
       <link>/blogs/an-introduction/</link>
-      <pubDate>Tue, 23 Nov 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 20 May 2023 00:00:00 +0000</pubDate>
       
       <guid>/blogs/an-introduction/</guid>
       <description>
@@ -28,6 +28,25 @@
         
         
           For those wondering what this site is all about.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Create APIs using Golang | Part 3 : Connecting to a Database.</title>
+      <link>/blogs/create-api-using-golang-database/</link>
+      <pubDate>Fri, 19 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/blogs/create-api-using-golang-database/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/blogs/create-api-using-golang-db/0.jpg&#34;/&gt;
+          
+        
+        
+        
+          Where are we gonna store all this data?
           
         
         </description>
