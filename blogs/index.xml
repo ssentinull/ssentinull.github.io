@@ -8,8 +8,8 @@
     <link>/blogs/</link>
     <description>Recent content in Blogs on ssentinull</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 20 May 2023 00:00:00 +0000</lastBuildDate>
+    <language>en</language>
+    <lastBuildDate>Sun, 23 Jul 2023 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blogs/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,7 +17,7 @@
     <item>
       <title>An Introduction.</title>
       <link>/blogs/an-introduction/</link>
-      <pubDate>Sat, 20 May 2023 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 23 Jul 2023 00:00:00 +0000</pubDate>
       
       <guid>/blogs/an-introduction/</guid>
       <description>
@@ -28,6 +28,25 @@
         
         
           For those wondering what this site is all about.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Create APIs using Golang | Part 4 : Implementing Cache.</title>
+      <link>/blogs/create-api-using-golang-cache/</link>
+      <pubDate>Sat, 22 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/blogs/create-api-using-golang-cache/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/blogs/create-api-using-golang-cache/0.jpg&#34;/&gt;
+          
+        
+        
+        
+          *Cache* is King.
           
         
         </description>

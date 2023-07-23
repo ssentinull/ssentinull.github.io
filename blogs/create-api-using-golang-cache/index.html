@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        Create APIs using Golang | Part 4 : Implementing Cache. ::
+        ssentinull — a simple about / blog / portfolio site
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Introduction. Databases serve as essential tools for storing data, but they can experience performance issues when dealing with massive transaction volumes. To address this challenge and introduce a faster data retrieval method, caching becomes a valuable solution.
+What is Cache. Cache, much like a database, serves as a data storage location. However, while databases store data on disk or drives, caches store data in memory. The organization of data in a cache is much simpler, making data retrieval significantly faster."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/blogs/create-api-using-golang-cache/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css" />
+
+<link rel="stylesheet" href="/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="/img/favicon.png" />
+
+
+<link href="/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Create APIs using Golang | Part 4 : Implementing Cache."/>
+<meta name="twitter:description" content="*Cache* is King."/>
+
+
+
+<meta property="og:title" content="Create APIs using Golang | Part 4 : Implementing Cache." />
+<meta property="og:description" content="*Cache* is King." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blogs/create-api-using-golang-cache/" /><meta property="article:section" content="blogs" />
+<meta property="article:published_time" content="2023-07-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-07-22T00:00:00+00:00" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+  <body class="">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >ssentinull</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/blogs">Blogs</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/blogs">Blogs</a></li>
+      
+    
+      
+        <li><a href="/projects">Projects</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">Create APIs using Golang | Part 4 : Implementing Cache.</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          22-07-2023
+        </span>
+
+        
+          
+        
+      
+
+      
+        <span class="post-author"
+          >— Written by ssentinull</span
+        >
+
+
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          <a href="/tags/cache/">#cache</a>&nbsp;
+        
+          <a href="/tags/api/">#api</a>&nbsp;
+        
+          <a href="/tags/golang/">#golang</a>&nbsp;
+        
+      </span>
+    
+
+    
+      <figure class="post-cover">
+        
+          <img src="/img/blogs/create-api-using-golang-cache/0.jpg" alt="Create APIs using Golang | Part 4 : Implementing Cache." />
+        
+
+        
+      </figure>
+    
+
+    <div class="post-content">
+      
+      <h2 id="introduction">Introduction.</h2>
+<p>Databases serve as essential tools for storing data, but they can experience performance issues when dealing with massive transaction volumes. To address this challenge and introduce a faster data retrieval method, caching becomes a valuable solution.</p>
+<h2 id="what-is-cache">What is Cache.</h2>
+<p>Cache, much like a database, serves as a data storage location. However, while databases store data on disk or drives, caches store data in memory. The organization of data in a cache is much simpler, making data retrieval significantly faster.</p>
+<p>Nonetheless, storing data in memory has its drawbacks. Firstly, memory is volatile, meaning it retains data only while powered on; data is lost during power outages.</p>
+<p>Secondly, caches have a limited data structure compared to persistent databases like relational, document-based, or graph databases. Caches primarily rely on key-value pairs, resembling a map data structure.</p>
+<h2 id="implementing-cache">Implementing Cache.</h2>
+<p>For our cache engine, we&rsquo;ll use <a href="https://redis.io/">Redis</a>, along with the <a href="https://github.com/redis/go-redis">go-redis</a> Golang client. Redis solves the persistence issue by saving data snapshots and writing them to disk, even when the server is off.</p>
+<blockquote>
+<p>❗ <strong>Disclaimer</strong> ❗</p>
+<p>The entire cache implementation is not included in this article because it would be too long. So if you&rsquo;re following along with this article and run into missing codes, you can check out the <a href="https://github.com/ssentinull/create-apis-using-golang">Github repo</a>.</p>
+</blockquote>
+
+
+
+  <div class="collapsable-code">
+    <input id="1" type="checkbox"  />
+    <label for="1">
+      <span class="collapsable-code__language">go</span>
+      <span class="collapsable-code__title">internal/model/cache.go</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-go" ><code>
+
+    package model
+
+    import &#34;context&#34;
+
+    type CacheRepository interface {
+        Get(ctx context.Context, key string) (reply string, err error)
+        Set(ctx context.Context, key, val string) (err error)
+        Delete(ctx context.Context, keys ...string) (err error)
+    }
+
+</code></pre>
+  </div>
+
+
+<p>Our cache implementation will be wrapped inside an interface, allowing easy switching of Golang Redis clients by changing its implementation.</p>
+
+
+
+  <div class="collapsable-code">
+    <input id="2" type="checkbox"  />
+    <label for="2">
+      <span class="collapsable-code__language">go</span>
+      <span class="collapsable-code__title">internal/repository/cache_repository.go</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-go" ><code>
+
+    package repository
+
+    import (
+        &#34;context&#34;
+
+        &#34;github.com/redis/go-redis/v9&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/internal/model&#34;
+    )
+
+    type cacheRepo struct {
+        redisClient *redis.Client
+    }
+
+    func NewCacheRepository(client *redis.Client) model.CacheRepository {
+        return &amp;cacheRepo{redisClient: client}
+    }
+
+    func (c *cacheRepo) Get(ctx context.Context, key string) (string, error) {
+        val, err := c.redisClient.Get(ctx, key).Result()
+        if err != nil &amp;&amp; err != redis.Nil {
+            return &#34;&#34;, err
+        }
+        return val, nil
+    }
+
+    func (c *cacheRepo) Set(ctx context.Context, key, val string) error {
+        return c.redisClient.Set(ctx, key, val, 0).Err()
+    }
+
+    func (c *cacheRepo) Delete(ctx context.Context, keys ...string) error {
+        return c.redisClient.Del(ctx, keys...).Err()
+    }
+
+</code></pre>
+  </div>
+
+
+<p>go-redis implementation is pretty straightforward, all we need to do is provide a string key and a string value. The <code>Set()</code> and <code>Delete()</code> functions only return an <code>error</code> while the <code>Get()</code> function returns a <code>string</code> and an <code>error</code>.</p>
+
+
+
+  <div class="collapsable-code">
+    <input id="3" type="checkbox"  />
+    <label for="3">
+      <span class="collapsable-code__language">go</span>
+      <span class="collapsable-code__title">internal/repository/book_repository.go</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-go" ><code>
+
+    package repository
+
+    import (
+        &#34;context&#34;
+        &#34;encoding/json&#34;
+        &#34;fmt&#34;
+
+        &#34;github.com/sirupsen/logrus&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/internal/model&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/internal/utils&#34;
+        &#34;gorm.io/gorm&#34;
+    )
+
+    type bookRepo struct {
+        db        *gorm.DB
+        cacheRepo model.CacheRepository
+    }
+
+    func NewBookRepository(db *gorm.DB, cacheRepo model.CacheRepository) 
+        model.BookRepository {
+            return &amp;bookRepo{
+                db:        db,
+                cacheRepo: cacheRepo,
+            }
+    }
+
+    func (br *bookRepo) Create(ctx context.Context, book *model.Book) error {
+
+        ...
+
+        if err := br.cacheRepo.Delete(ctx, br.findAllCacheKey()); err != nil {
+            logger.Error(err)
+            return err
+        }
+
+        return nil
+    }
+
+    func (br *bookRepo) DeleteByID(ctx context.Context, ID int64) error {
+
+        ...
+
+        cacheKeys := []string{
+            br.findByIDCacheKey(ID),
+            br.findAllCacheKey(),
+        }
+
+        if err := br.cacheRepo.Delete(ctx, cacheKeys...); err != nil {
+            logger.Error(err)
+            return err
+        }
+
+        return nil
+    }
+
+    func (br *bookRepo) FindByID(ctx context.Context, ID int64) 
+        (*model.Book, error) {
+
+            cacheKey := br.findByIDCacheKey(ID)
+            reply, err := br.cacheRepo.Get(ctx, cacheKey)
+            if err != nil {
+                logger.Error(err)
+                return nil, err
+            }
+
+            if reply != &#34;&#34; {
+                book := &amp;model.Book{}
+                if err := json.Unmarshal([]byte(reply), &amp;book); err != nil {
+                    logger.Error(err)
+                    return nil, err
+                }
+                return book, nil
+            }
+
+            ...
+
+            bytes, err := json.Marshal(book)
+            if err != nil {
+                logger.Error(err)
+                return book, nil
+            }
+
+            if err := br.cacheRepo.Set(ctx, cacheKey, string(bytes)); err != nil {
+                logger.Error(err)
+            }
+
+            return book, nil
+    }
+
+    func (br *bookRepo) FindAll(ctx context.Context) ([]*model.Book, error) {
+        cacheKey := br.findAllCacheKey()
+        reply, err := br.cacheRepo.Get(ctx, cacheKey)
+        if err != nil {
+            logger.Error(err)
+            return nil, err
+        }
+
+        if reply != &#34;&#34; {
+            books := []*model.Book{}
+            if err := json.Unmarshal([]byte(reply), &amp;books); err != nil {
+                logger.Error(err)
+                return nil, err
+            }
+            return books, nil
+        }
+
+        ...
+
+        bytes, err := json.Marshal(books)
+        if err != nil {
+            logger.Error(err)
+            return books, nil
+        }
+
+        if err := br.cacheRepo.Set(ctx, cacheKey, string(bytes)); err != nil {
+            logger.Error(err)
+        }
+
+        return books, nil
+    }
+
+    func (br *bookRepo) Update(ctx context.Context, book *model.Book) 
+        (*model.Book, error) {
+
+            ...
+
+            cacheKeys := []string{
+                br.findByIDCacheKey(book.ID),
+                br.findAllCacheKey(),
+            }
+
+            if err := br.cacheRepo.Delete(ctx, cacheKeys...); err != nil {
+                logger.Error(err)
+                return nil, err
+            }
+
+            return br.FindByID(ctx, book.ID)
+    }
+
+    func (br *bookRepo) findByIDCacheKey(ID int64) string {
+        return fmt.Sprintf(&#34;book:%d&#34;, ID)
+    }
+
+    func (br *bookRepo) findAllCacheKey() string {
+        return &#34;book:all&#34;
+    }
+
+</code></pre>
+  </div>
+
+
+<p>When fetching data, we first call our cache before querying the database. If there&rsquo;s a cache hit, we immediately return the value. If not, we retrieve the data from the database and store it in the cache afterward.</p>
+<p>Remember to invalidate the cache whenever data is inserted, updated, or deleted from the database to avoid stale data.</p>
+<h2 id="creating-a-database-seeder">Creating a Database Seeder.</h2>
+<p>To make the data retrieval process more demanding for performance testing, we need to fetch a significant amount of data, possibly hundreds of entries. Instead of manually creating this data through our API or database client, we can use a database seeder to automate the process and generate rows of fake data.</p>
+<p>We&rsquo;ll be using a library called <a href="https://github.com/brianvoe/gofakeit">gofakeit</a> to generate fake data. This library can generate fake data from a wide range of domains, including <code>person</code>, <code>address</code>, <code>game</code>, <code>car</code>, and of course <code>book</code>.</p>
+
+
+
+  <div class="collapsable-code">
+    <input id="4" type="checkbox"  />
+    <label for="4">
+      <span class="collapsable-code__language">go</span>
+      <span class="collapsable-code__title">/cmd/seeder/main.go</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-go" ><code>
+
+    package main
+
+    import (
+        &#34;context&#34;
+        &#34;flag&#34;
+        &#34;os&#34;
+
+        &#34;github.com/brianvoe/gofakeit/v6&#34;
+        &#34;github.com/sirupsen/logrus&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/internal/config&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/internal/db&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/internal/model&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/internal/repository&#34;
+        &#34;github.com/ssentinull/create-apis-using-golang/internal/utils&#34;
+    )
+
+    // initialize logger configurations
+    func initLogger() {
+        logLevel := logrus.ErrorLevel
+        switch config.Env() {
+        case &#34;dev&#34;, &#34;development&#34;:
+            logLevel = logrus.InfoLevel
+        }
+
+        logrus.SetFormatter(&amp;logrus.TextFormatter{
+            ForceColors:     true,
+            DisableSorting:  true,
+            DisableColors:   false,
+            FullTimestamp:   true,
+            TimestampFormat: &#34;15:04:05 02-01-2006&#34;,
+        })
+
+        logrus.SetOutput(os.Stdout)
+        logrus.SetReportCaller(true)
+        logrus.SetLevel(logLevel)
+    }
+
+    func init() {
+        config.GetConf()
+        initLogger()
+    }
+
+    func main() {
+        seed := flag.Int(&#34;seed&#34;, 1, &#34;number of seed&#34;)
+        flag.Parse()
+
+        db.InitializePostgresConn()
+        db.InitializeRedisConn()
+
+        cacheRepo := repository.NewCacheRepository(db.RedisClient)
+        bookRepo := repository.NewBookRepository(db.PostgresDB, cacheRepo)
+
+        logrus.Infof(&#34;Running %d seeds!&#34;, *seed)
+
+        for i := 0; i &lt; *seed; i&#43;&#43; {
+            book := &amp;model.Book{
+                ID:            utils.GenerateID(),
+                Title:         gofakeit.BookTitle(),
+                Author:        gofakeit.BookAuthor(),
+                Description:   gofakeit.Paragraph(1, 3, 10, &#34;.&#34;),
+                PublishedDate: gofakeit.Date().Format(&#34;2006-01-02&#34;),
+            }
+
+            if err := bookRepo.Create(context.TODO(), book); err != nil {
+                logrus.WithField(&#34;book&#34;, utils.Dump(book)).Error(err)
+            }
+        }
+
+        logrus.Info(&#34;Finished running seeder!&#34;)
+    }
+
+</code></pre>
+  </div>
+
+
+
+
+
+  <div class="collapsable-code">
+    <input id="2" type="checkbox"  />
+    <label for="2">
+      <span class="collapsable-code__language">Makefile</span>
+      <span class="collapsable-code__title">Makefile</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-Makefile" ><code>
+
+    # command to run db seeder based on number of $(seed)
+    # eg: make seed-db seed=10
+    seed-db:
+        go run internal/cmd/seeder/main.go -seed=$(seed)
+
+</code></pre>
+  </div>
+
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ make seed-db seed<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>
+</span></span></code></pre></div><p>After we run the above command, we&rsquo;ll see that our <code>books</code> table have been filled with 100 rows of data in our database client.</p>
+
+  <figure class="center" >
+    <img src="/img/blogs/create-api-using-golang-cache/1.jpg"   />
+    
+  </figure>
+
+
+<h2 id="performance-metrics">Performance Metrics.</h2>
+<p>To measure the performance improvement brought about by caching, we need some metrics to compare different storage methods. For simplicity, we&rsquo;ll use the API&rsquo;s response time as the metric.</p>
+<p>Currently our service has two endpoints to retrieve data:</p>
+<ol>
+<li><code>/books/:id</code>: fetch a book by its <code>id</code>.</li>
+<li><code>/books</code>: fetch multiple books.</li>
+</ol>
+<p>We&rsquo;ll be using <code>/books</code> to compare the metrics because fetching multple data would be a more demanding task for our storage methods.</p>
+<h2 id="test-results">Test Results.</h2>
+<p>The first time we fetch books, the data isn&rsquo;t cached, giving us <code>3.64ms</code> as the baseline performance of our API.</p>
+
+  <figure class="center" >
+    <img src="/img/blogs/create-api-using-golang-cache/2.jpg"   />
+    
+  </figure>
+
+
+<p>However, upon hitting the same API again, the cache is already set, resulting in a noticeable improvement in response time to <code>1.35ms</code>.</p>
+
+  <figure class="center" >
+    <img src="/img/blogs/create-api-using-golang-cache/3.jpg"   />
+    
+  </figure>
+
+
+<p>If we add a new book and fetch books again, the response time will be similar to the baseline performance, as the cache is invalidated when we insert a new book. Afterward, the cache will be in place, and we&rsquo;ll get back our performance increase.</p>
+<p>The performance improvements might seem negligible at first glance, but try to consider a scenario where our service is hosted on a server in another country and thousands of people access the API every second. Without caching, performance could suffer dramatically.</p>
+<h2 id="bonus-content">Bonus Content.</h2>
+<p>While we&rsquo;re on the topic of performance, there is another method of improving the response time of your API; pagination. Pagination is a concept of fetching data by batches; instead of getting all the data at once, we&rsquo;ll get the data based on the batch that we need.</p>
+<p>Think of it as books, we read a book page by page because it&rsquo;s more convenient that way. If the entire book is printed on a single sheet of paper then we would have a hard time reading from it.</p>
+<p>Pagination is done by setting a <code>limit</code> and an offset <code>when</code> we query our database. The value for the <code>limit</code> and <code>offset</code> is set through the API&rsquo;s query parameters.</p>
+
+
+
+  <div class="collapsable-code">
+    <input id="5" type="checkbox"  />
+    <label for="5">
+      <span class="collapsable-code__language">go</span>
+      <span class="collapsable-code__title">internal/model/book.go</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-go" ><code>
+
+    package model
+
+    ...
+
+    type GetBooksQueryParams struct {
+        Page int64 `query:&#34;page&#34;`
+        Size int64 `query:&#34;size&#34;`
+    }
+
+    ...
+
+    type BookUsecase interface {
+
+        ...
+
+        FindAll(ctx context.Context, query GetBooksQueryParams) 
+            (books []*Book, count int64, err error)
+
+        ...
+
+    }
+
+    type BookRepository interface {
+
+        ...
+
+        FindAll(ctx context.Context, query GetBooksQueryParams) 
+            (books []*Book, err error)
+        CountAll(ctx context.Context) (count int64, err error)
+
+        ...
+
+    }
+
+</code></pre>
+  </div>
+
+
+<p>Our response would also need to be paginated to include <em>what page we&rsquo;re on</em>, <em>how many batch of data are we fetching</em>, <em>how many total pages are there based on how big our batch is</em>, and of course <em>the data itself</em>.</p>
+
+
+
+  <div class="collapsable-code">
+    <input id="6" type="checkbox"  />
+    <label for="6">
+      <span class="collapsable-code__language">go</span>
+      <span class="collapsable-code__title">internal/model/pagination.go</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-go" ><code>
+
+    package model
+
+    import (
+        &#34;math&#34;
+    )
+
+    type PaginationResponse struct {
+        Data       interface{} `json:&#34;data&#34;`
+        Page       int64       `json:&#34;page&#34;`
+        Size       int64       `json:&#34;size&#34;`
+        TotalPages int64       `json:&#34;total_pages&#34;`
+    }
+
+    func NewPaginationResponse(data interface{}, page, size, dataCount int64) 
+        PaginationResponse {
+            totalPages := math.Ceil(float64(dataCount) / float64(size))
+            return PaginationResponse{
+                Data:       data,
+                Page:       page,
+                Size:       size,
+                TotalPages: int64(totalPages),
+            }
+    }
+
+    func Offset(page, size int64) int64 {
+        offset := (page - 1) * size
+        if offset &lt; 0 {
+            return 0
+        }
+        return offset
+    }
+
+</code></pre>
+  </div>
+
+
+
+
+
+  <div class="collapsable-code">
+    <input id="7" type="checkbox"  />
+    <label for="7">
+      <span class="collapsable-code__language">go</span>
+      <span class="collapsable-code__title">internal/delivery/http/book_delivery_http.go</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-go" ><code>
+
+    package http
+
+    ...
+
+    func (bh *BookHTTPHandler) FetchBooks(c echo.Context) error {
+        queryParams := new(model.GetBooksQueryParams)
+        if err := c.Bind(queryParams); err != nil {
+            logrus.Error(err)
+            return c.JSON(http.StatusBadRequest, err.Error())
+        }
+
+        books, count, err := bh.BookUsecase.    
+            FindAll(c.Request().Context(), *queryParams)
+        if err != nil {
+            logrus.Error(err)
+            return c.JSON(utils.ParseHTTPErrorStatusCode(err), err.Error())
+        }
+
+        return c.JSON(http.StatusOK, model.NewPaginationResponse(
+            books,
+            queryParams.Page,
+            queryParams.Size,
+            count,
+        ))
+    }
+
+    ...
+
+</code></pre>
+  </div>
+
+
+
+
+
+  <div class="collapsable-code">
+    <input id="8" type="checkbox"  />
+    <label for="8">
+      <span class="collapsable-code__language">go</span>
+      <span class="collapsable-code__title">internal/usecase/book_usecase.go</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-go" ><code>
+
+    package usecase
+
+    ...
+
+    func (bu *bookUsecase) FindAll(ctx context.Context, 
+        params model.GetBooksQueryParams) ([]*model.Book, int64, error) {
+            logger := logrus.WithFields(logrus.Fields{
+                &#34;ctx&#34;:    utils.Dump(ctx),
+                &#34;params&#34;: utils.Dump(params),
+            })
+
+            books, err := bu.bookRepo.FindAll(ctx, params)
+            if err != nil {
+                logger.Error(err)
+                return nil, int64(0), err
+            }
+
+            count, err := bu.bookRepo.CountAll(ctx)
+            if err != nil {
+                logger.Error(err)
+                return nil, int64(0), err
+            }
+
+            return books, count, nil
+    }
+
+</code></pre>
+  </div>
+
+
+<p>When we implement pagination, we also need to modify how we cache our data. We currently cache all of our books data using a single key. Because we&rsquo;ll be fetching in batches, we can&rsquo;t just use a single key anymore. Instead we&rsquo;ll be using hashes. The batched data will have their own key based on their <code>limit</code> and <code>offset</code> values, then those keys will be stored under a single hash. If we need to invalidate our books cache we simply delete the hash.</p>
+
+
+
+  <div class="collapsable-code">
+    <input id="9" type="checkbox"  />
+    <label for="9">
+      <span class="collapsable-code__language">go</span>
+      <span class="collapsable-code__title">internal/model/cache.go</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-go" ><code>
+
+    package model
+
+    ...
+
+    type CacheRepository interface {
+
+        ...
+
+        HashGet(ctx context.Context, hash, key string) (reply string, err error)
+        HashSet(ctx context.Context, hash, key, val string) (err error)
+    }
+
+</code></pre>
+  </div>
+
+
+
+
+
+  <div class="collapsable-code">
+    <input id="10" type="checkbox"  />
+    <label for="10">
+      <span class="collapsable-code__language">go</span>
+      <span class="collapsable-code__title">internal/repository/cache_repository.go</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-go" ><code>
+
+    package repository
+
+    ...
+
+    func (c *cacheRepo) HashGet(ctx context.Context, hash, key string) 
+        (string, error) {
+            val, err := c.redisClient.HGet(ctx, hash, key).Result()
+            if err != nil &amp;&amp; err != redis.Nil {
+                return &#34;&#34;, err
+            }
+            return val, nil
+    }
+
+    func (c *cacheRepo) HashSet(ctx context.Context, hash, key, val string) error {
+        return c.redisClient.HSet(ctx, hash, key, val).Err()
+    }
+
+</code></pre>
+  </div>
+
+
+
+
+
+  <div class="collapsable-code">
+    <input id="11" type="checkbox"  />
+    <label for="11">
+      <span class="collapsable-code__language">go</span>
+      <span class="collapsable-code__title">internal/repository/book_repository.go</span>
+      <span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽"></span>
+    </label>
+    <pre class="language-go" ><code>
+
+    package repository
+
+    ...
+
+    func (br *bookRepo) Create(ctx context.Context, book *model.Book) error {
+
+        ...
+
+        cacheKeys := []string{
+            br.cacheHash(),
+            br.countAllCacheKey(),
+        }
+
+        if err := br.cacheRepo.Delete(ctx, cacheKeys...); err != nil {
+            logger.Error(err)
+            return err
+        }
+
+        ...
+    }
+
+    func (br *bookRepo) DeleteByID(ctx context.Context, ID int64) error {
+
+        ...
+
+        cacheKeys := []string{
+            br.findByIDCacheKey(ID),
+            br.cacheHash(),
+        }
+
+        if err := br.cacheRepo.Delete(ctx, cacheKeys...); err != nil {
+            logger.Error(err)
+            return err
+        }
+
+        ...
+    }
+
+    func (br *bookRepo) FindAll(ctx context.Context, 
+        query model.GetBooksQueryParams) ([]*model.Book, error) {
+
+            logger := logrus.WithFields(logrus.Fields{
+                &#34;ctx&#34;:   utils.Dump(ctx),
+                &#34;query&#34;: utils.Dump(query),
+            })
+
+            cacheHash := br.cacheHash()
+            cacheKey := br.findAllByQueryParams(query)
+            reply, err := br.cacheRepo.HashGet(ctx, cacheHash, cacheKey)
+            if err != nil {
+                logger.Error(err)
+                return nil, err
+            }
+
+            ...
+
+            err = br.db.WithContext(ctx).
+                Order(&#34;id DESC&#34;).
+                Offset(int(model.Offset(query.Page, query.Size))).
+                Limit(int(query.Size)).
+                Find(&amp;books).
+                Error
+
+            ...
+
+            err = br.cacheRepo.HashSet(ctx, cacheHash, cacheKey, string(bytes))
+            if err != nil {
+                logger.Error(err)
+            }
+
+            ...
+    }
+
+    func (br *bookRepo) CountAll(ctx context.Context) (int64, error) {
+        logger := logrus.WithField(&#34;ctx&#34;, utils.Dump(ctx))
+
+        cacheKey := br.countAllCacheKey()
+        reply, err := br.cacheRepo.Get(ctx, cacheKey)
+        if err != nil {
+            logger.Error(err)
+            return 0, err
+        }
+
+        if reply != &#34;&#34; {
+            count := int64(0)
+            if err := json.Unmarshal([]byte(reply), &amp;count); err != nil {
+                logger.Error(err)
+                return 0, err
+            }
+            return count, nil
+        }
+
+        count := int64(0)
+        err = br.db.WithContext(ctx).
+            Model(model.Book{}).
+            Count(&amp;count).
+            Error
+        if err != nil {
+            logrus.WithField(&#34;ctx&#34;, utils.Dump(ctx)).Error(err)
+            return int64(0), err
+        }
+
+        bytes, err := json.Marshal(count)
+        if err != nil {
+            logger.Error(err)
+            return 0, err
+        }
+
+        if err := br.cacheRepo.Set(ctx, cacheKey, string(bytes)); err != nil {
+            logger.Error(err)
+        }
+
+        return count, nil
+    }
+
+    func (br *bookRepo) Update(ctx context.Context, book *model.Book) 
+        (*model.Book, error) {
+
+            ...
+
+            cacheKeys := []string{
+                br.cacheHash(),
+                br.countAllCacheKey(),
+                br.findByIDCacheKey(book.ID),
+            }
+
+            ...
+    }
+
+    ...
+
+    func (br *bookRepo) cacheHash() string {
+        return &#34;book&#34;
+    }
+
+    func (br *bookRepo) findAllByQueryParams(query model.GetBooksQueryParams) 
+        string {
+            return fmt.Sprintf(&#34;book:page:%d:size:%d&#34;, query.Page, query.Size)
+    }
+
+    func (br *bookRepo) countAllCacheKey() string {
+        return &#34;book:count&#34;
+    }
+
+</code></pre>
+  </div>
+
+
+<p>When we hit our <code>/books</code> API with a defined <code>page</code> and <code>size</code> query params, the results will be fetched accordingly.</p>
+
+  <figure class="center" >
+    <img src="/img/blogs/create-api-using-golang-cache/4.jpg"   />
+    
+  </figure>
+
+
+<p>Awesome!! 🥳 You’ve successfully implemented caching and pagination to your service!! 👏 Next we will cover how to create unit tests.</p>
+<p>The Github repository for this step of this series can be found <a href="https://github.com/ssentinull/create-apis-using-golang/tree/015649186af52a858d2ca48b97875643c2d3a56e">here</a>.</p>
+<p>I hope this could be beneficial to you. Thank you for taking the time to read this article. 🙏</p>
+<p>– ssentinull</p>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Read other posts</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="/blogs/an-introduction/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">An Introduction.</span>
+                </a>
+              </span>
+            
+            
+              <span class="button next">
+                <a href="/blogs/create-api-using-golang-database/">
+                  <span class="button__text">Create APIs using Golang | Part 3 : Connecting to a Database.</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >ssentinull</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+       <div style="flex-direction: row; align-items: center; font-size: 1rem;">
+         <span style="margin-right: 10px;">
+             <a href="https://github.com/ssentinull"><i class="fa fa-github" style="font-size:24px"></i></a>
+         </span>
+         <span style="margin-right: 10px;">
+             <a href="https://www.linkedin.com/in/ibnu-ahsani/"><i class="fa fa-linkedin" style="font-size:24px"></i></a>
+         </span>
+         <span>
+             <a href="mailto:ibnu.muhari@gmail.com"><i class="fa fa-envelope" style="font-size:18px"></i></a>
+         </span>
+       </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

@@ -56,8 +56,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blogs/create-api-using-golang-setup/" /><meta property="article:section" content="blogs" />
 <meta property="article:published_time" content="2021-11-16T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-11-16T00:00:00+00:00" /><meta property="og:site_name" content="ssentinull" />
-
+<meta property="article:modified_time" content="2021-11-16T00:00:00+00:00" />
 
 
 
@@ -215,12 +214,12 @@
 <li><a href="https://github.com/spf13/viper">Viper</a> : environment variable configurations library.</li>
 <li><a href="https://github.com/sirupsen/logrus">Logrus</a> : structured and pluggable logging library.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git init
-$ go mod init github.com/your_github_username/create-apis-using-golang
-$ go get github.com/labstack/echo/v4
-$ go get github.com/spf13/viper
-$ go get github.com/sirupsen/logrus
-</code></pre></div><h2 id="plan-codebase-layout">Plan Codebase Layout.</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ git init
+</span></span><span style="display:flex;"><span>$ go mod init github.com/your_github_username/create-apis-using-golang
+</span></span><span style="display:flex;"><span>$ go get github.com/labstack/echo/v4
+</span></span><span style="display:flex;"><span>$ go get github.com/spf13/viper
+</span></span><span style="display:flex;"><span>$ go get github.com/sirupsen/logrus
+</span></span></code></pre></div><h2 id="plan-codebase-layout">Plan Codebase Layout.</h2>
 <p>Codebase layout might be insignificant at first glance, but trust me when I say this, it will hinder your productivity in the long run if you don&rsquo;t carefully plan it in the beginning. That&rsquo;s why I suggest following the highly rated ones instead of just creating your own from scratch, especially if you don&rsquo;t have a plan of how to structure your layout. In this series, we&rsquo;ll be using the <a href="https://github.com/golang-standards/project-layout">Go Standard Layout</a>, with some modifications of course. The Github page provides thorough explanations and examples behind the reasoning of the layout and based on the repo&rsquo;s 36k+ stars, I think it&rsquo;s a great place to start.</p>
 <h2 id="create-sample-web-server">Create Sample Web Server.</h2>
 <p>To run a sample web server, create a <code>main.go</code> inside a <code>/internal/cmd/server</code> directory. This dir is used to house our project&rsquo;s main application and nothing else. Our main application should only comprise mostly imports from our modules.</p>
@@ -534,9 +533,9 @@ $ go get github.com/sirupsen/logrus
   </div>
 
 
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># run the server in daemon mode</span>
-$ make run-server
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># run the server in daemon mode</span>
+</span></span><span style="display:flex;"><span>$ make run-server
+</span></span></code></pre></div>
   <img src="/img/blogs/create-api-using-golang-setup/2.png"  class="center"  />
 
 
