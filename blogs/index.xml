@@ -9,7 +9,7 @@
     <description>Recent content in Blogs on ssentinull</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 23 Jul 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Aug 2024 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blogs/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,7 +17,7 @@
     <item>
       <title>An Introduction.</title>
       <link>/blogs/an-introduction/</link>
-      <pubDate>Sun, 23 Jul 2023 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 08 Aug 2024 00:00:00 +0000</pubDate>
       
       <guid>/blogs/an-introduction/</guid>
       <description>
@@ -129,7 +129,7 @@
     </item>
     
     <item>
-      <title>Create a Portfolio using Hugo.</title>
+      <title>Craft a Web-Based Portfolio using Hugo.</title>
       <link>/blogs/create-a-portfolio-using-hugo/</link>
       <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
       
@@ -141,7 +141,7 @@
         
         
         
-          Create a beatiful portfolio in less than an hour using Hugo.
+          Create a beatiful portfolio website in less than an hour using Hugo.
           
         
         </description>

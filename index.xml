@@ -9,15 +9,36 @@
     <description>Recent content on ssentinull</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 23 Jul 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Aug 2024 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>About Me.</title>
+      <link>/about/</link>
+      <pubDate>Thu, 08 Aug 2024 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          My name is Ibnu Ahsani, a Software Engineer from Jakarta, Indonesia. I graduated college in 2020 and have a Bachelor&amp;rsquo;s Degree in Computer Science from Padjadjaran University. I currently have four years of professional experience, focusing on backend technologies across a wide range of business domains, including commerce, media, and anti-fraud.
+I&amp;rsquo;m currently emplyed at eFishery on the Trust team, which deals with anti-fraud. My responsibilities include creating systems to prevent and mitigate fraudulent transactions within the eFishery ecosystem.
+          
+        
+        </description>
+    </item>
+    
+    <item>
       <title>An Introduction.</title>
       <link>/blogs/an-introduction/</link>
-      <pubDate>Sun, 23 Jul 2023 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 08 Aug 2024 00:00:00 +0000</pubDate>
       
       <guid>/blogs/an-introduction/</guid>
       <description>
@@ -91,27 +112,6 @@
     </item>
     
     <item>
-      <title>About Me.</title>
-      <link>/about/</link>
-      <pubDate>Tue, 16 Nov 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/about/</guid>
-      <description>
-        
-          
-          
-          
-        
-        
-        
-          My name is Ibnu Ahsani, a software engineer from Jakarta, Indonesia. I graduated college in 2020 and have a bachelor&amp;rsquo;s degree in computer science from Padjadjaran University. As of 2021, I have less than a year of experience under my belt, so technically that still makes me a &amp;ldquo;fresh graduate&amp;rdquo; :).
-I&amp;rsquo;m currently unemployed after working as a backend engineer at kiddo.id for ten months. My tasks were to create a content management system, as well as maintain, and improve their marketplace system.
-          
-        
-        </description>
-    </item>
-    
-    <item>
       <title>Create APIs using Golang | Part 1 : Workspace Setup.</title>
       <link>/blogs/create-api-using-golang-setup/</link>
       <pubDate>Tue, 16 Nov 2021 00:00:00 +0000</pubDate>
@@ -150,7 +150,7 @@ I&amp;rsquo;m currently unemployed after working as a backend engineer at kiddo.
     </item>
     
     <item>
-      <title>Create a Portfolio using Hugo.</title>
+      <title>Craft a Web-Based Portfolio using Hugo.</title>
       <link>/blogs/create-a-portfolio-using-hugo/</link>
       <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
       
@@ -162,7 +162,7 @@ I&amp;rsquo;m currently unemployed after working as a backend engineer at kiddo.
         
         
         
-          Create a beatiful portfolio in less than an hour using Hugo.
+          Create a beatiful portfolio website in less than an hour using Hugo.
           
         
         </description>

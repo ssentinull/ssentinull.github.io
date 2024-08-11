@@ -3,7 +3,7 @@
   <head>
     
       <title>
-        Create a Portfolio using Hugo. ::
+        Craft a Web-Based Portfolio using Hugo. ::
         ssentinull — a simple about / blog / portfolio site
       </title>
     
@@ -11,10 +11,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="Introduction. This article will give you a step-by-step tutorial on how to create a beautiful web-based portfolio using Hugo.
+  content="Introduction. In this guide, we&amp;rsquo;ll go through a step-by-step process of crafting a stunning web-based portfolio using the power of Hugo.
 📣 Shout-out! 📣
 Shout-out to fahmifan for sharing his knowledge and allowing me to write about it in my blog. Please show some love for his portfolio repo.
-Download Hugo. Head over to Hugo&amp;rsquo;s installation page and install it based on your machine&amp;rsquo;s OS. If you&amp;rsquo;re using Ubuntu like me, you can install it through the official Hugo Debian package."
+Download Hugo. Begin by visiting Hugo&amp;rsquo;s installation page where you&amp;rsquo;ll find instructions tailored to your operating system. If you&amp;rsquo;re an Ubuntu user like myself, you can conveniently install Hugo through the official Hugo Debian package."
 />
 <meta
   name="keywords"
@@ -49,13 +49,13 @@ Download Hugo. Head over to Hugo&amp;rsquo;s installation page and install it ba
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Create a Portfolio using Hugo."/>
-<meta name="twitter:description" content="Create a beatiful portfolio in less than an hour using Hugo."/>
+<meta name="twitter:title" content="Craft a Web-Based Portfolio using Hugo."/>
+<meta name="twitter:description" content="Create a beatiful portfolio website in less than an hour using Hugo."/>
 
 
 
-<meta property="og:title" content="Create a Portfolio using Hugo." />
-<meta property="og:description" content="Create a beatiful portfolio in less than an hour using Hugo." />
+<meta property="og:title" content="Craft a Web-Based Portfolio using Hugo." />
+<meta property="og:description" content="Create a beatiful portfolio website in less than an hour using Hugo." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/blogs/create-a-portfolio-using-hugo/" /><meta property="article:section" content="blogs" />
 <meta property="article:published_time" content="2021-11-08T00:00:00+00:00" />
@@ -161,7 +161,7 @@ Download Hugo. Head over to Hugo&amp;rsquo;s installation page and install it ba
   
 
   <div class="post">
-    <h1 class="post-title">Create a Portfolio using Hugo.</h1>
+    <h1 class="post-title">Craft a Web-Based Portfolio using Hugo.</h1>
     <div class="post-meta">
       
         <span class="post-date">
@@ -199,7 +199,7 @@ Download Hugo. Head over to Hugo&amp;rsquo;s installation page and install it ba
     
       <figure class="post-cover">
         
-          <img src="/img/blogs/create-a-portfolio-using-hugo/0.jpg" alt="Create a Portfolio using Hugo." />
+          <img src="/img/blogs/create-a-portfolio-using-hugo/0.jpg" alt="Craft a Web-Based Portfolio using Hugo." />
         
 
         
@@ -209,45 +209,46 @@ Download Hugo. Head over to Hugo&amp;rsquo;s installation page and install it ba
     <div class="post-content">
       
       <h2 id="introduction">Introduction.</h2>
-<p>This article will give you a step-by-step tutorial on how to create a beautiful web-based portfolio using Hugo.</p>
+<p>In this guide, we&rsquo;ll go through a step-by-step process of crafting a stunning web-based portfolio using the power of Hugo.</p>
 <blockquote>
 <p>📣 <strong>Shout-out!</strong> 📣</p>
 <p>Shout-out to <a href="https://github.com/fahmifan">fahmifan</a> for sharing his knowledge and allowing me to write about it in my blog. Please show some love for his <a href="https://github.com/fahmifan/fahmifan.github.io">portfolio repo</a>.</p>
 </blockquote>
 <h2 id="download-hugo">Download Hugo.</h2>
-<p>Head over to Hugo&rsquo;s <a href="https://gohugo.io/getting-started/installing/">installation page</a> and install it based on your machine&rsquo;s OS. If you&rsquo;re using Ubuntu like me, you can install it through the official Hugo Debian package.</p>
+<p>Begin by visiting Hugo&rsquo;s <a href="https://gohugo.io/getting-started/installing/">installation page</a> where you&rsquo;ll find instructions tailored to your operating system. If you&rsquo;re an Ubuntu user like myself, you can conveniently install Hugo through the official Hugo Debian package.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ sudo apt-get install hugo
 </span></span></code></pre></div><h2 id="create-a-hugo-site">Create a Hugo site.</h2>
-<p>After installation would be the initialization of our workspace. Create a Hugo site and initialize a Git repository in that directory. Part two of this tutorial will include an automation process to deploy your portfolio to <a href="https://pages.github.com/">Github static pages</a>, so a Git repository is necessary.</p>
+<p>Once Hugo is installed, it&rsquo;s time to initiate our workspace. Create your Hugo site and establish a Git repository within that directory. The <a href="/blogs/auto-deploy-portfolio-to-github-pages/">second part</a> of this tutorial will delve into automating the deployment of your portfolio to <a href="https://pages.github.com/">Github Pages</a>, so having a Git repository is crucial.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ hugo new site hugo-portfolio
 </span></span><span style="display:flex;"><span>$ cd hugo-portfolio
 </span></span><span style="display:flex;"><span>$ git init
-</span></span></code></pre></div><p>Run the Hugo server in your CLI. If you don&rsquo;t see anything in your browser, don&rsquo;t panic. It&rsquo;s still blank because we haven&rsquo;t picked out a theme yet, and that&rsquo;s exactly what we&rsquo;re gonna do next. But before that, make sure you commit the newly added files.</p>
+</span></span></code></pre></div><p>Run the Hugo server via your CLI. Don&rsquo;t worry if your browser remains blank at this point. The reason is that we haven&rsquo;t selected a theme yet, which is our next step. But before moving on, make sure to commit the newly added files.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ hugo serve
 </span></span></code></pre></div><h2 id="choose-a-theme">Choose a Theme.</h2>
-<p>Hugo provides a wide range of community-built themes in their <a href="https://themes.gohugo.io/">theme store</a>. Each theme is tagged which makes it easier to find the right theme that matches your preference and personality. I personally like simplicity and basic colors, so I use the <a href="https://themes.gohugo.io/themes/hugo-theme-hello-friend/">hello-friend</a> theme.</p>
-<p>Because we want to have the option of modifying the theme, we would need to fork it to our own Github account and use that fork as a submodule. To do that, head over to the theme&rsquo;s <a href="https://github.com/panr/hugo-theme-hello-friend">Github repository</a> and fork it to your account. After doing so, add the forked repo to your workspace, specifically to the <code>themes/theme_name</code> directory.</p>
+<p>Within Hugo&rsquo;s <a href="https://themes.gohugo.io/">theme store</a> lies a diverse collection of community-crafted themes. Each theme comes with relevant tags, simplifying the hunt for a design that matches your style and personality. Personally, I&rsquo;m drawn to clean lines and basic colors, which is why I&rsquo;ve opted for the <a href="https://themes.gohugo.io/themes/hugo-theme-hello-friend/">hello-friend</a> theme.</p>
+<p>Since we want to tweak the chosen theme, it&rsquo;s essential to fork it to your Github account and treat that fork as a submodule. To achieve this, navigate to the theme&rsquo;s <a href="https://github.com/panr/hugo-theme-hello-friend">Github repository</a> and fork it into your account. Subsequently, integrate the forked repository into your workspace, specifically within the <code>themes/theme_name</code> directory.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ git submodule add https://github.com/your_account_name/hugo-theme-hello-friend.git themes/hello-friend
-</span></span></code></pre></div><p>When you browse the theme page you&rsquo;ll see a diverse set of themes, from the flamboyant to the plain, from the colorful to the pale. Even though they all may look different, all of them are configured using the same file, <code>config.toml</code>. The configurations for each theme can be found on their respective theme page. As for the hello-friend theme, you can find it right <a href="https://themes.gohugo.io/themes/hugo-theme-hello-friend/#how-to-configure">here</a>. Copy-paste the values to our local <code>config.toml</code> and your page should look like this.</p>
+</span></span></code></pre></div><p>As you explore the theme gallery, you&rsquo;ll encounter a plethora of designs, ranging from bold to understated, from vibrant to muted. Although their appearances differ, all these themes share a common configuration file, <code>config.toml</code>. The configuration specifics for each theme are accessible on their respective theme pages. For instance, details about the hello-friend theme can be found <a href="https://themes.gohugo.io/themes/hugo-theme-hello-friend/#how-to-configure">here</a>. Copy-paste the values in your local <code>config.toml</code> file and your page should look like this.</p>
 
   <img src="/img/blogs/create-a-portfolio-using-hugo/1.png"  class="center"  />
 
 
-<p>This looks great, but there are some things that I want to change about the looks, like the cursor color next to the &ldquo;&gt; hello friend&rdquo; text and the default color scheme for example. We&rsquo;ll do that in the next step after we commit the changes that we&rsquo;ve made.</p>
+<p>This looks great, but there are some things that I want to change about the looks, like the cursor color next to the <strong>&gt; hello friend</strong> text and the default color scheme for example. We&rsquo;ll do that in the next step after we commit the changes that we&rsquo;ve made.</p>
 <h2 id="customize-a-theme">Customize a Theme.</h2>
 <p>Let&rsquo;s say that we want to change our color scheme from dark to light. We can do so from the <code>config.toml</code> file. To change it, simply change the <code>defaultTheme</code> value from <code>dark</code> to <code>light</code>.</p>
 
   <img src="/img/blogs/create-a-portfolio-using-hugo/2.png"  class="center"  />
 
 
-<p>However, changing the cursor color won&rsquo;t be as simple as that. The cursor color is not set to be modifiable through the <code>config.toml</code> by the theme&rsquo;s creator, so we need to make changes to the source code. Because the theme is a separate repository from our workspace, we need to make the changes from the theme&rsquo;s repository, not from our workspace. To make sure our changes don&rsquo;t conflict with future updates to the theme, we make our changes in a separate feature branch, so that if there were updates we could simply rebase our feature branch. We&rsquo;ll call this branch <code>portfolio</code>. Make sure you also define the branch from which you want to pull the submodules next time you initialize a fresh clone of this repo by adding <code>branch = portfolio</code> to <code>.gitmodules</code>.</p>
+<p>Changing the cursor color, however, is not as simple. The cursor color is not set to be modifiable through the <code>config.toml</code> by the theme&rsquo;s creator, so we need to make changes to the source code.</p>
+<p>Given that the theme operates from a distinct repository than our workspace, adjustments should be made in the theme&rsquo;s repository. To prevent future conflicts with theme updates, implement these changes within a separate feature branch. We&rsquo;ll call this branch <code>portfolio</code>. Make sure you also define the branch from which you want to pull the submodules next time you initialize a fresh clone of this repo by adding <code>branch = portfolio</code> to <code>.gitmodules</code>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ cd themes/hello-friend
 </span></span><span style="display:flex;"><span>$ git checkout -b portfolio master
 </span></span></code></pre></div>
 
 
   <div class="collapsable-code">
-    <input id="1" type="checkbox" checked />
+    <input id="1" type="checkbox"  />
     <label for="1">
       <span class="collapsable-code__language">gitmodules</span>
       <span class="collapsable-code__title">.gitmodules</span>
@@ -258,37 +259,38 @@ Download Hugo. Head over to Hugo&amp;rsquo;s installation page and install it ba
     [submodule &#34;themes/hello-friend&#34;]
     path = themes/hello-friend
     url = https://github.com/ssentinull/hugo-theme-hello-friend.git
-    branch = custom
+    branch = portfolio
 
 </code></pre>
   </div>
 
 
-<p>To safely edit this theme, you need <a href="https://nodejs.org/en/">NodeJs</a>, <a href="https://www.npmjs.com/">NPM</a>, and <a href="https://yarnpkg.com/">Yarn</a> installed on your machine. I&rsquo;m not gonna explain how to install those three in this tutorial cause it&rsquo;ll take too long. After installing NodeJs, NPM, and Yarn, install the necessary NPM packages before proceeding.</p>
+<p>To safely edit this theme, you need <a href="https://nodejs.org/en/">NodeJs</a>, <a href="https://www.npmjs.com/">NPM</a>, and <a href="https://yarnpkg.com/">Yarn</a> installed on your machine. I&rsquo;m not gonna explain how to install those three in this tutorial cause it&rsquo;ll take too long. Once these tools are in place, proceed by installing the required NPM packages.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ npm i
 </span></span><span style="display:flex;"><span>$ npm i yarn
 </span></span><span style="display:flex;"><span>$ yarn
-</span></span></code></pre></div><p>To change the color of the cursor, go to <code>/assets/css/logo.css</code> and change the <code>background</code> hexadecimal value of <code>&amp;__cursor</code> style. To see the changes, run the theme in dev mode so that it auto reloads on changes to the source code. If it doesn&rsquo;t change, reload the page and delete the cached data by pressing <code>CTRL+Shift+R</code>. Once you&rsquo;ve picked a color that you like, rebuild the theme, commit it, and push it to Github.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ yarn dev
-</span></span><span style="display:flex;"><span>$ yarn build
-</span></span><span style="display:flex;"><span>$ git push -u origin portfolio
-</span></span></code></pre></div>
+</span></span></code></pre></div><p>To change the color of the cursor, go to <code>/assets/css/logo.css</code> and change the <code>background</code> hexadecimal value of <code>&amp;__cursor</code> style. To see the changes, run the theme in development mode to enable automatic reloading upon code changes. If it doesn&rsquo;t change, reload the page and delete the cached data by pressing <code>CTRL+Shift+R</code>.</p>
+
   <img src="/img/blogs/create-a-portfolio-using-hugo/3.png"  class="center"  />
 
 
-<p>Even though we&rsquo;ve created a separate repo for our theme and pushed it to its origin, we haven&rsquo;t added it to our workspace&rsquo;s repo. We need to change directory back to our workspace repo, add the theme directory, commit it, then push it to Github.</p>
+<p>Once you&rsquo;ve picked a color that you like, rebuild the theme, commit it, and push it to Github.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ yarn dev
+</span></span><span style="display:flex;"><span>$ yarn build
+</span></span><span style="display:flex;"><span>$ git push -u origin portfolio
+</span></span></code></pre></div><p>Even though we&rsquo;ve created a separate repo for our theme and pushed it to its origin, we haven&rsquo;t added it to our workspace&rsquo;s repo. To add it, simply navigate back to our workspace repo, add the theme directory, commit it, then push it to Github.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ cd ../../
 </span></span><span style="display:flex;"><span>$ git add themes/
 </span></span><span style="display:flex;"><span>$ git commit -m <span style="color:#e6db74">&#34;feat: adding themes/ directory&#34;</span>
 </span></span><span style="display:flex;"><span>$ git push origin master
 </span></span></code></pre></div><h2 id="add-contents">Add Contents.</h2>
-<p>Now that we got the appearance out of the way, let&rsquo;s continue to the main reason why we&rsquo;re making this site in the first place; to showcase yourself and your projects. We&rsquo;ll start with the former. In the navigation bar, there already exists a button that redirects you to the &lsquo;About&rsquo; page. But if you click on it, Hugo will redirect you to a <code>404 Page Not Found</code> page. The reason is because that page doesn&rsquo;t exist yet.</p>
-<p>Hugo works by reading the contents of <code>.md</code> files inside the <code>/content</code> directory, then it generates static pages based on the texts. How the static pages get routed is dictated in the <code>config.toml</code> file.</p>
+<p>With the visual aspects sorted, let&rsquo;s continue to the main reason why we&rsquo;re making this site in the first place—to showcase yourself and your projects. We&rsquo;ll start with the former.</p>
+<p>While a button linking to the <em>About</em> page is already exist in the navigation bar, clicking it leads to a <code>404 Page Not Found</code> error. The reason is because that page doesn&rsquo;t exist yet. Hugo works by reading the contents of <code>.md</code> files inside the <code>/content</code> directory, then it generates static pages based on the contents. The <code>config.toml</code> file dictates how the static pages get routed.</p>
 
 
 
   <div class="collapsable-code">
-    <input id="2" type="checkbox" checked />
+    <input id="2" type="checkbox"  />
     <label for="2">
       <span class="collapsable-code__language">toml</span>
       <span class="collapsable-code__title">config.toml</span>
@@ -307,12 +309,12 @@ Download Hugo. Head over to Hugo&amp;rsquo;s installation page and install it ba
   </div>
 
 
-<p>If we take a closer look at the snippet above, you&rsquo;ll notice that the <code>identifier</code> config is the name of the file inside of <code>/content</code>, the <code>name</code> config is the text that shows up in the navigation bar, and the <code>url</code> config is the endpoint that will be generated for that static page. By that information, we create an <code>about.md</code> file inside the <code>/content</code> directory.</p>
+<p>If you take a look at the snippet above, you&rsquo;ll notice that the <code>identifier</code> config is the name of the file inside of <code>/content</code>, the <code>name</code> config is the label that shows up in the navigation bar, and the <code>url</code> config is the endpoint that will be generated for that static page. With that information, create an <code>about.md</code> file inside the <code>/content</code> directory.</p>
 
 
 
   <div class="collapsable-code">
-    <input id="3" type="checkbox" checked />
+    <input id="3" type="checkbox"  />
     <label for="3">
       <span class="collapsable-code__language">md</span>
       <span class="collapsable-code__title">about.md</span>
@@ -371,12 +373,12 @@ Lipsum:
   <img src="/img/blogs/create-a-portfolio-using-hugo/4.png"  class="center"  />
 
 
-<p>We&rsquo;re done with our self-introduction page, now let&rsquo;s move on to our projects page. The concept of the projects page is similar to the about page with minor differences and few modifications. First, we need to change the text in the navigation bar from <code>showcase</code> to <code>projects</code> by modifying the <code>config.toml</code> file.</p>
+<p>We&rsquo;re done with our self-introduction page, now let&rsquo;s move on to our projects page. The projects page is similar to the about page, only needing a few modifications. First, we need to change the text in the navigation bar from <code>showcase</code> to <code>projects</code> by modifying the <code>config.toml</code> file.</p>
 
 
 
   <div class="collapsable-code">
-    <input id="4" type="checkbox" checked />
+    <input id="4" type="checkbox"  />
     <label for="4">
       <span class="collapsable-code__language">toml</span>
       <span class="collapsable-code__title">config.toml</span>
@@ -395,12 +397,13 @@ Lipsum:
   </div>
 
 
-<p>After that, we need to make a <code>/projects</code> directory inside of <code>/contents</code>. The difference between <code>/about</code> and <code>/projects</code> is that the former only consist of a single page and the latter could consist of multiple pages. Because of this, we need to create <code>/projects</code>. The routing for <code>/projects</code> endpoint will look like this: <code>/projects/file-1-name</code>,<code>/projects/file-2-name</code>. So create two files inside <code>/projects</code> named <code>project-one.md</code> and <code>project-two.md</code>.</p>
+<p>The difference between the about page and the projects page is that the former only consist of a single page and the latter could consist of multiple pages. For this reason we need to create <code>/projects</code> inside <code>/content</code>.</p>
+<p>The routing for <code>/projects</code> endpoint will look like this: <code>/projects/file-1-name</code>,<code>/projects/file-2-name</code>. So create two files inside <code>/projects</code> named <code>project-one.md</code> and <code>project-two.md</code>.</p>
 
 
 
   <div class="collapsable-code">
-    <input id="5" type="checkbox" checked />
+    <input id="5" type="checkbox"  />
     <label for="5">
       <span class="collapsable-code__language">md</span>
       <span class="collapsable-code__title">project-one.md &amp; project-two.md</span>
@@ -475,7 +478,7 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 
   <div class="collapsable-code">
-    <input id="6" type="checkbox" checked />
+    <input id="6" type="checkbox"  />
     <label for="6">
       <span class="collapsable-code__language">toml</span>
       <span class="collapsable-code__title">config.toml</span>
